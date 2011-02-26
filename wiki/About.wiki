@@ -1,6 +1,8 @@
 = Introduction =
 
-SimpleNLG is a simple Java API designed to facilitate the generation of Natural Language. It is intended as the "realisation engine" for Natural Language Generation architectures, and has been used successfully in a number of projects, including [http://www.csd.abdn.ac.uk/research/babytalk/ the BabyTalk Project]. 
+Simplenlg is a simple Java API designed to facilitate the generation of Natural Language. It was originally developed at the [http://www.csd.abdn.ac.uk University of Aberdeen's Department of Computing Science].
+
+Simplenlg is intended to function as a "realisation engine" for Natural Language Generation architectures, and has been used successfully in a number of projects, including [http://www.csd.abdn.ac.uk/research/babytalk/ the BabyTalk Project]. 
 
 For details of its design and examples of its use, please refer to the following publication:
 
