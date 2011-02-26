@@ -4,7 +4,7 @@ SimpleNLG is a simple Java API designed to facilitate the generation of Natural 
 
 For details of its design and examples of its use, please refer to the following publication:
 
-* A. Gatt and E. Reiter. (2009). [http://staff.um.edu.mt/albert.gatt/home/pubs/enlg2009-simplenlg.pdf SimpleNLG: A realisation engine for practical applications]. Proceedings of the 12th European Workshop on Natural Language Generation (ENLG-09). 
+  * A. Gatt and E. Reiter. (2009). [http://staff.um.edu.mt/albert.gatt/home/pubs/enlg2009-simplenlg.pdf SimpleNLG: A realisation engine for practical applications]. Proceedings of the 12th European Workshop on Natural Language Generation (ENLG-09). 
 
 = Version history and hosting =
 SimpleNLG has now been moved to a public repository due to increased demand for access to the source code. Its old homepage can be found on [http://www.csd.abdn.ac.uk/research/simplenlg/ here].
@@ -14,8 +14,6 @@ The present version of simpleNLG is v4.0. This is the version hosted on this sit
 = Summary of features =
 SimpleNLG handles the following:
 
-* Lexicon/morphology system: The default lexicon computes inflected forms (morphological realisation). We believe this has quite good coverage. Morphology in simplenlg v3 was partially based on the rules in the Sussex morphg system. Morphology in simplenlg V4 can is based on a modified version of the NIH Specialist Lexicon.
-
-* Realiser: Generates texts from a syntactic form. Grammatical coverage is very limited compared to tools such as KPML and FUF/SURGE, but we believe it is adequate for many NLG tasks.
-
-* Microplanning: Currently just simple aggregation, hopefully will grow over time. 
+  * Lexicon/morphology system: The default lexicon computes inflected forms (morphological realisation). We believe this has quite good coverage. Morphology in simplenlg v3 was partially based on the rules in the Sussex morphg system. Morphology in simplenlg V4 can is based on a modified version of the NIH Specialist Lexicon.
+  * Realiser: Generates texts from a syntactic form. Grammatical coverage is very limited compared to tools such as KPML and FUF/SURGE, but we believe it is adequate for many NLG tasks.
+  * Microplanning: Currently just simple aggregation, hopefully will grow over time. 
