@@ -1,0 +1,7 @@
+#summary simplenlg web pages
+
+= simplenlg web pages =
+
+To download simplenlg, go to http://www.csd.abdn.ac.uk/~ereiter/simplenlg/
+
+The web page also contains detailed API documentation for simplenlg
