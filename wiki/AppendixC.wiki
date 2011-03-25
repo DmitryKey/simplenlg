@@ -1,12 +1,12 @@
 #summary simplenlg and Eclipse
 
 = simplenlg and Eclipse =
-
-*Setting up simplenlg in Eclipse:*
 If you are using Eclipse to write your Java programs, you would
 
- #. create a new Project (File>New>Project)
- # add the simplenlg library to the project’s build path by doing the following:
+*jar distribution:*
+
+ # Create a new Project (File>New>Project).
+ # Add the simplenlg library to the project’s build path by doing the following:
   * go to the Eclipse menu and select Project>Properties>Java Build Path
   * click on the Libraries tab
   * click on the *Add External jars...* button
@@ -39,20 +39,21 @@ Following these steps, you should have code that looks like the following:
         }
 }}}
 
-*Using source code*
-If you are using the source code of the simplenlg you need to set up several things.
+*Using source code:*
 
- #. create a new Project (File>New>Project)
- # add the additional libraries to the project’s build path by doing the following:
+If you are using the simplenlg source code you need to set up several things.
+
+ # Create a new Project (File>New>Project).
+ # Add the additional libraries to the project’s build path by doing the following:
   * go to the Eclipse menu and select Project>Properties>Java Build Path
   * click on the Libraries tab
   * click on the *Add External jars* button
   * browse to the {{{simplenlg/lib}}} folder and select all jar files
   * click *Open*
-  * click *OK
- # add the simplenlg source code to your project
+  * click *OK*
+ # Add the simplenlg source code to your project.
  * open the project properties again and click on the *sources* tab.
- * click on the *Link Source...* button and add the path to the {{{simplenlg/src}}} folder and into the folder name type simplenlg.
+ * click on the *Link Source...* button and add the path to the {{{simplenlg/src}}} folder; type {{{simplenlg}}} into the folder name.
  * click *finish* and then *OK*.
 # In the project, create a new class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
  # At the top of the class, put in the following import statements:
@@ -80,6 +81,6 @@ Following these steps, you should have code that looks like the following:
         }
 }}}
 
-There should be two folders in your project. The folder {{{src}}} for your code and folder {{{simplenlg}}} that contains the simplenlg source code. 
+There should be two folders in your project. The {{{src}}} folder, for your code, and the {{{simplenlg}}} folder, which contains the linked simplenlg source code.
 
 You should be now ready to start implementing your own classes that use simplenlg.
