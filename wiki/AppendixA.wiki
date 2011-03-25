@@ -4,12 +4,9 @@
 
 What is NLG and how much of it does simplenlg do? NLG aims to produce understandable text, typically from some nonlinguistic representation of info.
 
-<wiki:comment>
-here should be a link to the image with the nlg arch. http://code.google.com/images/code_sm.png
-</wiki:comment>
+http://simplenlg.googlecode.com/svn/wiki/NLG_Arch.png
 
 Many NLG systems consist of 3 components which are connected together in a pipeline. i.e. the output of document planning acts as input to microplanning and the output of the microplanner is the input to the surface realiser. The table below briefly outlines the different components of an NLG system and the shaded portion shows which tasks simplenlg performs.
-
 
 == Document Planner ==
 *content determination*
