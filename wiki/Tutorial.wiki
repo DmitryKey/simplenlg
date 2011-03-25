@@ -6,7 +6,9 @@ The tutorial provides information about the simplenlg library, how to set it up 
 
 = Details =
 
+
 *Table of contents*
+#sidebar TableOfContents
  * [Section1 Section I – What is simplenlg?]
  * [Section2 Section II – Who uses simplenlg?]
  * [Section3 Section III - Getting started]
