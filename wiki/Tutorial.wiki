@@ -1,0 +1,22 @@
+#summary A tutorial for SimpleNLG (version 4)
+#labels simplenlg,tutorial
+
+= Introduction =
+
+The tutorial provides information about the simplenlg library, how to set it up and how to use it. The following pages assume that you have a basic knowledge of java.
+
+
+= Details =
+
+Table of contents
+ * [Section1 Section I – What is simplenlg?]
+ * [Section2 Section II – Who uses simplenlg?]
+
+
+Contributors:
+ *Albert Gatt
+ *Roman Kutlak
+ *Donald Matheson
+ *Margaret Mitchell
+ *Ehud Reiter
+ *Chris Venour
