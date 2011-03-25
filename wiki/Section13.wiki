@@ -1,0 +1,35 @@
+#summary Different ways of specifying a phrase
+
+= Different ways of specifying a phrase =
+
+There are numerous ways of specifying a phrase. The table below shows some of the ways we can create the sentence ‘Mary chases George’. You can define all the components of the phrase when you create an instance of it (as in example #1). Or you can create the instance first and then add the components one at a time (as in example #2). Alternatively, the components of a sentence can themselves be phrases (as in example #3). Or you can have a combination of all these various syntaxes (as in examples 4-5).
+
+{{{
+        // 1.
+        SPhraseSpec p = new SPhraseSpec("Mary", "chase", "George");
+
+        // 2.
+        SPhraseSpec p = new SPhraseSpec();
+        p.addSubject("Mary");
+        p.setVerb("chase");
+        p.addComplement("George");
+
+        // 3.
+        NPPhraseSpec subj = new NPPhraseSpec("Mary");
+        NPPhraseSpec obj = new NPPhraseSpec("George");
+        SPhraseSpec p = new SPhraseSpec(subj, "chase", obj); 
+
+        // 4.
+        NPPhraseSpec obj = new NPPhraseSpec("George");
+        SPhraseSpec p = new SPhraseSpec();
+
+        p.addSubject("Mary");
+        p.setVerb("chase");
+        p.addComplement(obj);
+
+        // 5.
+        SPhraseSpec p = new SPhraseSpec("Mary", "chase", new NPPhraseSpec("George")); 
+}}}
+
+
+
