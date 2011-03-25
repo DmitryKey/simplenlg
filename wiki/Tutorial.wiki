@@ -1,22 +1,36 @@
 #summary A tutorial for SimpleNLG (version 4)
-#labels simplenlg,tutorial
 
 = Introduction =
 
-The tutorial provides information about the simplenlg library, how to set it up and how to use it. The following pages assume that you have a basic knowledge of java.
-
+The tutorial provides information about the simplenlg library, how to set it up and how to use it. The following pages assume that you have a basic knowledge of java and object oriented programming. For example, you will need to understand what a class and an instance of a class are.
 
 = Details =
 
-Table of contents
+*Table of contents*
  * [Section1 Section I – What is simplenlg?]
  * [Section2 Section II – Who uses simplenlg?]
+ * [Section3 Section III - Getting started]
+ * [Section4 Section IV - Lexicon]
+ * [Section5 Section V - Generating a simple sentence]
+ * [Section6 Section VI - Verbs]
+ * [Section7 Section VII - What are complements?]
+ * [Section8 Section VIII - Adding adjectives via ‘modifier’]
+ * [Section9 Section IX - Adding multiple subjects, objects and complements]
+ * [Section10 Section X - Prepositional phrases]
+ * [Section11 Section XI - Adding adverbs]
+ * [Section12 Section XII - Modifiers vs. complements]
+ * [Section13 Section XIII - Different ways of specifying a phrase]
+ * [Section14 Section XIV - Generating a sentence with multiple clauses]
+ * [Section15 Section XV - Generating paragraphs (TextSpec)]
+ * [Section16 Section XVI - Generating a paragraph with strings, SPhraseSpecs and TextSpecs]
+ * [AppendixA Appendix A - NLG and simplenlg]
+ * [AppendixB Appendix B - simplenlg web pages]
+ * [AppendixC Appendix C - simplenlg and Eclipse]
 
-
-Contributors:
- *Albert Gatt
- *Roman Kutlak
- *Donald Matheson
- *Margaret Mitchell
- *Ehud Reiter
- *Chris Venour
+*Contributors:*
+ * Albert Gatt
+ * Roman Kutlak
+ * Donald Matheson
+ * Margaret Mitchell
+ * Ehud Reiter
+ * Chris Venour
