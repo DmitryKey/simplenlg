@@ -6,7 +6,7 @@ Simplenlg is intended to function as a "realisation engine" for Natural Language
 
 For details of its design and examples of its use, please refer to the following publication:
 
-  * A. Gatt and E. Reiter. (2009). [http://staff.um.edu.mt/albert.gatt/home/pubs/enlg2009-simplenlg.pdf SimpleNLG: A realisation engine for practical applications]. Proceedings of the 12th European Workshop on Natural Language Generation (ENLG-09).
+  * A. Gatt and E. Reiter. (2009). [http://aclweb.org/anthology-new/W/W09/W09-0613.pdf SimpleNLG: A realisation engine for practical applications]. Proceedings of the 12th European Workshop on Natural Language Generation (ENLG-09).
 
 The above paper is also the best academic citation for simplenlg. 
 
