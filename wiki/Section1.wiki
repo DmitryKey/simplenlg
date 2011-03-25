@@ -1,5 +1,4 @@
 #summary What is simplenlg?
-#labels tutorial,intro
 
 = What is simplenlg? =
 simplenlg can be used to help you write a program which generates grammatically correct English sentences. It’s a library (not an application), written in Java, which performs simple and useful tasks that are necessary for natural language generation (NLG). 
