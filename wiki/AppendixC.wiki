@@ -1,0 +1,40 @@
+#summary simplenlg and Eclipse
+
+= simplenlg and Eclipse =
+
+*Setting up simplenlg in Eclipse:*
+If you are using Eclipse to write your Java programs, you would
+
+ #. create a new Project (File>New>Project)
+ # add the simplenlg library to the project’s build path by doing the following:
+  * go to the Eclipse menu and select Project>Properties>Java Build Path
+  * click on the Libraries tab
+  * click on the Add External jars button
+  * browse to the simplenlg jar file which you downloaded from the web
+  * select the simplenlg jar file and click ‘Open’
+  * click OK
+ # In the project, create a new class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
+ # At the top of the class, put in the following import statements:
+{{{
+    import simplenlg.features.*;
+    import simplenlg.realiser.*;
+}}}
+
+Following these steps, you should have code that looks like the following:
+
+{{{
+        import simplenlg.features.*;
+        import simplenlg.realiser.*;
+
+        public class TestMain {
+
+	        /**
+        	 * @param args
+	         */
+        	public static void main(String[] args) {
+	        	// TODO Auto-generated method stub
+
+        	}        
+
+        }
+}}}
