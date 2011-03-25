@@ -1,0 +1,95 @@
+#summary Getting started
+
+= Getting started{{{[1]}}} =
+
+It’s important to note that simplenlg is a library{{{[2]}}}, not an application! This means you cannot run it as a Java program – it does not have a "*main*" method. You need to create your own Java program which *makes use* of simplenlg classes and methods.
+
+To enable your program to make use of the simplenlg library, you’ll need to 
+
+ * download a zip file of the library from the simplenlg website (see Appendix B for the URL). 
+ * unload that zip file and add simplenlg’s jar file to your program’s build path (For instructions on how to do this in Eclipse, see Appendix C).
+ * create a new Java class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
+ * at the top of that class, put in the following import statements:
+{{{
+import simplenlg.framework.*;
+import simplenlg.lexicon.*;
+import simplenlg.realiser.english.*;
+import simplenlg.phrasespec.*;
+import simplenlg.features.*;
+}}}
+
+ * create a simplenlg lexicon, NLGFactory, and realiser using the following statements
+{{{
+Lexicon lexicon = Lexicon.getDefaultLexicon();
+NLGFactory nlgFactory = new NLGFactory(lexicon);
+Realiser realiser = new Realiser(lexicon);
+}}}
+
+Following these steps, you should have code that looks like the following:
+{{{
+   import simplenlg.framework.*;
+   import simplenlg.lexicon.*;
+   import simplenlg.realiser.english.*;
+   import simplenlg.phrasespec.*;
+   import simplenlg.features.*;
+
+
+public class TestMain {
+
+	public static void main(String[] args) {
+		Lexicon lexicon = Lexicon.getDefaultLexicon();
+                NLGFactory nlgFactory = new NLGFactory(lexicon);
+                Realiser realiser = new Realiser(lexicon);
+
+	}
+
+}
+
+}}} 
+*Figure 1*: a Java class which is ready to make use of the simplenlg library
+
+
+You’re now ready to make use of simplenlg to generate sentences! 
+
+*Generating the simplest kind of phrase in simplenlg*
+
+Let’s create the simplest kind of sentence allowed in simplenlg: canned text, i.e., a string which we’d like output to the screen as is. For instance, let’s say we are writing a program which takes input from users and generates a different paragraph depending on the various inputs. But let’s say that no matter what, we always want the first line of the paragraph to be “My dog is happy” because we feel everyone should share in the good news. The simplenlg code to do this is:
+
+{{{
+NLGElement s1 = nlgFactory.createSentence("my dog is happy");
+}}}
+		
+We now need to use the Realiser to output the string:
+
+{{{	
+String output = realiser.realiseSentence(s1);
+System.out.println(output);
+}}}
+
+Not surprisingly, the resulting output is:
+  My dog is happy.
+
+It’s important to note that you only need to create the {{{Lexicon}}}, {{{NLGFactory}}}, and {{{Realiser}}} once within your program; you don’t need to create them for every sentence you generate. So a good idea is to create these at the start of your program and user them over the lifetime of the program run.
+
+
+*The main steps involved in generating a more complicated sentence:*
+
+Importing the simplenlg libraries into your Java program provides that program with classes that allow you to specify the parts of speech of a sentence. The idea of ‘what a sentence is’ is captured in the simplenlg class called {{{SPhraseSpec}}}; the ideas of a ‘noun phrase’, ‘prepositional phrase’, ‘adjective phrase, and ‘adverb phrase’ are represented by the classes {{{NPPhraseSpec, PPPhraseSpec, AdjPhraseSpec,}}} and {{{AdvPhraseSpec[3]}}}.  These classes can all be called through NLGFactory.  In order to build a sentence with these simplenlg concepts or classes, you will normally follow these steps:
+
+ * create an instance of NLGFactory.
+ * create an instance of {{{SPhraseSpec}}}. (This represents our sentence).
+ * create instances of various other parts of speech (using {{{NPPhraseSpec}}} or {{{PPPhraseSpec}}} for instance).
+ * indicate what role these various parts of speech will play in the desired {{{SPhraseSpec}}} sentence. For example, specify that you want a particular noun phrase to be the subject of the {{{SPhraseSpec}}} sentence, and some other noun phrase to be the object. 
+ * specify what the verb of {{{SPhraseSpec}}} will be.
+ * create a simplenlg object called the *Realiser*.
+ * ask the *Realiser* to ‘realise’ or transform the {{{SPhraseSpec}}} instance into a syntactically correct string.
+
+You now have a string which is a grammatical English phrase or sentence and it can be treated like any other Java string. For instance you can manipulate it further or print it out using the Java method {{{System.out.println}}}.
+
+See Section5 for an example of the actual Java code used to generate a sentence. 
+
+{{{[1]}}} Note that this and other sections assume a basic understanding of object oriented programming on the part of the reader. For example, you will need to understand what a class and an instance of a class are.
+
+{{{[2]}}}A library or API is a collection of methods/functions that people can make use of in their programs. This saves programmers from having to write that code themselves. 
+
+{{{[3]}}} simplenlg also has a VPPhraseSpec class, for verb phrases.  This will not be discussed in the tutorial, as basic manipulation of a verb phrase can be done through SPhraseSpec.
