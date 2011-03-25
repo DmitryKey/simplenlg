@@ -35,6 +35,7 @@ As you can see, simplenlg will not choose particular words for you: you will nee
 
 For those familiar with the terminology of natural language generation (NLG), simplenlg is a realiser for a simple grammar {{{[2]}}}. We hope that simplenlg will eventually provide simple algorithms for not only realization but all of microplanning as well. As its functionality expands over time, components such as microplanning will be added as self-contained modules: self-contained, in order to allow students and researchers use of parts of the library they want, with the freedom to extend or replace other modules with their own implementations.
 
+----
 {{{[1]}}} agreement describes how a word’s form sometimes depends on other words that appear with it in a sentence. For example you don’t say "I is" in English, because "is" cannot be used when the subject is "I". The word "is" is said not to agree with the word "I". The correct form is "I am", even though the verb still has the same function and basic meaning.
 
 {{{[2]}}} What is this simple grammar? See Appendix B for details.
