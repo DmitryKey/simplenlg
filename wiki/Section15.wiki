@@ -1,0 +1,32 @@
+#summary Generating paragraphs (TextSpec)
+
+= Generating paragraphs (TextSpec) =
+
+As we saw in the previous section, {{{TextSpec}}} allows you to create a sentence consisting of a list of clauses. For example, 
+ {{{My cat likes fish, my dog likes bones and my horse likes grass.}}}
+
+The code for producing this output is
+{{{
+        TextSpec t1 = new TextSpec("my cat likes fish", "my dog likes bones", "my horse likes grass");
+}}}
+
+{{{TextSpecs}}} are sentences by default but they can also be defined to generate paragraphs. To create a paragraph you need to:
+
+ # create an instance of {{{TextSpec}}}
+ # add sentences to that instance (using the method {{{addSpec}}}) or include the sentences in the constructor{{{[1]}}} for {{{TextSpec}}}.
+ # define the {{{TextSpec}}} instance as a paragraph rather than a single sentence (using the method {{{setParagraph}}}).
+
+Thus if we add the statement:
+{{{
+        t1.setParagraph(); 
+}}}
+to the code above, the realiser will produce the following paragraph: 
+ {{{My cat likes fish. My dog likes bones. My horse likes grass.}}}
+
+If you do not set the {{{TextSpec}}} instance to be a paragraph, simplenlg will, by default, treat it as a single sentence.
+
+----
+{{{[1]}}} ‘constructor’ is a Java term. It’s the line of Java code in which an instance of a class is created. The constructor I’m referring to here is: 
+{{{
+        TextSpec t1 = new TextSpec("my cat likes fish", "my dog likes bones", "my horse likes grass");
+}}}
