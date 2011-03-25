@@ -1,0 +1,11 @@
+#summary Adding adverbs
+
+= Adding adverbs  =
+
+Adverbs are specified as modifiers in an {{{SPhraseSpec}}}.  For example, to output "John quickly ran", use:
+{{{
+        p.setSubject("John");
+        p.setVerb("run");
+        p.addModifier("quickly");
+        p.setFeature(Feature.TENSE, Tense.PAST);
+}}}
