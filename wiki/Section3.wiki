@@ -27,11 +27,11 @@ Realiser realiser = new Realiser(lexicon);
 
 Following these steps, you should have code that looks like the following:
 {{{
-   import simplenlg.framework.*;
-   import simplenlg.lexicon.*;
-   import simplenlg.realiser.english.*;
-   import simplenlg.phrasespec.*;
-   import simplenlg.features.*;
+import simplenlg.framework.*;
+import simplenlg.lexicon.*;
+import simplenlg.realiser.english.*;
+import simplenlg.phrasespec.*;
+import simplenlg.features.*;
 
 
 public class TestMain {
