@@ -1,0 +1,57 @@
+#summary Generating a sentence with multiple clauses
+
+= Generating a sentence with multiple clauses =
+
+You can generate a sentence with multiple clauses in two ways:
+1. by using a simplenlg class called {{{TextSpec}}}
+2. by nesting phrases within phrases
+
+*Lists of clauses*
+
+One way of generating a sentence with multiple clauses is to use the simplenlg class {{{TextSpec}}}. {{{TextSpec}}} can be used to define single sentences and paragraphs. It consists of a document structure (eg SENTENCE or PARAGRAPH) and a list of components which are either {{{SPhraseSpecs}}} or smaller {{{TextSpecs}}}. 
+
+In the next section we will see how to create paragraphs with {{{TextSpec}}} but for now let’s see how we can create a list of clauses which we want combined in a single sentence:
+{{{
+        TextSpec t1 = new TextSpec("my cat likes fish", "my dog likes bones", "my horse likes grass");
+}}}
+
+We can define the {{{TextSpec}}} instance {{{t1}}} to be made up of a list of {{{SPhraseSpecs}}} in this way or we can make use of the method {{{addSpec}}} and individually add each of them to {{{t1}}}:
+{{{
+        SPhraseSpec s1 = new SPhraseSpec("my cat", "like", "fish");
+	SPhraseSpec s2 = new SPhraseSpec("my dog", "like", "bones");
+	SPhraseSpec s3 = new SPhraseSpec("my horse", "like", "grass");
+		
+	TextSpec t1 = new TextSpec();  // create a TextSpec
+	t1.addSpec(s1);
+	t1.addSpec(s2);
+	t1.addSpec(s3);
+}}}
+
+If you do not supply a conjunction using the method {{{setListConjunct}}}, the conjunction ‘and’ will automatically be used because it is the default. In this case, the resulting sentence would be:
+ {{{My cat likes fish, my dog likes bones and my horse likes grass.}}}
+
+If you do not want a conjunction to appear in the sentence, specify the empty {{{string ""}}} as the list conjunct. For the {{{t1}}} list specified above, you would write:
+{{{
+	t1.setListConjunct("");
+}}}
+The resulting output would be:
+ {{{My cat likes fish, my dog likes bones my horse likes grass.}}}
+
+*Subordinate clauses:*
+You can use the same {{{TextSpec}}} methods as the ones mentioned above to create a sentence that has a main and subordinate clause. Note that the order in which you add phrases to the {{{TextSpec}}} matters: that order indicates their left to right order in the resulting text.
+{{{
+        SPhraseSpec s1 = new SPhraseSpec("I", "be", "happy");
+        SPhraseSpec s2 = new SPhraseSpec("I", "eat", "fish");
+        s2.setCuePhrase("because");
+        s2.setTense(Tense.PAST);
+		
+        TextSpec t1 = new TextSpec(); // create a TextSpec
+        t1.addSpec(s1);
+        t1.addSpec(s2);
+
+        String output = r.realiseDocument(t1);  //Realiser r created earlier
+        System.out.println(output);
+}}}	
+
+The output is:
+ {{{I am happy, because I ate fish.}}}
