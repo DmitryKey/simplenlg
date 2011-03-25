@@ -11,39 +11,39 @@ To enable your program to make use of the simplenlg library, you’ll need to
  * create a new Java class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
  * at the top of that class, put in the following import statements:
 {{{
-import simplenlg.framework.*;
-import simplenlg.lexicon.*;
-import simplenlg.realiser.english.*;
-import simplenlg.phrasespec.*;
-import simplenlg.features.*;
+        import simplenlg.framework.*;
+        import simplenlg.lexicon.*;
+        import simplenlg.realiser.english.*;
+        import simplenlg.phrasespec.*;
+        import simplenlg.features.*;
 }}}
 
  * create a simplenlg lexicon, NLGFactory, and realiser using the following statements
 {{{
-Lexicon lexicon = Lexicon.getDefaultLexicon();
-NLGFactory nlgFactory = new NLGFactory(lexicon);
-Realiser realiser = new Realiser(lexicon);
+        Lexicon lexicon = Lexicon.getDefaultLexicon();
+        NLGFactory nlgFactory = new NLGFactory(lexicon);
+        Realiser realiser = new Realiser(lexicon);
 }}}
 
 Following these steps, you should have code that looks like the following:
 {{{
-import simplenlg.framework.*;
-import simplenlg.lexicon.*;
-import simplenlg.realiser.english.*;
-import simplenlg.phrasespec.*;
-import simplenlg.features.*;
+        import simplenlg.framework.*;
+        import simplenlg.lexicon.*;
+        import simplenlg.realiser.english.*;
+        import simplenlg.phrasespec.*;
+        import simplenlg.features.*;
 
 
-public class TestMain {
+        public class TestMain {
 
-	public static void main(String[] args) {
-		Lexicon lexicon = Lexicon.getDefaultLexicon();
-                NLGFactory nlgFactory = new NLGFactory(lexicon);
-                Realiser realiser = new Realiser(lexicon);
+	        public static void main(String[] args) {
+		        Lexicon lexicon = Lexicon.getDefaultLexicon();
+                        NLGFactory nlgFactory = new NLGFactory(lexicon);
+                        Realiser realiser = new Realiser(lexicon);
 
-	}
+	        }
 
-}
+        }
 
 }}} 
 *Figure 1*: a Java class which is ready to make use of the simplenlg library
@@ -56,18 +56,18 @@ You’re now ready to make use of simplenlg to generate sentences!
 Let’s create the simplest kind of sentence allowed in simplenlg: canned text, i.e., a string which we’d like output to the screen as is. For instance, let’s say we are writing a program which takes input from users and generates a different paragraph depending on the various inputs. But let’s say that no matter what, we always want the first line of the paragraph to be “My dog is happy” because we feel everyone should share in the good news. The simplenlg code to do this is:
 
 {{{
-NLGElement s1 = nlgFactory.createSentence("my dog is happy");
+        NLGElement s1 = nlgFactory.createSentence("my dog is happy");
 }}}
 		
 We now need to use the Realiser to output the string:
 
 {{{	
-String output = realiser.realiseSentence(s1);
-System.out.println(output);
+        String output = realiser.realiseSentence(s1);
+        System.out.println(output);
 }}}
 
 Not surprisingly, the resulting output is:
-  My dog is happy.
+ {{{My dog is happy.}}}
 
 It’s important to note that you only need to create the {{{Lexicon}}}, {{{NLGFactory}}}, and {{{Realiser}}} once within your program; you don’t need to create them for every sentence you generate. So a good idea is to create these at the start of your program and user them over the lifetime of the program run.
 
@@ -88,6 +88,7 @@ You now have a string which is a grammatical English phrase or sentence and it c
 
 See Section5 for an example of the actual Java code used to generate a sentence. 
 
+----
 {{{[1]}}} Note that this and other sections assume a basic understanding of object oriented programming on the part of the reader. For example, you will need to understand what a class and an instance of a class are.
 
 {{{[2]}}}A library or API is a collection of methods/functions that people can make use of in their programs. This saves programmers from having to write that code themselves. 
