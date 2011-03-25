@@ -24,6 +24,7 @@ With the rest of the code in place (assuming that a Realiser realiser has been c
 The output will be:
  {{{Cruel Mary chases full George.}}}
 
+----
 {{{[1]}}} Note that we can also construct the noun phrase "your monkey" in the following way:
 {{{ 
 	NPPhraseSpec subject2 = nlgFactory.createNounPhrase("monkey");
