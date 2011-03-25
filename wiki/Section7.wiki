@@ -1,0 +1,23 @@
+#summary What are complements?
+
+= What are complements? =
+As far as simplenlg is concerned, a complement is anything that comes immediately after the verb. When you label something as a complement and hand it to simplenlg to be realized, simplenlg will place it, no matter what it is, after the verb1. 
+
+Examples of complements are underlined in the sentences below:
+ # John is happy.
+ # John wrote quickly.
+ # John just realized that his holidays are over.
+
+The underlined words and phrases in the examples above are all different parts of speech. In example #1, it’s an adjective; in example #2 it's an adverb, and it’s a ‘that-clause’ in example #3. But from simplenlg’s point of view, the underlined bits are none of these things: they are simply complements because they all appear after the verb. Although it has a (very basic) understanding of verbs, noun phrases, and prepositional phrases, simplenlg has no concept of adjectives, adverbs, that-clauses or other parts of speech that can appear after a verb. But it does understand the concept of a complement and because of this, parts of speech which appear after a verb can be generated using the simplenlg library.
+
+|| _*Phrase Type*_ || _*Examples*_ ||
+|| *Noun Phrase* || "an apple" ||
+|| *Prepositional Phrase* || "in the park" ||
+|| *Verb* || "chase" ||
+|| Verb Phrase || "play the piano" ||
+|| Adjective Phrase || "delighted to meet you" ||
+|| Adverb Phrase || "very quickly" ||
+
+*Table 1*: simplenlg can explicitly handle noun phrase, prepositional phrase and verb. The concepts of adjective phrase and adverb phrase, however, fall under the headers ‘complement’ or ‘modifier’.
+
+Note that only things of type {{{SPhraseSpec}}} can take a complement.
