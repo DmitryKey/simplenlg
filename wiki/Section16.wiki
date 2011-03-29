@@ -1,6 +1,9 @@
 #summary Generating a paragraph with strings, SPhraseSpecs and TextSpecs
+#labels notupdated
 
 = Generating a paragraph with strings, SPhraseSpecs and TextSpecs =
+
+*This section has not yet been updated*
 
 You can combine {{{strings}}}, {{{SPhraseSpecs}}} and {{{TextSpecs}}} in a single {{{TextSpec}}}. See the example below {{{[1]}}}.
 {{{
