@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Christopher Howell (Agfa Healthcare Corporation) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nl="http://code.google.com/p/simplenlg/schemas/version1" targetNamespace="http://code.google.com/p/simplenlg/schemas/version1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
 	<xs:element name="Document" type="nl:DocumentElement"/>
 	<xs:complexType name="DocumentElement">
 		<xs:complexContent>
 			<xs:extension base="nl:NLGElement">
 				<xs:sequence>
-					<xs:element name="child" type="nl:NLGElement" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="child" type="nl:NLGElement" minOccurs="0" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attributeGroup ref="nl:docAtts"/>
 			</xs:extension>
@@ -20,16 +21,16 @@
 			<xs:extension base="nl:PhraseElement">
 				<xs:sequence>
 					<xs:element name="cuePhrase" type="nl:NLGElement" minOccurs="0"/>
-					<xs:element name="subj" type="nl:NLGElement" minOccurs="0" maxOccurs="unbounded" />
-					<xs:element name="vp" type="nl:NLGElement" />
+					<xs:element name="subj" type="nl:NLGElement" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="vp" type="nl:NLGElement"/>
 				</xs:sequence>
 				<xs:attributeGroup ref="nl:sPhraseAtts"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:attributeGroup name="sPhraseAtts">
-		<xs:attribute name="COMPLEMENTISER" type="xs:string" />
-		<xs:attribute name="FORM" type="nl:form" />
+		<xs:attribute name="COMPLEMENTISER" type="xs:string"/>
+		<xs:attribute name="FORM" type="nl:form"/>
 		<xs:attribute name="INTERROGATIVE_TYPE" type="nl:interrogativeType"/>
 		<xs:attribute name="MODAL" type="xs:string"/>
 		<xs:attribute name="NEGATED" type="xs:boolean"/>
@@ -43,7 +44,7 @@
 		<xs:complexContent>
 			<xs:extension base="nl:PhraseElement">
 				<xs:sequence/>
-				<xs:attributeGroup ref="nl:vpPhraseAtts" />
+				<xs:attributeGroup ref="nl:vpPhraseAtts"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -62,11 +63,11 @@
 				<xs:sequence>
 					<xs:element name="spec" type="nl:WordElement" minOccurs="0"/>
 				</xs:sequence>
-				<xs:attributeGroup ref="nl:npPhraseAtts" />
+				<xs:attributeGroup ref="nl:npPhraseAtts"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:attributeGroup name ="npPhraseAtts">
+	<xs:attributeGroup name="npPhraseAtts">
 		<xs:attribute name="ADJECTIVE_ORDERING" type="xs:boolean"/>
 		<xs:attribute name="ELIDED" type="xs:boolean"/>
 		<xs:attribute name="NUMBER" type="nl:numberAgreement"/>
@@ -78,19 +79,19 @@
 		<xs:complexContent>
 			<xs:extension base="nl:PhraseElement">
 				<xs:sequence/>
-				<xs:attributeGroup ref="nl:adjAdvPhraseAtts" />
+				<xs:attributeGroup ref="nl:adjAdvPhraseAtts"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:attributeGroup name="adjAdvPhraseAtts" >
-		<xs:attribute name="IS_COMPARATIVE" type="xs:boolean" />
-		<xs:attribute name="IS_SUPERLATIVE" type="xs:boolean" />
+	<xs:attributeGroup name="adjAdvPhraseAtts">
+		<xs:attribute name="IS_COMPARATIVE" type="xs:boolean"/>
+		<xs:attribute name="IS_SUPERLATIVE" type="xs:boolean"/>
 	</xs:attributeGroup>
 	<xs:complexType name="AdvPhraseSpec">
 		<xs:complexContent>
 			<xs:extension base="nl:PhraseElement">
 				<xs:sequence/>
-				<xs:attributeGroup ref="nl:adjAdvPhraseAtts" />
+				<xs:attributeGroup ref="nl:adjAdvPhraseAtts"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -105,14 +106,14 @@
 		<xs:complexContent>
 			<xs:extension base="nl:NLGElement">
 				<xs:sequence>
-					<xs:element name="coord" type="nl:NLGElement" maxOccurs="unbounded" />
+					<xs:element name="coord" type="nl:NLGElement" maxOccurs="unbounded"/>
 				</xs:sequence>
 				<xs:attributeGroup ref="nl:CoordinatedPhraseAtts"/>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
 	<xs:attributeGroup name="CoordinatedPhraseAtts">
-		<xs:attribute name="conj" type="xs:string" default="and" />
+		<xs:attribute name="conj" type="xs:string" default="and"/>
 		<xs:attribute name="cat" type="nl:phraseCategory"/>
 	</xs:attributeGroup>
 	<xs:complexType name="PhraseElement" abstract="true">
@@ -133,7 +134,7 @@
 		<xs:complexContent>
 			<xs:extension base="nl:NLGElement">
 				<xs:sequence>
-					<xs:element name="val" type ="xs:string"/>
+					<xs:element name="val" type="xs:string"/>
 				</xs:sequence>
 			</xs:extension>
 		</xs:complexContent>
@@ -148,7 +149,7 @@
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
-	<xs:complexType name="Features" >
+	<xs:complexType name="Features">
 		<xs:attributeGroup ref="nl:adjAdvPhraseAtts"/>
 		<xs:attributeGroup ref="nl:npPhraseAtts"/>
 		<xs:attributeGroup ref="nl:vpPhraseAtts"/>
