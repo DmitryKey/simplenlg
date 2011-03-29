@@ -1,6 +1,9 @@
 #summary Generating paragraphs (TextSpec)
+#labels notupdated
 
 = Generating paragraphs (TextSpec) =
+
+*This section has not yet been updated*
 
 As we saw in the previous section, {{{TextSpec}}} allows you to create a sentence consisting of a list of clauses. For example, 
  {{{My cat likes fish, my dog likes bones and my horse likes grass.}}}
