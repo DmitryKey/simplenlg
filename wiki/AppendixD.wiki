@@ -3,7 +3,7 @@
 Simplenlg comes with a default lexicon which covers the most common words in English.  If this is inadequate, then Simplenlg can be connected to the 300MB [http://lexsrv3.nlm.nih.gov/LexSysGroup/Home NIH Specialist lexicon].  The Specialist lexicon contains quite good coverage of general English vocabulary, as well as very detailed coverage of medical terminology.
 
 To use the Specialist lexicon:
-  # Download and unpack the latest version of lexAccess from [http://lexsrv3.nlm.nih.gov/SPECIALIST/Projects/lexAccess/current/]. The "lite" version is fine, simplenlg does not need the full version.
+  # Download and unpack the latest version of lexAccess from [http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexAccess/current/web/download.html]. The "lite" version is fine, simplenlg does not need the full version.
   # Add the lexAccess jar file (in the lib directory of the unpacked download) as a library in your application.
   # In your code, create an NIHDBLexicon, specifying the lexical database in the constructor.  The DB is in data\HSqlDb  directory of the unpacked download. For example
 {{{
@@ -15,8 +15,8 @@ To use the Specialist lexicon:
 *Notes:*
 
 You must use the lexAccess version of the lexicon.  Do *not* use
-main version in [http://lexsrv3.nlm.nih.gov/SPECIALIST/Projects/lexicon/current].
+main version in [http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexicon/current/web/release].
 This will not work!
 
 Simplenlg also needs the lexCheck jar file.  This seems fairly stable, so the version included in the simplenlg download will probably work.  But you can get latest version from
-[http://lexsrv3.nlm.nih.gov/SPECIALIST/Projects/lexCheck/current]
+[http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexCheck/current/web/download.html]
