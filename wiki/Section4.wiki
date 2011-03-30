@@ -7,7 +7,7 @@ Like other natural language processing systems, simplenlg needs information abou
 }}}
 The default lexicon is 700KB, and should be adequate for many purposes.
 
-Simplenlg can also use the 300MB NIH Specialist lexicon, which has outstanding coverage of medical terminology as well as excellent coverage of everyday English.  For information on setting up this lexicon, please see the {{{README.txt}}} and {{{Lexicon-setup.txt}}} files in the simplenlg distribution.
+Simplenlg can also use the 300MB NIH Specialist lexicon, which has outstanding coverage of medical terminology as well as excellent coverage of everyday English.  For information on setting up this lexicon, please see [AppendixD Appendix D].
 
 You can also create your own lexicon if you wish.  The easiest way to do this is probably to edit {{{default-lexicon.xml}}} (the default lexicon file), this is in {{{src/simplenlg/lexicon}}} in the simplenlg distribution.  If your new lexicon is called {{{my-lexicon.xml}}}, and is saved in your current working directory, you can access it as follows:
 {{{
