@@ -1,5 +1,6 @@
-#NIH Lexion#
-= Appendix D: Using the NIH Speialist Lexicon  =
+#summary Specialist lexicon
+
+= Appendix D: Using the NIH Specialist Lexicon  =
 
 Simplenlg comes with a default lexicon which covers the most common words in English.  If this is inadequate, then Simplenlg can be connected to the 300MB [http://lexsrv3.nlm.nih.gov/LexSysGroup/Home NIH Specialist lexicon].  The Specialist lexicon contains quite good coverage of general English vocabulary, as well as very detailed coverage of medical terminology.
 
