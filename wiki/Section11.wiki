@@ -9,3 +9,14 @@ Adverbs are specified as modifiers in an {{{SPhraseSpec}}}.  For example, to out
         p.addModifier("quickly");
         p.setFeature(Feature.TENSE, Tense.PAST);
 }}}
+	or
+
+{{{
+        p.setSubject("John");
+        VPPhraseSpec verb = nlgFactory.createVerbPhrase("run");
+        p.setVerb(verb);
+        verb.addModifier("quickly");
+        p.setFeature(Feature.TENSE, Tense.PAST);
+}}}
+
+The first method will have the adverb automatically interpreted as modifying the main verb; the second method explicitly states that the adverb modifies the main verb.  Handily, both produce the same output.
