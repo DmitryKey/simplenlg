@@ -33,7 +33,7 @@ The resulting output is:
 
 When parts of speech are defined and assembled into an instance of the {{{SPhraseSpec}}} class, methods associated with that class such as {{{setSubject}}}, {{{setVerb}}} and {{{setObject}}}, assemble the parts of speech by obeying the simple grammar embodied in simplenlg{{{[1]}}}. 
 
-For more examples on clauses, look at {{{testsrc/ClauseTest.java}}}.
+→ For more examples on clauses, look at {{{testsrc/ClauseTest.java}}}.
 
 ----
 
