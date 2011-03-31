@@ -8,7 +8,7 @@ To enable your program to make use of the simplenlg library, you’ll need to:
 
  * Download the simplenlg zip file from the Download tab. (http://code.google.com/p/simplenlg/downloads/simplenlgv4.2.zip).
 
- * Add simplenlg’s jar file to your classpath. (For instructions on how to do this in Eclipse, see [AppendixC Appendix C]).
+ * Add simplenlg’s jar file to your classpath. (For instructions on how to do this in Eclipse, see [AppendixB Appendix B]).
 
  * Create a new Java class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
 
