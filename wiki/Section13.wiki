@@ -1,5 +1,4 @@
 #summary Different ways of specifying a phrase
-#labels notupdated
 
 = Different ways of specifying a phrase =
 
