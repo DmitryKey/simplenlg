@@ -1,10 +1,11 @@
 #summary Verbs
 
 = Verbs =
-Verbs should be specified in infinitive ("to XXX") form. However, as a convenience, simplenlg will usually accept inflected forms of verbs as well.  For example,
+Verbs should be specified in infinitive ("to XXX") form. However, as a convenience, simplenlg will usually accept inflected forms of verbs as well. For example,
 {{{
 	p.setVerb("is");
 }}}
+
 is equivalent to
 {{{
 	p.setVerb("be");
@@ -29,6 +30,7 @@ In order to set this in the past, we would add the line:
 {{{
 	p.setFeature(Feature.TENSE, Tense.PAST);
 }}}
+
 thus rendering the sentence:
  {{{Mary chased the monkey.}}}
 
@@ -40,13 +42,14 @@ If Mary is instead busy with other things and forced to postpone her exercise, w
 yielding the sentence:
  {{{Mary will chase the monkey.}}}
 
-For more examples on verbs, look at {{{testsrc/VerbPhraseTest.java}}}.
+→ For more examples on verbs, look at {{{testsrc/VerbPhraseTest.java}}}.
 
 *Negation*
 If negated is set to true, the negative form of the sentence is produced. For example adding the following line to the previous:
 {{{
 	p.setFeature(Feature.NEGATED, true);
 }}}
+
 will change the resulting sentence to:
  {{{Mary will not chase the monkey.}}}
 
@@ -71,9 +74,9 @@ Simplenlg can also generate simple WH questions.  For example:
 will generate:
  {{{Who does Mary chase?}}}
 
-For more examples on questions, look at {{{testsrc/InterrogativeTest.java}}}.
+→ For more examples on questions, look at {{{testsrc/InterrogativeTest.java}}}.
 
 *Features*
 TENSE, NEGATED, and INTERROGATIVE_TYPE are examples of _features_ which can be set on a SPhraseSpec. Many other features are also allowed, including MODAL, PASSIVE, PERFECT, and PROGRESSIVE. Detailed information about allowable features are given in the Java API documentation.
 
-For more examples on verbs, look at {{{testsrc/VerbPhraseTest.java}}}.
+→ For more examples on verbs, look at {{{testsrc/VerbPhraseTest.java}}}.
