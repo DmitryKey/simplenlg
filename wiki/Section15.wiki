@@ -31,7 +31,7 @@ Next, we define these sentences as being {{{DocumentElement}}} instances:
 
 We can then pass these elements as a list to the {{{createParagraph}}} method:
 {{{
-	DocumentElement par1 = nlgFactory.createParagraph(Arrays.asList(s1, s2, s3));1
+	DocumentElement par1 = nlgFactory.createParagraph(Arrays.asList(s1, s2, s3));[1]
 }}}
 
 And then realise the paragraph:
@@ -67,3 +67,11 @@ You can then realise this section as in the previous example:
 }}}
 
 → For more examples of {{{DocumentElements}}}, look at {{{testsrc/DocumentElementTest.java}}}.
+
+----
+
+{{{[1]}}} You may also add individual sentences thusly:
+{{{
+	DocumentElement par1 = nlgFactory.createParagraph();
+	par1.addComponent(s1); // ...etc.
+}}}
