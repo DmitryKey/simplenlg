@@ -20,7 +20,7 @@ You must use the lexAccess version of the lexicon.  Do *not* use
 main version in [http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexicon/current/web/release].
 This will not work!
 
-Simplenlg also needs the lexCheck jar file.  This seems fairly stable, so the version included in the simplenlg download will probably work.  But you can get latest version from
+If you use an old version of the lexicon, you may also need the lexCheck jar file.  This can be obtained from
 [http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexCheck/current/web/download.html]
 
 The [http://www.nlm.nih.gov/copyright.html copyright conditions] of the Specialist lexicon state that it is in the public domain, but ask that its use be acknowledged.
