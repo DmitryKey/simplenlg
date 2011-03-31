@@ -9,7 +9,7 @@ To use the Specialist lexicon:
   # Add the lexAccess jar file (in the lib directory of the unpacked download) as a library in your application.
   # In your code, create an NIHDBLexicon, specifying the lexical database in the constructor.  The DB is in data\HSqlDb  directory of the unpacked download. For example
 {{{
-	static String DB_FILENAME = "C:\\NIHDB\\lexAccess2009\\data\\HSqlDb\\lexAccess2011.data";
+	static String DB_FILENAME = "C:\\NIHDB\\lexAccess2011\\data\\HSqlDb\\lexAccess2011.data";
 	Lexicon lexicon = new NIHDBLexicon(DB_FILENAME);
 }}}	
 
