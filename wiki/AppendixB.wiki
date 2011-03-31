@@ -16,15 +16,21 @@ If you are using Eclipse to write your Java programs, you would
  # In the project, create a new class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
  # At the top of the class, put in the following import statements:
 {{{
-    import simplenlg.features.*;
-    import simplenlg.realiser.*;
+        import simplenlg.framework.*;
+        import simplenlg.lexicon.*;
+        import simplenlg.realiser.english.*;
+        import simplenlg.phrasespec.*;
+        import simplenlg.features.*;
 }}}
 
 Following these steps, you should have code that looks like the following:
 
 {{{
+        import simplenlg.framework.*;
+        import simplenlg.lexicon.*;
+        import simplenlg.realiser.english.*;
+        import simplenlg.phrasespec.*;
         import simplenlg.features.*;
-        import simplenlg.realiser.*;
 
         public class TestMain {
 
@@ -58,15 +64,21 @@ If you are using the simplenlg source code you need to set up several things.
 # In the project, create a new class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
  # At the top of the class, put in the following import statements:
 {{{
-    import simplenlg.features.*;
-    import simplenlg.realiser.*;
+        import simplenlg.framework.*;
+        import simplenlg.lexicon.*;
+        import simplenlg.realiser.english.*;
+        import simplenlg.phrasespec.*;
+        import simplenlg.features.*;
 }}}
 
 Following these steps, you should have code that looks like the following:
 
 {{{
+        import simplenlg.framework.*;
+        import simplenlg.lexicon.*;
+        import simplenlg.realiser.english.*;
+        import simplenlg.phrasespec.*;
         import simplenlg.features.*;
-        import simplenlg.realiser.*;
 
         public class TestMain {
 
