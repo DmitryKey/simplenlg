@@ -4,4 +4,6 @@
 
 To learn how to start with simplenlg look at our [Tutorial].
 
-To view the simplenlg java api follow [http://simplenlg.googlecode.com/svn/wiki/javadocs/index.html this link.]
+To view the simplenlg java api follow [http://simplenlg.googlecode.com/svn/branches/simplenlgv4.2/docs/javadoc/index.html this link.]
+
+http://simplenlg.googlecode.com/svn/wiki/javadoc/index.html
