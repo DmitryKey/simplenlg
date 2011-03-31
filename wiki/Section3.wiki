@@ -54,7 +54,7 @@ Following these steps, you should have code that looks like the following:
 
 You’re now ready to make use of simplenlg to generate sentences! 
 
-For further examples on ways to use simplenlg, take a look at the java files in {{{testsrc}}}.  A stand-alone example is provided in {{{testsrc/StandAloneExample.java}}}.
+→ For further examples on ways to use simplenlg, take a look at the java files in {{{testsrc}}}.  A stand-alone example is provided in {{{testsrc/StandAloneExample.java}}}.
 
 *Generating the simplest kind of phrase in simplenlg*
 
@@ -106,7 +106,7 @@ Note that this is the most detailed approach: You can actually just use {{{setSu
 
 Below is quick breakdown of the main parts of speech that simplenlg can handle.  The rest of the tutorial will discuss each of these parts of speech in more detail.
 
-http://simplenlg.googlecode.com/svn/wiki/simplenlg_pos.png
+http://simplenlg.googlecode.com/svn/wiki/simplenlg_table1.png
 
 ----
 {{{[1]}}} Note that this and other sections assume a basic understanding of object oriented programming on the part of the reader. For example, you will need to understand what a class and an instance of a class are.
