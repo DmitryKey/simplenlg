@@ -17,11 +17,12 @@ You can specify particles (prepositions which accompany a verb) by writing the f
 }}}
 
 Verbs in simplenlg can have one of three different tenses: past, present and future. Let’s say we’ve written the following simplenlg code which yields the sentence "Mary chases George":
+
 {{{
 	SPhraseSpec p = nlgFactory.createClause();
 	p.setSubject("Mary");
 	p.setVerb("chase");
-	p.setObject("George");
+	p.setObject("the monkey");
 }}}
 
 In order to set this in the past, we would add the line:
@@ -29,15 +30,17 @@ In order to set this in the past, we would add the line:
 	p.setFeature(Feature.TENSE, Tense.PAST);
 }}}
 thus rendering the sentence:
- {{{Mary chased George.}}}
+ {{{Mary chased the monkey.}}}
 
 If Mary is instead busy with other things and forced to postpone her exercise, we could write:
 {{{
-	p.setFeature(Feature.TENSE, Tense.FUTURE);
+        p.setFeature(Feature.TENSE, Tense.FUTURE);
 }}}
-yielding the sentence:
- {{{Mary will chase George.}}}
 
+yielding the sentence:
+ {{{Mary will chase the monkey.}}}
+
+For more examples on verbs, look at {{{testsrc/VerbPhraseTest.java}}}.
 
 *Negation*
 If negated is set to true, the negative form of the sentence is produced. For example adding the following line to the previous:
@@ -45,7 +48,7 @@ If negated is set to true, the negative form of the sentence is produced. For ex
 	p.setFeature(Feature.NEGATED, true);
 }}}
 will change the resulting sentence to:
- {{{Mary will not chase George.}}}
+ {{{Mary will not chase the monkey.}}}
 
 
 *Questions*
@@ -53,11 +56,11 @@ Simplenlg can generate simple yes/no questions.  For example:
 {{{
 	p.setSubject("Mary");
 	p.setVerb("chase");
-	p.setObject("George");
+	p.setObject("the monkey");
 	p.setFeature(Feature.INTERROGATIVE_TYPE, InterrogativeType.YES_NO);
 }}}
 will generate:
- {{{Does Mary chase George?}}}
+ {{{Does Mary chase the monkey?}}}
 
 Simplenlg can also generate simple WH questions.  For example:
 {{{
@@ -68,6 +71,9 @@ Simplenlg can also generate simple WH questions.  For example:
 will generate:
  {{{Who does Mary chase?}}}
 
+For more examples on questions, look at {{{testsrc/InterrogativeTest.java}}}.
 
 *Features*
 TENSE, NEGATED, and INTERROGATIVE_TYPE are examples of _features_ which can be set on a SPhraseSpec. Many other features are also allowed, including MODAL, PASSIVE, PERFECT, and PROGRESSIVE. Detailed information about allowable features are given in the Java API documentation.
+
+For more examples on verbs, look at {{{testsrc/VerbPhraseTest.java}}}.
