@@ -25,7 +25,7 @@ We then add the prepositional phrase as a complement to the ‘Mary chases the m
 }}}
 The table below shows three different ways of creating the prepositional phrase "in the park".  As you can start to see, there are often several ways to realise sentences using simplenlg.  The best way to do it depends on the needs of your system. 
 
-http://simplenlg.code.google.com/wiki/simplenlg_table3.png
+http://simplenlg.googlecode.com/svn/wiki/simplenlg_table3.png
 
 The third, sophisticated method requires much more code than the other two ways. So why then would we ever choose the third method? 
 
