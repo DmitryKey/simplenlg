@@ -1,86 +1,26 @@
-#summary simplenlg and Eclipse
+#summary Specialist lexicon
 
-= simplenlg and Eclipse =
-If you are using Eclipse to write your Java programs, you would
+= Appendix C: Using the NIH Specialist Lexicon  =
 
-*jar distribution:*
+Simplenlg comes with a default lexicon which covers the most common words in English.  If this is inadequate, then Simplenlg can be connected to the 300MB [http://lexsrv3.nlm.nih.gov/LexSysGroup/Home NIH Specialist lexicon].  The Specialist lexicon contains quite good coverage of general English vocabulary, as well as very detailed coverage of medical terminology.
 
- # Create a new Project (File>New>Project).
- # Add the simplenlg library to the project’s build path by doing the following:
-  * go to the Eclipse menu and select Project>Properties>Java Build Path
-  * click on the Libraries tab
-  * click on the *Add External jars...* button
-  * browse to the simplenlg jar file which you downloaded from the web
-  * select the simplenlg jar file and click *Open*
-  * click *OK*
- # In the project, create a new class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
- # At the top of the class, put in the following import statements:
+To use the Specialist lexicon:
+  # Download and unpack the latest version of lexAccess from [http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexAccess/current/web/download.html]. The "lite" version is fine, simplenlg does not need the full version.
+  # Add the lexAccess jar file (in the lib directory of the unpacked download) as a library in your application.
+  # In your code, create an NIHDBLexicon, specifying the lexical database in the constructor.  The DB is in data\HSqlDb  directory of the unpacked download. For example
 {{{
-    import simplenlg.features.*;
-    import simplenlg.realiser.*;
-}}}
+	static String DB_FILENAME = "C:\\NIHDB\\lexAccess2011\\data\\HSqlDb\\lexAccess2011.data";
+	Lexicon lexicon = new NIHDBLexicon(DB_FILENAME);
+}}}	
 
-Following these steps, you should have code that looks like the following:
 
-{{{
-        import simplenlg.features.*;
-        import simplenlg.realiser.*;
+*Notes:*
 
-        public class TestMain {
+You must use the lexAccess version of the lexicon.  Do *not* use
+main version in [http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexicon/current/web/release].
+This will not work!
 
-	        /**
-        	 * @param args
-	         */
-        	public static void main(String[] args) {
-	        	// TODO Auto-generated method stub
+If you use an old version of the lexicon, you may also need the lexCheck jar file.  This can be obtained from
+[http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexCheck/current/web/download.html]
 
-        	}        
-
-        }
-}}}
-
-*Using source code:*
-
-If you are using the simplenlg source code you need to set up several things.
-
- # Create a new Project (File>New>Project).
- # Add the additional libraries to the project’s build path by doing the following:
-  * go to the Eclipse menu and select Project>Properties>Java Build Path
-  * click on the Libraries tab
-  * click on the *Add External jars* button
-  * browse to the {{{simplenlg/lib}}} folder and select all jar files
-  * click *Open*
-  * click *OK*
- # Add the simplenlg source code to your project.
- * open the project properties again and click on the *sources* tab.
- * click on the *Link Source...* button and add the path to the {{{simplenlg/src}}} folder; type {{{simplenlg}}} into the folder name.
- * click *finish* and then *OK*.
-# In the project, create a new class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
- # At the top of the class, put in the following import statements:
-{{{
-    import simplenlg.features.*;
-    import simplenlg.realiser.*;
-}}}
-
-Following these steps, you should have code that looks like the following:
-
-{{{
-        import simplenlg.features.*;
-        import simplenlg.realiser.*;
-
-        public class TestMain {
-
-	        /**
-        	 * @param args
-	         */
-        	public static void main(String[] args) {
-	        	// TODO Auto-generated method stub
-
-        	}        
-
-        }
-}}}
-
-There should be two folders in your project. The {{{src}}} folder, for your code, and the {{{simplenlg}}} folder, which contains the linked simplenlg source code.
-
-You should be now ready to start implementing your own classes that use simplenlg.
+The [http://www.nlm.nih.gov/copyright.html copyright conditions] of the Specialist lexicon state that it is in the public domain, but ask that its use be acknowledged.
