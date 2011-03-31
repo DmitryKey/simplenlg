@@ -28,15 +28,16 @@ If you do not supply a conjunction using the method {{{setConjunction}}}, the co
 *Subordinate clauses*
 Subordinate clauses can be added to the main clause using the {{{addComplement}}} method, where the kind of complementiser (“because”, “while”, etc.) to be used is set using the {{{setFeature}}} method.  
 {{{
-        	SPhraseSpec p = nlgFactory.createClause("I", "be", "happy");
-        	SPhraseSpec q = nlgFactory.createClause("I", "eat", "fish");
-        	CoordinatedPhraseElement pq = nlgFactory.createCoordinatedPhrase();
-        	q.setFeature(Feature.COMPLEMENTISER, "because");
-        	q.setFeature(Feature.TENSE, Tense.PAST);
-        	p.addComplement(q);
+	SPhraseSpec p = nlgFactory.createClause("I", "be", "happy");
+	SPhraseSpec q = nlgFactory.createClause("I", "eat", "fish");
+	CoordinatedPhraseElement pq = nlgFactory.createCoordinatedPhrase();
+	q.setFeature(Feature.COMPLEMENTISER, "because");
+	q.setFeature(Feature.TENSE, Tense.PAST);
+	p.addComplement(q);
 		
 	String output4 = realiser.realiseSentence(p);  //Realiser created earlier
 	System.out.println(output4);
-}}}	
+}}}
+
 The output is:
  {{{I am happy because I ate fish.}}}
