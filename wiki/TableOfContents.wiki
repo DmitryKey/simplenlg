@@ -16,5 +16,5 @@
   * [Section14 Section XIV - Generating a sentence with multiple clauses]
   * [Section15 Section XV - Beyond sentences: Generating paragraphs, sections, lists, documents]
   * [AppendixA Appendix A - NLG and simplenlg]
-  * [AppendixC Appendix B - simplenlg and Eclipse]
-  * [AppendixD Appendix C - using the NIH lexicon]
+  * [AppendixB Appendix B - simplenlg and Eclipse]
+  * [AppendixC Appendix C - using the NIH lexicon]
