@@ -25,8 +25,9 @@ The tutorial provides information about the simplenlg library, how to set it up 
  * [Section15 Section XV - Generating paragraphs (TextSpec)]
  * [Section16 Section XVI - Generating a paragraph with strings, SPhraseSpecs and TextSpecs]
  * [AppendixA Appendix A - NLG and simplenlg]
- * [AppendixB Appendix B - simplenlg web pages]
- * [AppendixC Appendix C - simplenlg and Eclipse]
+ * [AppendixB Appendix B - Simplenlg and Eclipse]
+ * [AppendixC Appendix C - Using the NIH Specialist Lexicon]
+
 
 *Contributors:*
  * Albert Gatt
