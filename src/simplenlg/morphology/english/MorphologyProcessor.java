@@ -80,21 +80,29 @@ public class MorphologyProcessor extends NLGModule {
 		NLGElement realisedElement = null;
 		if (element instanceof InflectedWordElement) {
 			realisedElement = doMorphology((InflectedWordElement) element);
+		
 		} else if (element instanceof StringElement) {
 			realisedElement = element;
+		
 		} else if (element instanceof WordElement) {
-			String baseForm = ((WordElement) element).getBaseForm();
-			if (baseForm != null) {
-				realisedElement = new StringElement(baseForm);
+			//AG: now retrieves the default spelling variant, not the baseform
+			//String baseForm = ((WordElement) element).getBaseForm();
+			String defaultSpell = ((WordElement) element).getDefaultSpellingVariant();
+			
+			if (defaultSpell != null) {
+				realisedElement = new StringElement(defaultSpell);
 			}
+		
 		} else if (element instanceof DocumentElement) {
 			List<NLGElement> children = element.getChildren();
 			((DocumentElement) element).setComponents(realise(children));
 			realisedElement = element;
+		
 		} else if (element instanceof ListElement) {
 			realisedElement = new ListElement();
 			((ListElement) realisedElement).addComponents(realise(element
 					.getChildren()));
+		
 		} else if (element instanceof CoordinatedPhraseElement) {
 			List<NLGElement> children = element.getChildren();
 			((CoordinatedPhraseElement) element).clearCoordinates();
@@ -102,15 +110,19 @@ public class MorphologyProcessor extends NLGModule {
 			if (children != null && children.size() > 0) {
 				((CoordinatedPhraseElement) element)
 						.addCoordinate(realise(children.get(0)));
+				
 				for (int index = 1; index < children.size(); index++) {
 					((CoordinatedPhraseElement) element)
 							.addCoordinate(realise(children.get(index)));
 				}
+				
 				realisedElement = element;
 			}
+			
 		} else if (element != null) {
 			realisedElement = element;
 		}
+		
 		return realisedElement;
 	}
 
@@ -188,8 +200,10 @@ public class MorphologyProcessor extends NLGModule {
 		if (elements != null) {
 			for (NLGElement eachElement : elements) {
 				currentElement = realise(eachElement);
+				
 				if (currentElement != null) {
 					realisedElements.add(realise(currentElement));
+					
 					if (determiner == null
 							&& DiscourseFunction.SPECIFIER
 									.equals(currentElement
@@ -219,6 +233,7 @@ public class MorphologyProcessor extends NLGModule {
 				}
 			}
 		}
+		
 		return realisedElements;
 	}
 }

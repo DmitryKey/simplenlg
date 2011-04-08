@@ -131,13 +131,18 @@ public class UnWrapper {
 				sp.setFeature(Feature.COMPLEMENTISER, wp.getCOMPLEMENTISER());
 			}
 			
+			if(wp.getPERSON() != null) {
+				sp.setFeature(Feature.PERSON, wp.getPERSON());
+			}
+
+			
 			// Common phrase components.
 			UnwrapPhraseComponents(sp,wps);	
 			
 			return sp;
 		}
 		
-		// Headed Phrases
+		// Phrases
 		else if ( wps instanceof simplenlg.xmlrealiser.wrapper.PhraseElement ) {
 			simplenlg.xmlrealiser.wrapper.PhraseElement we = (simplenlg.xmlrealiser.wrapper.PhraseElement)wps;
 			PhraseElement hp=null;
@@ -197,6 +202,9 @@ public class UnWrapper {
 				
 				if(wp.getFORM() != null) {
 					p.setFeature(Feature.FORM, Enum.valueOf(Form.class,wp.getFORM().toString()));
+				}
+				if(wp.getPERSON() != null) {
+					p.setFeature(Feature.PERSON, wp.getPERSON());
 				}
 				if(wp.getTENSE() != null) {
 					p.setFeature(Feature.TENSE, Enum.valueOf(Tense.class,wp.getTENSE().toString()));
@@ -272,6 +280,9 @@ public class UnWrapper {
 					cp.setConjunction(s);
 				}
 			}
+			if(wp.getPERSON() != null) {
+				cp.setFeature(Feature.PERSON, wp.getPERSON());
+			}
 
 			for (simplenlg.xmlrealiser.wrapper.NLGElement p : wp.getCoord()) {
 				NLGElement p1 = UnwrapNLGElement(p);
@@ -299,11 +310,29 @@ public class UnWrapper {
 		{
 			lexCat = (LexicalCategory)cat;
 		}
-		NLGElement word = factory.createWord(getBaseWord(wordElement), lexCat);
+		
+		String baseForm = getBaseWord(wordElement);
+		NLGElement word = factory.createWord(baseForm, lexCat);
 		if (word instanceof InflectedWordElement &&
 				((InflectedWordElement)word).getBaseWord().getBaseForm().isEmpty())
 		{
 			word = null; //cch TESTING
+		}
+		else if (word instanceof WordElement)
+		{
+			WordElement we = (WordElement)word;
+			
+			// Inflection
+			if(wordElement.getVar() != null) {
+				Inflection defaultInflection = Enum.valueOf(Inflection.class, wordElement.getVar().toString());
+				we.setDefaultInflectionalVariant(defaultInflection);
+			}				
+
+			// Spelling variant may have been given as base form.
+			if (!baseForm.matches(we.getBaseForm()))
+			{
+				we.setDefaultSpellingVariant(baseForm);
+			}
 		}
 	
 		return word;

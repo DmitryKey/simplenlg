@@ -53,6 +53,7 @@ import simplenlg.framework.WordElement;
  * <em>processor</em> is interchangeable. They all mean an instance of this
  * class.
  * </p>
+ * 
  * @author D. Westwater, University of Aberdeen.
  * @version 4.0
  */
@@ -82,13 +83,16 @@ public class SyntaxProcessor extends NLGModule {
 				realisedElement = new ListElement();
 				((ListElement) realisedElement).addComponents(realise(element
 						.getChildren()));
+
 			} else if (element instanceof InflectedWordElement) {
 				String baseForm = ((InflectedWordElement) element)
 						.getBaseForm();
 				ElementCategory category = element.getCategory();
+
 				if (this.lexicon != null && baseForm != null) {
 					WordElement word = ((InflectedWordElement) element)
 							.getBaseWord();
+
 					if (word == null) {
 						if (category instanceof LexicalCategory) {
 							word = this.lexicon.lookupWord(baseForm,
@@ -97,14 +101,30 @@ public class SyntaxProcessor extends NLGModule {
 							word = this.lexicon.lookupWord(baseForm);
 						}
 					}
+
 					if (word != null) {
 						((InflectedWordElement) element).setBaseWord(word);
 					}
 				}
+
 				realisedElement = element;
+
+			} else if (element instanceof WordElement) {
+				// AG: need to check if it's a word element, in which case it
+				// needs to be marked for inflection
+				InflectedWordElement infl = new InflectedWordElement((WordElement) element);
+				
+				//the inflected word inherits all features from the base word
+				for(String feature: element.getAllFeatureNames()) {
+					infl.setFeature(feature, element.getFeature(feature));
+				}
+				
+				realisedElement = realise(infl);
+
 			} else if (element instanceof CoordinatedPhraseElement) {
 				realisedElement = CoordinatedPhraseHelper.realise(this,
 						(CoordinatedPhraseElement) element);
+
 			} else {
 				realisedElement = element;
 			}
@@ -116,6 +136,7 @@ public class SyntaxProcessor extends NLGModule {
 				realisedElement = ((ListElement) realisedElement).getFirst();
 			}
 		}
+		
 		return realisedElement;
 	}
 

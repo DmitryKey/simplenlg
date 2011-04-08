@@ -13,34 +13,40 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for tense.
+ * <p>Java class for inflection.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * <p>
  * <pre>
- * &lt;simpleType name="tense">
+ * &lt;simpleType name="inflection">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="FUTURE"/>
- *     &lt;enumeration value="PAST"/>
- *     &lt;enumeration value="PRESENT"/>
+ *     &lt;enumeration value="GRECO_LATIN_REGULAR"/>
+ *     &lt;enumeration value="IRREGULAR"/>
+ *     &lt;enumeration value="REGULAR"/>
+ *     &lt;enumeration value="REGULAR_DOUBLE"/>
+ *     &lt;enumeration value="UNCOUNT"/>
+ *     &lt;enumeration value="INVARIANT"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "tense")
+@XmlType(name = "inflection")
 @XmlEnum
-public enum Tense {
+public enum Inflection {
 
-    FUTURE,
-    PAST,
-    PRESENT;
+    GRECO_LATIN_REGULAR,
+    IRREGULAR,
+    REGULAR,
+    REGULAR_DOUBLE,
+    UNCOUNT,
+    INVARIANT;
 
     public String value() {
         return name();
     }
 
-    public static Tense fromValue(String v) {
+    public static Inflection fromValue(String v) {
         return valueOf(v);
     }
 
