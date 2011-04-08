@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" cat="PARAGRAPH" xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1 D:\svnNLG\XMLRealiser\RealizerSchema.xsd" xmlns="http://code.google.com/p/simplenlg/schemas/version1">
+  <child xsi:type="SPhraseSpec">
+    <subj xsi:type="NPPhraseSpec">
+      <head cat="ADVERB">there</head>
+    </subj>
+    <vp xsi:type="VPPhraseSpec">
+      <head cat="VERB">be</head>
+      <compl xsi:type="NPPhraseSpec">
+        <preMod xsi:type="CoordinatedPhraseElement" conj=",">
+          <coord xsi:type="AdjPhraseSpec">
+            <head cat="ADJECTIVE">eccentric</head>
+          </coord>
+          <coord xsi:type="AdjPhraseSpec">
+            <head cat="ADJECTIVE">tubular</head>
+          </coord>
+        </preMod>
+        <head cat="NOUN">stenosis</head>
+        <spec>a</spec>
+      </compl>
+      <postMod xsi:type="PPPhraseSpec">
+        <head cat="PREPOSITION">in</head>
+        <compl xsi:type="NPPhraseSpec">
+          <head cat="NOUN">third obtuse marginal branch</head>
+          <spec cat="DETERMINER">the</spec>
+        </compl>
+      </postMod>
+    </vp>
+  </child>
+  <child xsi:type="SPhraseSpec">
+    <subj xsi:type="NPPhraseSpec">
+      <head cat="ADVERB">there</head>
+    </subj>
+    <vp xsi:type="VPPhraseSpec">
+      <head cat="VERB">be</head>
+      <compl xsi:type="NPPhraseSpec">
+        <preMod xsi:type="StringElement">
+          <val>an</val>
+        </preMod>
+        <preMod xsi:type="StringElement">
+          <val>80 %</val>
+        </preMod>
+        <head cat="NOUN">stenosis</head>
+      </compl>
+      <postMod xsi:type="PPPhraseSpec">
+        <head cat="PREPOSITION">in</head>
+        <compl xsi:type="NPPhraseSpec">
+          <preMod xsi:type="AdjPhraseSpec">
+            <head cat="ADJECTIVE">proximal</head>
+          </preMod>
+          <head cat="NOUN">right coronary artery</head>
+          <spec cat="DETERMINER">the</spec>
+        </compl>
+      </postMod>
+    </vp>
+  </child>
+</Document>
+
