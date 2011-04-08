@@ -328,7 +328,8 @@ public class UnWrapper {
 				we.setDefaultInflectionalVariant(defaultInflection);
 			}				
 
-			// Spelling variant may have been given as base form.
+			// Spelling variant may have been given as base form in xml.
+			// If so, use that variant.
 			if (!baseForm.matches(we.getBaseForm()))
 			{
 				we.setDefaultSpellingVariant(baseForm);

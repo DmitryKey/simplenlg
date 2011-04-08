@@ -16,6 +16,10 @@ public class Tester {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		if (args.length <2)
+		{
+			System.out.println("usage: Tester <xml file> <NIH db location>");
+		}
 		String xmlFile = args[0];
 		String result = new String("");
 		String lexDB = (String)args[1];
