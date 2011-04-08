@@ -30,6 +30,7 @@ import simplenlg.framework.LexicalCategory;
 import simplenlg.framework.ListElement;
 import simplenlg.framework.NLGElement;
 import simplenlg.framework.PhraseCategory;
+import simplenlg.framework.WordElement;
 
 /**
  * <p>
@@ -91,7 +92,8 @@ abstract class CoordinatedPhraseHelper {
 					setChildFeatures(phrase, child);
 					if (phrase.getFeatureAsBoolean(Feature.AGGREGATE_AUXILIARY)
 							.booleanValue()) {
-						child.setFeature(InternalFeature.REALISE_AUXILIARY, false);
+						child.setFeature(InternalFeature.REALISE_AUXILIARY,
+								false);
 					}
 
 					if (child.isA(PhraseCategory.CLAUSE)) {
@@ -102,11 +104,16 @@ abstract class CoordinatedPhraseHelper {
 												.getFeature(Feature.SUPRESSED_COMPLEMENTISER));
 					}
 
-					conjunctionElement = new InflectedWordElement(conjunction,
-							LexicalCategory.CONJUNCTION);
-					conjunctionElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
+					//skip conjunction if it's null or empty string
+					if (conjunction != null && conjunction.length() > 0) {
+						conjunctionElement = new InflectedWordElement(
+								conjunction, LexicalCategory.CONJUNCTION);
+						conjunctionElement.setFeature(
+								InternalFeature.DISCOURSE_FUNCTION,
 							DiscourseFunction.CONJUNCTION);
 					coordinated.addCoordinate(conjunctionElement);
+					}
+
 					coordinated.addCoordinate(parent.realise(child));
 				}
 				realisedElement.addComponent(coordinated);
@@ -145,7 +152,8 @@ abstract class CoordinatedPhraseHelper {
 					.getFeature(InternalFeature.SPECIFIER));
 		}
 		if (phrase.hasFeature(LexicalFeature.GENDER)) {
-			child.setFeature(LexicalFeature.GENDER, phrase.getFeature(LexicalFeature.GENDER));
+			child.setFeature(LexicalFeature.GENDER, phrase
+					.getFeature(LexicalFeature.GENDER));
 		}
 		if (phrase.hasFeature(Feature.NUMBER)) {
 			child.setFeature(Feature.NUMBER, phrase.getFeature(Feature.NUMBER));
@@ -194,22 +202,39 @@ abstract class CoordinatedPhraseHelper {
 		NLGElement child = children.get(0);
 		NLGElement specifier = null;
 		String test = null;
+
 		if (child != null) {
 			specifier = child.getFeatureAsElement(InternalFeature.SPECIFIER);
+
 			if (specifier != null) {
-				test = specifier.getFeatureAsString(LexicalFeature.BASE_FORM);
+				// AG: this assumes the specifier is an InflectedWordElement or
+				// phrase.
+				// it could be a Wordelement, in which case, we want the
+				// baseform
+				test = (specifier instanceof WordElement) ? ((WordElement) specifier)
+						.getBaseForm()
+						: specifier
+								.getFeatureAsString(LexicalFeature.BASE_FORM);
 			}
+
 			if (test != null) {
 				int index = 1;
+
 				while (index < children.size() && allMatch) {
 					child = children.get(index);
+
 					if (child == null) {
 						allMatch = false;
+
 					} else {
 						specifier = child
 								.getFeatureAsElement(InternalFeature.SPECIFIER);
-						if (!test.equals(specifier
-								.getFeatureAsString(LexicalFeature.BASE_FORM))) {
+						String childForm = (specifier instanceof WordElement) ? ((WordElement) specifier)
+								.getBaseForm()
+								: specifier
+										.getFeatureAsString(LexicalFeature.BASE_FORM);
+
+						if (!test.equals(childForm)) {
 							allMatch = false;
 						}
 					}

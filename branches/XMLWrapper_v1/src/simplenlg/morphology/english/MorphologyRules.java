@@ -25,12 +25,11 @@ import simplenlg.features.Gender;
 import simplenlg.features.InternalFeature;
 import simplenlg.features.LexicalFeature;
 import simplenlg.features.NumberAgreement;
-import simplenlg.features.Pattern;
+import simplenlg.features.Inflection;
 import simplenlg.features.Person;
 import simplenlg.features.Tense;
 import simplenlg.framework.InflectedWordElement;
 import simplenlg.framework.LexicalCategory;
-import simplenlg.framework.ListElement;
 import simplenlg.framework.NLGElement;
 import simplenlg.framework.StringElement;
 import simplenlg.framework.WordElement;
@@ -63,8 +62,7 @@ import simplenlg.framework.WordElement;
  * 
  * 
  * @author D. Westwater, University of Aberdeen.
- * @version 4.0
- * 16-Mar-2011 modified to use correct base form (ER)
+ * @version 4.0 16-Mar-2011 modified to use correct base form (ER)
  */
 public abstract class MorphologyRules {
 
@@ -105,40 +103,55 @@ public abstract class MorphologyRules {
 		// base form from baseWord if it exists, otherwise from element
 		String baseForm = getBaseForm(element, baseWord);
 
-
 		if (element.isPlural()
 				&& !element.getFeatureAsBoolean(LexicalFeature.PROPER)
 						.booleanValue()) {
 
 			String pluralForm = null;
 
-			if (element.getFeatureAsBoolean(LexicalFeature.NON_COUNT)
-					.booleanValue()) {
+			// AG changed: now check if default infl is uncount
+			// if (element.getFeatureAsBoolean(LexicalFeature.NON_COUNT)
+			// .booleanValue()) {
+			// pluralForm = baseForm;
+			String elementDefaultInfl = element
+					.getFeatureAsString(LexicalFeature.DEFAULT_INFL);
+			if (elementDefaultInfl != null
+					&& elementDefaultInfl.equals("uncount")) {
 				pluralForm = baseForm;
 			} else {
 				pluralForm = element.getFeatureAsString(LexicalFeature.PLURAL);
 			}
+
 			if (pluralForm == null && baseWord != null) {
-				if (baseWord.getFeatureAsBoolean(LexicalFeature.NON_COUNT)
-						.booleanValue()) {
+				// AG changed: now check if default infl is uncount
+				// if (baseWord.getFeatureAsBoolean(LexicalFeature.NON_COUNT)
+				// .booleanValue()) {
+				// pluralForm = baseForm;
+				String baseDefaultInfl = baseWord
+						.getFeatureAsString(LexicalFeature.DEFAULT_INFL);
+				if (baseDefaultInfl != null
+						&& baseDefaultInfl.equals("uncount")) {
 					pluralForm = baseForm;
 				} else {
 					pluralForm = baseWord
 							.getFeatureAsString(LexicalFeature.PLURAL);
 				}
 			}
+
 			if (pluralForm == null) {
-				Object pattern = element.getFeature(Feature.PATTERN);
-				if (Pattern.GRECO_LATIN_REGULAR.equals(pattern)) {
+				Object pattern = element.getFeature(LexicalFeature.DEFAULT_INFL);
+				if (Inflection.GRECO_LATIN_REGULAR.equals(pattern)) {
 					pluralForm = buildGrecoLatinPluralNoun(baseForm);
 				} else {
 					pluralForm = buildRegularPluralNoun(baseForm);
 				}
 			}
 			realised.append(pluralForm);
+
 		} else {
 			realised.append(baseForm);
 		}
+
 		checkPossessive(element, realised);
 		StringElement realisedElement = new StringElement(realised.toString());
 		realisedElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, element
@@ -249,15 +262,27 @@ public abstract class MorphologyRules {
 		String realised = null;
 		Object numberValue = element.getFeature(Feature.NUMBER);
 		Object personValue = element.getFeature(Feature.PERSON);
-		Tense tenseValue = element.getTense();
+		Object tense = element.getFeature(Feature.TENSE);
+		Tense tenseValue;
+
+		// AG: change to avoid deprecated getTense
+		// if tense value is Tense, cast it, else default to present
+		if (tense instanceof Tense) {
+			tenseValue = (Tense) tense;
+		} else {
+			tenseValue = Tense.PRESENT;
+		}
+
 		Object formValue = element.getFeature(Feature.FORM);
-		Object patternValue = element.getFeature(Feature.PATTERN);
+		Object patternValue = element.getFeature(LexicalFeature.DEFAULT_INFL);
 		
 		// base form from baseWord if it exists, otherwise from element
 		String baseForm = getBaseForm(element, baseWord);
 
-		if (element.isNegated() || Form.BARE_INFINITIVE.equals(formValue)) {
+		if (element.getFeatureAsBoolean(Feature.NEGATED)
+				|| Form.BARE_INFINITIVE.equals(formValue)) {
 			realised = baseForm;
+
 		} else if (Form.PRESENT_PARTICIPLE.equals(formValue)) {
 			realised = element
 					.getFeatureAsString(LexicalFeature.PRESENT_PARTICIPLE);
@@ -266,15 +291,18 @@ public abstract class MorphologyRules {
 				realised = baseWord
 						.getFeatureAsString(LexicalFeature.PRESENT_PARTICIPLE);
 			}
+
 			if (realised == null) {
-				if (Pattern.REGULAR_DOUBLE.equals(patternValue)) {
+				if (Inflection.REGULAR_DOUBLE.equals(patternValue)) {
 					realised = buildDoublePresPartVerb(baseForm);
 				} else {
 					realised = buildRegularPresPartVerb(baseForm);
 				}
 			}
+			
 		} else if (Tense.PAST.equals(tenseValue)
 				|| Form.PAST_PARTICIPLE.equals(formValue)) {
+
 			if (Form.PAST_PARTICIPLE.equals(formValue)) {
 				realised = element
 						.getFeatureAsString(LexicalFeature.PAST_PARTICIPLE);
@@ -283,31 +311,33 @@ public abstract class MorphologyRules {
 					realised = baseWord
 							.getFeatureAsString(LexicalFeature.PAST_PARTICIPLE);
 				}
+				
 				if (realised == null) {
 					if ("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
 						realised = "been"; //$NON-NLS-1$
-					} else if (Pattern.REGULAR_DOUBLE.equals(patternValue)) {
+					} else if (Inflection.REGULAR_DOUBLE.equals(patternValue)) {
 						realised = buildDoublePastVerb(baseForm);
 					} else {
-						realised = buildRegularPastVerb(baseForm,
-								numberValue);
+						realised = buildRegularPastVerb(baseForm, numberValue);
 					}
 				}
+				
 			} else {
 				realised = element.getFeatureAsString(LexicalFeature.PAST);
 
 				if (realised == null && baseWord != null) {
 					realised = baseWord.getFeatureAsString(LexicalFeature.PAST);
 				}
+				
 				if (realised == null) {
-					if (Pattern.REGULAR_DOUBLE.equals(patternValue)) {
+					if (Inflection.REGULAR_DOUBLE.equals(patternValue)) {
 						realised = buildDoublePastVerb(baseForm);
 					} else {
-						realised = buildRegularPastVerb(baseForm,
-								numberValue);
+						realised = buildRegularPastVerb(baseForm, numberValue);
 					}
 				}
 			}
+			
 		} else if ((numberValue == null || NumberAgreement.SINGULAR
 				.equals(numberValue))
 				&& (personValue == null || Person.THIRD.equals(personValue))
@@ -323,6 +353,7 @@ public abstract class MorphologyRules {
 			if (realised == null) {
 				realised = buildPresent3SVerb(baseForm);
 			}
+			
 		} else {
 			if ("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
 				if (Person.FIRST.equals(personValue)
@@ -341,7 +372,9 @@ public abstract class MorphologyRules {
 		return realisedElement;
 	}
 
-	/** return the base form of a word
+	/**
+	 * return the base form of a word
+	 * 
 	 * @param element
 	 * @param baseWord
 	 * @return
@@ -349,16 +382,17 @@ public abstract class MorphologyRules {
 	private static String getBaseForm(InflectedWordElement element,
 			WordElement baseWord) {
 		// unclear what the right behaviour should be
-		// for now, prefer baseWord.getBaseForm() to element.getBaseForm() for verbs (ie, "is" mapped to "be")
-		// but prefer element.getBaseForm() to baseWord.getBaseForm() for other words (ie, "children" not mapped to "child")
+		// for now, prefer baseWord.getBaseForm() to element.getBaseForm() for
+		// verbs (ie, "is" mapped to "be")
+		// but prefer element.getBaseForm() to baseWord.getBaseForm() for other
+		// words (ie, "children" not mapped to "child")
 		
 		if (LexicalCategory.VERB == element.getCategory()) {
 			if (baseWord != null && baseWord.getBaseForm() != null)
 				return baseWord.getBaseForm();
 			else
 				return element.getBaseForm();
-		}
-		else {
+		} else {
 			if (element.getBaseForm() != null)
 				return element.getBaseForm();
 			else if (baseWord == null)
@@ -555,7 +589,7 @@ public abstract class MorphologyRules {
 			InflectedWordElement element, WordElement baseWord) {
 
 		String realised = null;
-		Object patternValue = element.getFeature(Feature.PATTERN);
+		Object patternValue = element.getFeature(LexicalFeature.DEFAULT_INFL);
 		
 		// base form from baseWord if it exists, otherwise from element
 		String baseForm = getBaseForm(element, baseWord);
@@ -568,7 +602,7 @@ public abstract class MorphologyRules {
 						.getFeatureAsString(LexicalFeature.COMPARATIVE);
 			}
 			if (realised == null) {
-				if (Pattern.REGULAR_DOUBLE.equals(patternValue)) {
+				if (Inflection.REGULAR_DOUBLE.equals(patternValue)) {
 					realised = buildDoubleCompAdjective(baseForm);
 				} else {
 					realised = buildRegularComparative(baseForm);
@@ -584,7 +618,7 @@ public abstract class MorphologyRules {
 						.getFeatureAsString(LexicalFeature.SUPERLATIVE);
 			}
 			if (realised == null) {
-				if (Pattern.REGULAR_DOUBLE.equals(patternValue)) {
+				if (Inflection.REGULAR_DOUBLE.equals(patternValue)) {
 					realised = buildDoubleSuperAdjective(baseForm);
 				} else {
 					realised = buildRegularSuperlative(baseForm);
@@ -797,6 +831,9 @@ public abstract class MorphologyRules {
 				positionIndex = (DiscourseFunction.SUBJECT
 						.equals(discourseValue) && !element
 						.getFeatureAsBoolean(Feature.PASSIVE).booleanValue())
+						|| (DiscourseFunction.OBJECT.equals(discourseValue) && element
+								.getFeatureAsBoolean(Feature.PASSIVE)
+								.booleanValue())
 						|| DiscourseFunction.SPECIFIER.equals(discourseValue)
 						|| (DiscourseFunction.COMPLEMENT.equals(discourseValue) && element
 								.getFeatureAsBoolean(Feature.PASSIVE)

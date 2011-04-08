@@ -96,10 +96,14 @@ public class PhraseElement extends NLGElement {
 				}
 				children
 						.addAll(getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS));
-				children.addAll(getFeatureAsElementList(InternalFeature.PREMODIFIERS));
-				children.addAll(getFeatureAsElementList(InternalFeature.SUBJECTS));
-				children.addAll(getFeatureAsElementList(InternalFeature.VERB_PHRASE));
-				children.addAll(getFeatureAsElementList(InternalFeature.COMPLEMENTS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.PREMODIFIERS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.SUBJECTS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.VERB_PHRASE));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.COMPLEMENTS));
 				break;
 
 			case NOUN_PHRASE:
@@ -107,23 +111,29 @@ public class PhraseElement extends NLGElement {
 				if (currentElement != null) {
 					children.add(currentElement);
 				}
-				children.addAll(getFeatureAsElementList(InternalFeature.PREMODIFIERS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.PREMODIFIERS));
 				currentElement = getHead();
 				if (currentElement != null) {
 					children.add(currentElement);
 				}
-				children.addAll(getFeatureAsElementList(InternalFeature.COMPLEMENTS));
-				children.addAll(getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.COMPLEMENTS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
 				break;
 
 			case VERB_PHRASE:
-				children.addAll(getFeatureAsElementList(InternalFeature.PREMODIFIERS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.PREMODIFIERS));
 				currentElement = getHead();
 				if (currentElement != null) {
 					children.add(currentElement);
 				}
-				children.addAll(getFeatureAsElementList(InternalFeature.COMPLEMENTS));
-				children.addAll(getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.COMPLEMENTS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
 				break;
 
 			case CANNED_TEXT:
@@ -131,13 +141,16 @@ public class PhraseElement extends NLGElement {
 				break;
 
 			default:
-				children.addAll(getFeatureAsElementList(InternalFeature.PREMODIFIERS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.PREMODIFIERS));
 				currentElement = getHead();
 				if (currentElement != null) {
 					children.add(currentElement);
 				}
-				children.addAll(getFeatureAsElementList(InternalFeature.COMPLEMENTS));
-				children.addAll(getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.COMPLEMENTS));
+				children
+						.addAll(getFeatureAsElementList(InternalFeature.POSTMODIFIERS));
 				break;
 			}
 		}
@@ -169,8 +182,6 @@ public class PhraseElement extends NLGElement {
 		
 	}
 	
-
-
 	/**
 	 * Retrieves the current head of this phrase.
 	 * 
@@ -220,6 +231,43 @@ public class PhraseElement extends NLGElement {
 
 	/**
 	 * <p>
+	 * Sets a complement of the phrase element. If a complement already
+	 * exists of the same DISCOURSE_FUNCTION, it is removed.
+	 * This replaces complements set
+	 * earlier via {@link #addComplement(NLGElement)}
+	 * </p>
+	 * 
+	 * @param newComplement
+	 *            the new complement as an <code>NLGElement</code>.
+	 */
+	public void setComplement(NLGElement newComplement) {
+		DiscourseFunction function = (DiscourseFunction) newComplement.getFeature(InternalFeature.DISCOURSE_FUNCTION);
+		removeComplements(function);
+		addComplement(newComplement);
+	}
+
+	/** remove complements of the specified DiscourseFunction
+	 * @param function
+	 */
+	private void removeComplements(DiscourseFunction function) {
+		List<NLGElement> complements = getFeatureAsElementList(InternalFeature.COMPLEMENTS);
+		if (function == null || complements == null)
+			return;
+		List<NLGElement> complementsToRemove = new ArrayList<NLGElement>();
+		for (NLGElement complement: complements)
+			if (function == complement.getFeature(InternalFeature.DISCOURSE_FUNCTION))
+				complementsToRemove.add(complement);
+
+		if (!complementsToRemove.isEmpty()) {
+			complements.removeAll(complementsToRemove);
+			setFeature(InternalFeature.COMPLEMENTS, complements);
+		}
+		
+		return;
+	}
+	
+	/**
+	 * <p>
 	 * Adds a new complement to the phrase element. Complements will be realised
 	 * in the syntax after the head element of the phrase. Complements differ
 	 * from post-modifiers in that complements are crucial to the understanding
@@ -238,6 +286,21 @@ public class PhraseElement extends NLGElement {
 		}
 		complements.add(newElement);
 		setFeature(InternalFeature.COMPLEMENTS, complements);
+	}
+
+	/**
+	 * <p>
+	 * Sets the complement to the phrase element. This replaces any complements
+	 * set earlier.
+	 * </p>
+	 * 
+	 * @param newComplement
+	 *            the new complement as a <code>String</code>. It is used to
+	 *            create a <code>StringElement</code>.
+	 */
+	public void setComplement(String newComplement) {
+		setFeature(InternalFeature.COMPLEMENTS, null);
+		addComplement(newComplement);
 	}
 
 	/**
@@ -297,9 +360,11 @@ public class PhraseElement extends NLGElement {
 	 */
 	public void addFrontModifier(String newFrontModifier) {
 		List<NLGElement> frontModifiers = getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS);
+
 		if (frontModifiers == null) {
 			frontModifiers = new ArrayList<NLGElement>();
 		}
+
 		frontModifiers.add(new StringElement(newFrontModifier));
 		setFeature(InternalFeature.FRONT_MODIFIERS, frontModifiers);
 	}
@@ -330,8 +395,9 @@ public class PhraseElement extends NLGElement {
 		addPreModifier (new StringElement(newPreModifier));
 	}
 	
-	/** Add a modifier to a phrase
-	 * Use heuristics to decide where it goes
+	/**
+	 * Add a modifier to a phrase Use heuristics to decide where it goes
+	 * 
 	 * @param modifier
 	 */
 	public void addModifier(Object modifier) {
@@ -373,7 +439,6 @@ public class PhraseElement extends NLGElement {
 	public List<NLGElement> getFrontModifiers() {
 		return getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS);
 	}
-
 
 	@Override
 	public String printTree(String indent) {
@@ -418,14 +483,19 @@ public class PhraseElement extends NLGElement {
 	 * phrases and is added here for convenience. Determiners are some times
 	 * referred to as specifiers.
 	 * 
-	 * @param newDeterminer the new determiner for the phrase.
+	 * @param newDeterminer
+	 *            the new determiner for the phrase.
+	 * @deprecated Use {@link NPPhraseSpec#setSpecifier(Object)} directly
 	 */
+	@Deprecated
 	public void setDeterminer(Object newDeterminer) {
 		NLGFactory factory = new NLGFactory();
-		NLGElement determinerElement = factory.createWord(
-				newDeterminer, LexicalCategory.DETERMINER);
+		NLGElement determinerElement = factory.createWord(newDeterminer,
+				LexicalCategory.DETERMINER);
 
 		if (determinerElement != null) {
+			determinerElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
+					DiscourseFunction.SPECIFIER);
 			setFeature(InternalFeature.SPECIFIER, determinerElement);
 			determinerElement.setParent(this);
 		}

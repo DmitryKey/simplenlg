@@ -62,7 +62,7 @@ public abstract class NLGElement {
 	private ElementCategory category;
 
 	/** The features of this element. */
-	private HashMap<String, Object> features = new HashMap<String, Object>();
+	protected HashMap<String, Object> features = new HashMap<String, Object>();
 
 	/** The parent of this element. */
 	private NLGElement parent;
@@ -246,6 +246,77 @@ public abstract class NLGElement {
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * <p>
+	 * Retrieves the value of the feature as a list of java objects. If the feature
+	 * is a single element, the list contains only this element.
+	 * If the feature is a <code>Collection</code> each object in the collection is
+	 * returned in the list.
+	 * </p>
+	 * <p>
+	 * If the feature does not exist then an empty list is returned.
+	 * </p>
+	 * 
+	 * @param featureName
+	 *            the name of the feature.
+	 * @return the <code>List</code> of <code>Object</code>s
+	 */
+	public List<Object> getFeatureAsList(String featureName) {
+		List<Object> values = new ArrayList<Object>();
+		Object value = this.features.get(featureName);
+		
+		if (value != null) {
+			if (value instanceof Collection<?>) {
+				Iterator<?> iterator = ((Collection<?>) value).iterator();
+				Object nextObject = null;
+				while (iterator.hasNext()) {
+					nextObject = iterator.next();
+					values.add(nextObject);
+				}
+			} else {
+				values.add(value);
+			}
+		}
+		
+		return values;
+	}
+
+	/**
+	 * <p>
+	 * Retrieves the value of the feature as a list of strings. If the feature
+	 * is a single element, then its <code>toString()</code> value is wrapped in
+	 * a list. If the feature is a <code>Collection</code> then the
+	 * <code>toString()</code> value of each object in the collection is
+	 * returned in the list.
+	 * </p>
+	 * <p>
+	 * If the feature does not exist then an empty list is returned.
+	 * </p>
+	 * 
+	 * @param featureName
+	 *            the name of the feature.
+	 * @return the <code>List</code> of <code>String</code>s
+	 */
+	public List<String> getFeatureAsStringList(String featureName) {
+		List<String> values = new ArrayList<String>();
+		Object value = this.features.get(featureName);
+
+		if (value != null) {
+			if (value instanceof Collection<?>) {
+				Iterator<?> iterator = ((Collection<?>) value).iterator();
+				Object nextObject = null;
+				while (iterator.hasNext()) {
+					nextObject = iterator.next();
+					values.add(nextObject.toString());
+				}
+			} else {
+				values.add(value.toString());
+			}
+		}
+		
+		return values;
 	}
 
 	/**
@@ -496,7 +567,8 @@ public abstract class NLGElement {
 			}
 		}
 		
-		//AG: changed this to return the empty string if the realisation is null
+		// AG: changed this to return the empty string if the realisation is
+		// null
 		// avoids spurious nulls appearing in output for empty phrases.
 		return this.realisation == null ? "" : this.realisation.substring(
 				start, end);
@@ -641,8 +713,8 @@ public abstract class NLGElement {
 	 * Sets the tense on this element. The method is identical to calling
 	 * {@code setFeature(Feature.TENSE, newTense)}.
 	 * 
-	 * WARNING: You should use setTense(Feature.TENSE, tense)
-	 * setTense will be dropped from simplenlg at some point
+	 * WARNING: You should use setTense(Feature.TENSE, tense) setTense will be
+	 * dropped from simplenlg at some point
 	 *
 	 * @param newTense
 	 *            the new tense for this element.
@@ -656,8 +728,8 @@ public abstract class NLGElement {
 	 * Sets the negation on this element. The method is identical to calling
 	 * {@code setFeature(Feature.NEGATED, isNegated)}.
 	 * 
-	 * WARNING: You should use setFeature(Feature.NEGATED, isNegated)
-	 * setNegated will be dropped from simplenlg at some point
+	 * WARNING: You should use setFeature(Feature.NEGATED, isNegated) setNegated
+	 * will be dropped from simplenlg at some point
 	 * 
 	 * @param isNegated
 	 *            <code>true</code> if the element is to be negated,
@@ -672,8 +744,8 @@ public abstract class NLGElement {
 	 * Determines if this element is to be treated as a negation. This method
 	 * just examines the value of the NEGATED feature
 	 * 
-	 * WARNING: You should use getFeature(Feature.NEGATED)
-	 * getNegated will be dropped from simplenlg at some point
+	 * WARNING: You should use getFeature(Feature.NEGATED) getNegated will be
+	 * dropped from simplenlg at some point
 	 * 
 	 * @return <code>true</code> if the <code>Feature.NEGATED</code> feature
 	 *         exists and has the value <code>Boolean.TRUE</code>,

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Document xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" cat="PARAGRAPH" xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1 D:\svnNLG\XMLRealiser\RealizerSchema.xsd" xmlns="http://code.google.com/p/simplenlg/schemas/version1">
+  <child xsi:type="SPhraseSpec">
+    <subj xsi:type="NPPhraseSpec">
+      <head cat="NOUN">patient</head>
+      <spec cat="DETERMINER">the</spec>
+    </subj>
+    <vp xsi:type="VPPhraseSpec" TENSE="PAST">
+      <head cat="VERB">lie</head>
+      <postMod xsi:type="VPPhraseSpec" TENSE="PAST">
+        <head cat="VERB">etherise</head>
+        <postMod xsi:type="PPPhraseSpec">
+          <head cat="PREPOSITION">upon</head>
+          <compl xsi:type="NPPhraseSpec">
+            <head cat="NOUN">table</head>
+            <spec cat="DETERMINER">a</spec>
+          </compl>
+        </postMod>
+      </postMod>
+    </vp>
+  </child>
+  <child xsi:type="SPhraseSpec">
+    <subj xsi:type="NPPhraseSpec">
+      <head cat="NOUN">patient</head>
+      <spec cat="DETERMINER">the</spec>
+    </subj>
+    <vp xsi:type="VPPhraseSpec" TENSE="PAST">
+      <head cat="VERB" var="IRREGULAR">lie</head>
+      <postMod xsi:type="VPPhraseSpec" TENSE="PAST">
+        <head cat="VERB">etherise</head>
+        <postMod xsi:type="PPPhraseSpec">
+          <head cat="PREPOSITION">upon</head>
+          <compl xsi:type="NPPhraseSpec">
+            <head cat="NOUN">table</head>
+            <spec cat="DETERMINER">a</spec>
+          </compl>
+        </postMod>
+      </postMod>
+    </vp>
+  </child>
+</Document>
+

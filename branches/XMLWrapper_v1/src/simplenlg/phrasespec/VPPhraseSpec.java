@@ -113,10 +113,13 @@ public class VPPhraseSpec extends PhraseElement {
 	 */
 	public void setVerb(Object verb) {
 		NLGElement verbElement;
+		
 		if (verb instanceof String) { // if String given, check for particle
 			int space = ((String) verb).indexOf(' ');
+			
 			if (space == -1) { // no space, so no particle
 				verbElement = getFactory().createWord(verb, LexicalCategory.VERB);
+			
 			} else { // space, so break up into verb and particle
 				verbElement = getFactory().createWord(((String) verb)
 						.substring(0, space), LexicalCategory.VERB);
@@ -149,7 +152,7 @@ public class VPPhraseSpec extends PhraseElement {
 			objectPhrase = getFactory().createNounPhrase(object);
 
 		objectPhrase.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.OBJECT);
-		addComplement(objectPhrase);
+		setComplement(objectPhrase);
 	}
 	
 	
@@ -177,7 +180,7 @@ public class VPPhraseSpec extends PhraseElement {
 			indirectObjectPhrase = getFactory().createNounPhrase(indirectObject);
 
 		indirectObjectPhrase.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.INDIRECT_OBJECT);
-		addComplement(indirectObjectPhrase);
+		setComplement(indirectObjectPhrase);
 	}
 	
 	/** Returns the indirect object of a clause (assumes there is only one)
