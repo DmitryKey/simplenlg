@@ -42,7 +42,6 @@ If Mary is instead busy with other things and forced to postpone her exercise, w
 yielding the sentence:
  {{{Mary will chase the monkey.}}}
 
-→ For more examples on verbs, look at {{{testsrc/VerbPhraseTest.java}}}.
 
 *Negation*
 If negated is set to true, the negative form of the sentence is produced. For example adding the following line to the previous:
