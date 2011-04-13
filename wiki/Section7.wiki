@@ -37,7 +37,7 @@ Which will generate:
 
 
 Note that only things of type {{{SPhraseSpec}}} can take a complement. 
-Nouns and verbs can also take modifiers, which we discuss next.
+Nouns and verbs take modifiers, which we discuss next.
 
 
 → For more examples on complements, look at {{{testsrc/FPTest.java}}}.
