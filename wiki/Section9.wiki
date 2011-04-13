@@ -6,4 +6,4 @@ As shown in [Section3 Table 1], there are several different kinds of phrase in s
 
 Simplenlg in fact distinguishes between three types of modifiers: front modifiers (which go at the beginning of a phrase), pre-modifiers (which go immediately before the main noun or verb in a phrase), and post-modifiers (which go at  the end of a phrase).  You can directly specify where a modifier goes by using {{{addFrontModifier()}}}, {{{addPremodifier()}}}, or {{{addPostmodifier()}}}. If you use the more general {{{addModifier()}}}, then simplenlg will decide where to place your modifier.
 
-Pre- and post- modifiers are allowed in all types of phrases. Front modifiers can only be specified for {{{SPhraseSpec}}}
+Pre- and post- modifiers are allowed in all types of phrases. Front modifiers can only be specified for {{{SPhraseSpec}}}.
