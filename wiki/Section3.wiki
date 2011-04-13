@@ -91,8 +91,7 @@ In order to build a sentence using these simplenlg concepts or classes, you will
 
  * Create a verb, subject, and object using {{{NLGFactory}}}'s {{{createVerbPhrase}}} and {{{createNounPhrase}}} methods. (These return {{{VPPhraseSpec}}} and {{{NPPhraseSpec}}} instances.)
 
- * If you want, create prepositional phrases, adjective phrases, and adverb phrases using {{{NLGFactory}}}'s {{{createPrepositionPhrase}}}, {{{createAdjectivePhrase}}}, and {{{createAdverbPhrase}}} methods.
-  (This returns {{{PPPhraseSpec}}}, {{{AdjPhraseSpec}}} and {{{AdvPhraseSpec}}} instances.)
+ * If you want, create prepositional phrases, adjective phrases, and adverb phrases using {{{NLGFactory}}}'s {{{createPrepositionPhrase}}}, {{{createAdjectivePhrase}}}, and {{{createAdverbPhrase}}} methods.  (These return {{{PPPhraseSpec}}}, {{{AdjPhraseSpec}}} and {{{AdvPhraseSpec}}} instances.)
 
  * Indicate what role these various parts of speech will play in the desired sentence. For example, specify that you want a particular noun phrase to be the subject of the sentence, and some other noun phrase to be the object, using {{{setSubject}}} and {{{setObject}}}. Specify the verb using {{{setVerb}}}, and the complement (e.g., the prepositional phrase) using {{{addComplement}}}.
 
