@@ -1,49 +1,39 @@
-#summary Prepositional phrases
+#summary Adding multiple subjects, objects and complements
 
-= Prepositional phrases =
+= Adding multiple subjects, objects and complements =
 
-Our sentence is getting rather crowded with people and animals. So let’s return to the pristine simplicity of Mary chasing the monkey. But let’s give the heart-pounding action a setting: 
-{{{"Mary chases the monkey }}} *{{{in the park}}}*".
-
-The phrase "in the park" is a prepositional phrase and there are a number of ways we can create it using simplenlg. The simplest way would be to pass the string "in the park" to the addComplement method:
+An {{{SPhraseSpec}}} can have multiple subjects, objects and complements but not multiple verbs (although a future version of simplenlg might include this functionality). This is done with the {{{CoordinatedPhraseElement}}} class. Let’s say you also have a giraffe that wants to chase the poor monkey. To place your giraffe in the fray, you would write:
 {{{
-        SPhraseSpec p = nlgFactory.createClause("Mary", "chase", "the monkey");
-	p.addComplement("in the park");
+	NPPhraseSpec subject1 = nlgFactory.createNounPhrase("Mary");
+	NPPhraseSpec subject2 = nlgFactory.createNounPhrase("your", "giraffe");
+
+	CoordinatedPhraseElement subj = nlgFactory.createCoordinatedPhrase(subject1, subject2);
+	p.setSubject(subj);
 }}}
+The resulting output is:
+ {{{Mary and your giraffe chase the monkey.}}}
 
-A more sophisticated way of creating this prepositional phrase, however, would be to specify the parts of the prepositional phrase – the preposition, determiner, noun phrase –  and combine them: 
+simplenlg has automatically added the conjunction ‘and’ and has changed the ending of the verb so that it agrees with the multiple subjects of the sentence.
+
+Similarly, you can have multiple objects and complements in an {{{SPhraseSpec}}}. Let’s suppose Mary and your giraffe have found more people to terrorize in what’s turning out to be a growing parade of horror.  Instead of {{{p.setObject(“the monkey”)}}}, you would write: 
 {{{
-	NPPhraseSpec place = nlgFactory.createNounPhrase("park");
-	place.setDeterminer("the");
-	PPPhraseSpec pp = nlgFactory.createPrepositionPhrase();
-	pp.addComplement(place);
-	pp.setPreposition("in");
-}}}	
-We then add the prepositional phrase as a complement to the ‘Mary chases the monkey’ sentence.
-{{{
-	p.addComplement(pp);
+	NPPhraseSpec object1 = nlgFactory.createNounPhrase("the monkey");
+	NPPhraseSpec object2 = nlgFactory.createNounPhrase("George");
+
+	CoordinatedPhraseElement obj = nlgFactory.createCoordinatedPhrase(object1, object2);
+	obj.addCoordinate("Martha");
+        p.setObject(obj);
 }}}
-The table below shows three different ways of creating the prepositional phrase "in the park".  As you can start to see, there are often several ways to realise sentences using simplenlg.  The best way to do it depends on the needs of your system. 
+The resulting output will be:
+ {{{Mary and your giraffe chase the monkey, George and Martha.}}}
 
-http://simplenlg.googlecode.com/svn/wiki/simplenlg_table3.png
-
-The third, sophisticated method requires much more code than the other two ways. So why then would we ever choose the third method? 
-
-The main reason is that the third method allows you to add pieces to a phrase or sentence with much greater ease. We have to remind ourselves that simplenlg will normally be used in a larger program which chooses the content of a sentence – and that content will likely be determined in a piecemeal fashion. It’s much easier to have simplenlg add a word or clause to a phrase which has been defined in a modular way (i.e., parts of the sentence are divided into chunks and labeled) rather than having to add new information to a monolithic string whose parts are not differentiated. For example, if we wanted to describe the park as ‘leafy’, and we had used the 3rd method to define our sentence, all we would need to do is write the following code:
+If Mary and the devious giraffe run by so quickly that you can't see who they're chasing, you can change the conjunction on the coordinated elements:
 {{{
-	place.addPreModifier("leafy");
+	obj.setFeature(Feature.CONJUNCTION, "or");
 }}}
+The resulting output will be:
+ {{{Mary and your giraffe chase the monkey, George or  Martha.}}}
 
-Had we chosen the first or second methods, however, adding the adjective ‘leafy’ to the string ‘park’ would be a major hassle. Among other things, you would have to write code which could:
+As with many methods in simplenlg, the {{{createCoordinatedPhrase}}} method can take all kinds of arguments – {{{NPPhraseSpec}}}, {{{PPPhraseSpec}}}, or even simple {{{string}}}s.
 
- * find where to insert the new word in the string. In most cases this would require parsing the string, which is no simple task!
- * break that string into pieces to allow the insertion
- * insert the word
- * determine whether that insertion requires changing the other bits of string
- * put the pieces of string back together in a grammatical way
-
-In other words, you would have to write a realiser like simplenlg! 
-
-So why, given the major drawback stated above, would we ever choose to define a sentence using methods #1 and #2? Because sometimes we simply want to generate canned text, i.e., text that we know won’t need to be enlarged or changed and which we simply want output as-is. If we know that we won’t be changing a phrase (such as ‘in the park’), then it makes sense to treat it as a uniform entity the way the first two methods do.
-
-→  For more examples of prepositional phrases, look at {{{testsrc/PrepositionalPhraseTest.java}}}.
+→  For more examples on coordination, look at {{{testsrc/ClauseAggregationTest.java}}}.
