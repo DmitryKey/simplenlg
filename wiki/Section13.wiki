@@ -1,9 +1,43 @@
-#summary Different ways of specifying a phrase
+#summary Generating a sentence with multiple clauses
 
-= Different ways of specifying a phrase =
+= Generating a sentence with multiple clauses =
 
-We have now covered a bunch the basic functionality of simplenlg.  One thing that this tutorial has outlined is the fact that there are numerous ways of specifying a phrase.  
+*Phrases joined by a conjunction*
+One way of generating a sentence with multiple clauses is to use the simplenlg class {{{CoordinatedPhraseElement}}}. 
+{{{
+	SPhraseSpec s1 = nlgFactory.createClause("my cat", "like", "fish");
+	SPhraseSpec s2 = nlgFactory.createClause("my dog", "like", "bones");
+	SPhraseSpec s3 = nlgFactory.createClause("my horse", "like", "grass");
 
-In order to make this a bit more explicit, the table below shows some of the ways we can create the sentence ‘Mary chases the monkey’. You can define all the components of the phrase when you create an instance of it (as in example #1). Or you can create the instance first and then add the components one at a time (as in example #2). Alternatively, the components of a sentence can themselves be phrases (as in example #3). Or you can have a combination of all these various syntaxes (as in examples 4-5).
+	CoordinatedPhraseElement c = nlgFactory.createCoordinatedPhrase();
+	c.addCoordinate(s1);
+	c.addCoordinate(s2);
+	c.addCoordinate(s3);
+}}}
 
-http://simplenlg.googlecode.com/svn/wiki/simplenlg_table4.png
+The {{{CoordinatedPhraseElement c}}} can then be realised as a sentence:
+{{{
+	NLGElement output = realiser.realiseSentence(c);
+	System.out.println(output);
+}}}
+
+If you do not supply a conjunction using the method {{{setConjunction}}}, the conjunction ‘and’ will automatically be used because it is the default. In this case, the resulting sentence would be:
+ {{{My cat likes fish, my dog likes bones and my horse likes grass.}}}
+
+
+*Subordinate clauses*
+Subordinate clauses can be added to the main clause using the {{{addComplement}}} method, where the kind of complementiser (“because”, “while”, etc.) to be used is set using the {{{setFeature}}} method.  
+{{{
+	SPhraseSpec p = nlgFactory.createClause("I", "be", "happy");
+	SPhraseSpec q = nlgFactory.createClause("I", "eat", "fish");
+	CoordinatedPhraseElement pq = nlgFactory.createCoordinatedPhrase();
+	q.setFeature(Feature.COMPLEMENTISER, "because");
+	q.setFeature(Feature.TENSE, Tense.PAST);
+	p.addComplement(q);
+		
+	String output4 = realiser.realiseSentence(p);  //Realiser created earlier
+	System.out.println(output4);
+}}}
+
+The output is:
+ {{{I am happy because I ate fish.}}}
