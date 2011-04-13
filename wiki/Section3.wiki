@@ -1,12 +1,12 @@
 #summary Getting started
 
-= Getting started{{{[1]}}} =
+= Getting started =
 
-It’s important to note that simplenlg is a library1, not an application! This means you cannot run it as a Java program – it does not have a "main" method. You need to create your own Java program which makes use of simplenlg classes and methods.
+It’s important to note that simplenlg is a library {{{[1]}}}, not an application! This means you cannot run it as a Java program – it does not have a "main" method. You need to create your own Java program which makes use of simplenlg classes and methods.
 
 To enable your program to make use of the simplenlg library, you’ll need to: 
 
- * Download the simplenlg zip file from the Download tab. (http://code.google.com/p/simplenlg/downloads/simplenlgv4.2.zip).
+ * Download the simplenlg zip file from the Download tab.  (http://simplenlg.googlecode.com/files/simplenlg-v42.zip).
 
  * Add simplenlg’s jar file to your classpath. (For instructions on how to do this in Eclipse, see [AppendixB Appendix B]).
 
@@ -109,10 +109,8 @@ Below is quick breakdown of the main parts of speech that simplenlg can handle. 
 http://simplenlg.googlecode.com/svn/wiki/simplenlg_table1.png
 
 ----
-{{{[1]}}} Note that this and other sections assume a basic understanding of object oriented programming on the part of the reader. For example, you will need to understand what a class and an instance of a class are.
+{{{[1]}}} A library or API is a collection of methods/functions that people can make use of in their programs. This saves programmers from having to write that code themselves.
 
-{{{[2]}}} A library or API is a collection of methods/functions that people can make use of in their programs. This saves programmers from having to write that code themselves.
+{{{[2]}}} This is actually a Complementiser Phrase, which is not currently implemented in simplenlg.  Instead, such phrases can just be written as strings, then specified as complements.
 
-{{{[3]}}} This is actually a Complementiser Phrase, which is not currently implemented in simplenlg.  Instead, such phrases can just be written as strings, then specified as complements.
-
-{{{[4]}}} This may also be added as a modifier to the full sentence, and will be interpreted as modifying the main verb.
+{{{[3]}}} This may also be added as a modifier to the full sentence, and will be interpreted as modifying the main verb.
