@@ -12,7 +12,7 @@ To enable your program to make use of the simplenlg library, you’ll need to:
 
  * Create a new Java class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
 
- * at the top of that class, put in the following import statements:
+ * At the top of that class, put in the following import statements:
 {{{
         import simplenlg.framework.*;
         import simplenlg.lexicon.*;
@@ -21,7 +21,7 @@ To enable your program to make use of the simplenlg library, you’ll need to:
         import simplenlg.features.*;
 }}}
 
- * create a simplenlg lexicon, NLGFactory, and realiser using the following statements
+ * Create a simplenlg lexicon, NLGFactory, and realiser using the following statements
 {{{
         Lexicon lexicon = Lexicon.getDefaultLexicon();
         NLGFactory nlgFactory = new NLGFactory(lexicon);
@@ -49,7 +49,7 @@ Following these steps, you should have code that looks like the following:
         }
 
 }}} 
-*Figure 1*: a Java class which is ready to make use of the simplenlg library
+*Figure 1*: A Java class which is ready to make use of the simplenlg library.
 
 
 You’re now ready to make use of simplenlg to generate sentences! 
@@ -77,7 +77,7 @@ Not surprisingly, the resulting output is:
 It’s important to note that you only need to create the {{{Lexicon}}}, {{{NLGFactory}}}, and {{{Realiser}}} once within your program; you don’t need to create them for every sentence you generate. So a good idea is to create these at the start of your program and user them over the lifetime of the program run.
 
 
-*The main steps involved in generating a more complicated sentence:*
+*The main steps involved in generating a more complicated sentence*
 
 The last example was the simplest way to create a sentence, and as you can see, it requires you to do most of the work.  Now let's take a look at how to get simplenlg to do most of the work.  Keep in mind that simplenlg is pretty flexible in this way, and there are several other ways to generate sentences – many of the things that you think of will probably work as well.
 
@@ -89,7 +89,7 @@ In order to build a sentence using these simplenlg concepts or classes, you will
 
  * Create a placeholder for the sentence using {{{NLGFactory}}}'s {{{createClause}}} method. (This returns an {{{SPhraseSpec}}} instance.)
 
- * Create a verb, subject, and object using {{{NLGFactory}}}'s {{{createVerbPhrase}} and {{{createNounPhrase}}} methods. (These return {{{VPPhraseSpec}}} and {{{NPPhraseSpec}}} instances.)
+ * Create a verb, subject, and object using {{{NLGFactory}}}'s {{{createVerbPhrase}}} and {{{createNounPhrase}}} methods. (These return {{{VPPhraseSpec}}} and {{{NPPhraseSpec}}} instances.)
 
  * If you want, create prepositional phrases, adjective phrases, and adverb phrases using {{{NLGFactory}}}'s {{{createPrepositionPhrase}}}, {{{createAdjectivePhrase}}}, and {{{createAdverbPhrase}}} methods.
   (This returns {{{PPPhraseSpec}}}, {{{AdjPhraseSpec}}} and {{{AdvPhraseSpec}}} instances.)
