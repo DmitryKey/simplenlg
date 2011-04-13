@@ -17,7 +17,7 @@ One way of generating a sentence with multiple clauses is to use the simplenlg c
 
 The {{{CoordinatedPhraseElement c}}} can then be realised as a sentence:
 {{{
-	NLGElement output = realiser.realiseSentence(c);
+	String output = realiser.realiseSentence(c);
 	System.out.println(output);
 }}}
 
