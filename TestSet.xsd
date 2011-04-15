@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://code.google.com/p/simplenlg/schemas/TestSet"
+	xmlns:tns="http://code.google.com/p/simplenlg/schemas/TestSet"
+	elementFormDefault="qualified" xmlns:nl="http://code.google.com/p/simplenlg/schemas/version1">
+	<import schemaLocation="RealizerSchema.xsd" namespace="http://code.google.com/p/simplenlg/schemas/version1"></import>
+
+	<element name="Tests" type="tns:TestSet"></element>
+	<complexType name="Test">
+		<sequence>
+			<element name="Data" type="nl:DocumentElement" maxOccurs="1"
+				minOccurs="1">
+			</element>
+			<element name="Result" type="string"></element>
+		</sequence>
+		<attribute name="name" type="string"></attribute>
+	</complexType>
+
+
+	<complexType name="TestSet">
+		<sequence>
+			<element name="Test" type="tns:Test" maxOccurs="unbounded" minOccurs="1"></element>
+		</sequence>
+		<attribute name="name" type="string"></attribute>
+	</complexType>
+
+
+</schema>
