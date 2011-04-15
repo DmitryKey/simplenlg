@@ -866,9 +866,10 @@ public abstract class MorphologyRules {
 
 				if (determiner.isPlural()) {
 					determiner.setRealisation("some"); //$NON-NLS-1$
-				} else if (realisation.matches("\\A(a|e|i|o|u).*")) { //$NON-NLS-1$
+				} else if (realisation.matches("\\A(a|e|i|o|u).*")
+						|| realisation.matches("^(8((\\d+)|(\\d+(\\.|,)\\d+))?|11|18)(\\D.*|$)")) { //$NON-NLS-1$
 					determiner.setRealisation("an"); //$NON-NLS-1$
-				}
+				}	
 			}
 		}
 	}
