@@ -86,6 +86,12 @@ public abstract class MorphologyRules {
 					{ "our", "your", "their", "their", "their" } } };
 
 	/**
+	 * An array of strings which are exceptions to the rule that "an" comes
+	 * before vowels
+	 */
+	private static final String[] AN_EXCEPTIONS = { "one" };
+
+	/**
 	 * This method performs the morphology for nouns.
 	 * 
 	 * @param element
@@ -139,7 +145,8 @@ public abstract class MorphologyRules {
 			}
 
 			if (pluralForm == null) {
-				Object pattern = element.getFeature(LexicalFeature.DEFAULT_INFL);
+				Object pattern = element
+						.getFeature(LexicalFeature.DEFAULT_INFL);
 				if (Inflection.GRECO_LATIN_REGULAR.equals(pattern)) {
 					pluralForm = buildGrecoLatinPluralNoun(baseForm);
 				} else {
@@ -299,7 +306,7 @@ public abstract class MorphologyRules {
 					realised = buildRegularPresPartVerb(baseForm);
 				}
 			}
-			
+
 		} else if (Tense.PAST.equals(tenseValue)
 				|| Form.PAST_PARTICIPLE.equals(formValue)) {
 
@@ -311,7 +318,7 @@ public abstract class MorphologyRules {
 					realised = baseWord
 							.getFeatureAsString(LexicalFeature.PAST_PARTICIPLE);
 				}
-				
+
 				if (realised == null) {
 					if ("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
 						realised = "been"; //$NON-NLS-1$
@@ -321,14 +328,14 @@ public abstract class MorphologyRules {
 						realised = buildRegularPastVerb(baseForm, numberValue);
 					}
 				}
-				
+
 			} else {
 				realised = element.getFeatureAsString(LexicalFeature.PAST);
 
 				if (realised == null && baseWord != null) {
 					realised = baseWord.getFeatureAsString(LexicalFeature.PAST);
 				}
-				
+
 				if (realised == null) {
 					if (Inflection.REGULAR_DOUBLE.equals(patternValue)) {
 						realised = buildDoublePastVerb(baseForm);
@@ -337,7 +344,7 @@ public abstract class MorphologyRules {
 					}
 				}
 			}
-			
+
 		} else if ((numberValue == null || NumberAgreement.SINGULAR
 				.equals(numberValue))
 				&& (personValue == null || Person.THIRD.equals(personValue))
@@ -353,7 +360,7 @@ public abstract class MorphologyRules {
 			if (realised == null) {
 				realised = buildPresent3SVerb(baseForm);
 			}
-			
+
 		} else {
 			if ("be".equalsIgnoreCase(baseForm)) { //$NON-NLS-1$
 				if (Person.FIRST.equals(personValue)
@@ -868,9 +875,27 @@ public abstract class MorphologyRules {
 					determiner.setRealisation("some"); //$NON-NLS-1$
 				} else if (realisation.matches("\\A(a|e|i|o|u).*")
 						|| realisation.matches("^(8((\\d+)|(\\d+(\\.|,)\\d+))?|11|18)(\\D.*|$)")) { //$NON-NLS-1$
-					determiner.setRealisation("an"); //$NON-NLS-1$
+					if (!isAnException(realisation)) {
+						determiner.setRealisation("an"); //$NON-NLS-1$
+					}
 				}	
 			}
 		}
+	}
+
+	/**
+	 * check whether a string beginning with a vowel is an exception and doesn't
+	 * take "an" (e.g. "a one percent change")
+	 * 
+	 * @return
+	 */
+	private static boolean isAnException(String string) {
+		for(String ex: MorphologyRules.AN_EXCEPTIONS) {
+			if(string.matches("^" + ex + ".*")) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }
