@@ -21,6 +21,7 @@ package simplenlg.format.english;
 import java.util.ArrayList;
 import java.util.List;
 
+import simplenlg.framework.CoordinatedPhraseElement;
 import simplenlg.framework.DocumentCategory;
 import simplenlg.framework.DocumentElement;
 import simplenlg.framework.ElementCategory;
@@ -133,15 +134,14 @@ public class TextFormatter extends NLGModule {
 				}
 
 				// also need to check if element is a listelement (items can
-				// have embedded lists post-orthography)
-			} else if (element instanceof ListElement) {
+				// have embedded lists post-orthography) or a coordinate
+			} else if (element instanceof ListElement || element instanceof CoordinatedPhraseElement) {
 				for (NLGElement eachComponent : components) {
 					realisedComponent = realise(eachComponent);
 					if (realisedComponent != null) {
 						realisation.append(realisedComponent.getRealisation()).append(' ');
 					}
 				}
-
 			} else if (element instanceof CoordinatedPhraseElement) {
 				CoordinatedPhraseElement c = (CoordinatedPhraseElement)element;
 				for (NLGElement eachComponent : c.getChildren()) {
