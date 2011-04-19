@@ -1,8 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- edited with XMLSpy v2011 rel. 2 sp1 (http://www.altova.com) by Christopher 
-	Howell (Agfa Healthcare Corporation) -->
-<xs:schema targetNamespace="http://code.google.com/p/simplenlg/schemas/version1" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nlg="http://code.google.com/p/simplenlg/schemas/version1">
-	<xs:element name="Recording" type="nlg:RecordSet" />
+<!-- Schema for simplenlg edited by Christopher Howell (Agfa Healthcare Corporation) -->
+<xs:schema targetNamespace="http://code.google.com/p/simplenlg/schemas/version1"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:nlg="http://code.google.com/p/simplenlg/schemas/version1">
+	<xs:element name="NLGSpec">
+	<xs:complexType>
+		<xs:choice>
+			<xs:element name="Request" type="nlg:RequestType"/>
+			<xs:element name="Recording" type="nlg:RecordSet" />
+		</xs:choice>
+	</xs:complexType>
+	</xs:element>
 	<xs:complexType name="RecordSet">
 		<xs:sequence>
 			<xs:element name="Record" type="nlg:DocumentRealisation" maxOccurs="unbounded" minOccurs="1" />
@@ -296,8 +305,6 @@
 			<xs:enumeration value="INVARIANT" />
 		</xs:restriction>
 	</xs:simpleType>
-
-	<xs:element name="Request" type="nlg:RequestType"></xs:element>
 	
     <xs:complexType name="RequestType">
     	<xs:sequence>

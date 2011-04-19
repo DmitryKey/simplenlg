@@ -8,8 +8,6 @@ import simplenlg.lexicon.*;
 import simplenlg.realiser.english.*;
 
 import java.io.*;
-
-import javax.xml.bind.JAXBException;
 /**
  * @author Christopher Howell Agfa Healthcare Corporation
  *
@@ -18,6 +16,7 @@ public class XMLRealiser {
 
 	static String lexDB = null;
 	static Lexicon lexicon = null;
+	static LexiconType lexiconType = null;
 	static Recording record = null;
 	/**
 	 * @param args
@@ -65,7 +64,9 @@ public class XMLRealiser {
 			}
 			input = (String)args[argx++];
 			StringReader reader = new StringReader(input);
-			output = realise(reader);
+			simplenlg.xmlrealiser.wrapper.RequestType request = getRequest(reader);
+			output = realise(request.getDocument());
+
 			break;
 		case setLexicon:
 		{
@@ -104,12 +105,8 @@ public class XMLRealiser {
 				output = record.GetRecordingFile();
 				try {
 					record.finish();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (JAXBException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				} catch (Exception e) {
+					throw new XMLRealiserException("xml writing error " + e.getMessage());
 				}
 			}
 			break;
@@ -127,11 +124,16 @@ public class XMLRealiser {
 	}
 	
 	public static void setLexicon(LexiconType lexType, String lexFile)
-	{		
+	{
+		if (lexiconType != null && lexicon != null && lexType == lexiconType) {
+			return; //done already
+		}
+		
 		if (lexicon != null)
 		{
 			lexicon.close();
 			lexicon = null;
+			lexiconType = null;
 		}
 		
 		if (lexType == LexiconType.XML){
@@ -143,13 +145,38 @@ public class XMLRealiser {
 		else if (lexType == LexiconType.DEFAULT){
 			lexicon = Lexicon.getDefaultLexicon();
 		}
+		
+		lexiconType = lexType;
 	}
 	
-	public static String realise(Reader input) throws XMLRealiserException
+	public static simplenlg.xmlrealiser.wrapper.RequestType getRequest(Reader input) throws XMLRealiserException
+	{
+		simplenlg.xmlrealiser.wrapper.NLGSpec spec = UnWrapper.getNLGSpec(input);
+		simplenlg.xmlrealiser.wrapper.RequestType request = spec.getRequest();
+		if (request == null)
+		{
+			throw new XMLRealiserException("Must have Request element");
+		}
+		
+		return request;
+	}
+	
+	public static simplenlg.xmlrealiser.wrapper.RecordSet getRecording(Reader input) throws XMLRealiserException
+	{
+		simplenlg.xmlrealiser.wrapper.NLGSpec spec = UnWrapper.getNLGSpec(input);
+		simplenlg.xmlrealiser.wrapper.RecordSet recording = spec.getRecording();
+		if (recording == null)
+		{
+			throw new XMLRealiserException("Must have Recording element");
+		}
+		
+		return recording;
+
+	}
+	
+	public static String realise(simplenlg.xmlrealiser.wrapper.DocumentElement wt) throws XMLRealiserException
 	{
 		String output = "";
-		simplenlg.xmlrealiser.wrapper.DocumentElement wt = UnWrapper.unmarshal(input);
-	
 		if ( wt != null ) {
 			try {
 				if (lexicon == null)

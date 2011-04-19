@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<nlg:Recording name="" xmlns:nlg="http://code.google.com/p/simplenlg/schemas/version1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1 RealizerSchema.xsd ">
-  <nlg:Record name="">
-    <nlg:Document cat="DOCUMENT" title=""/>
-    <nlg:Realisation>nlg:Realisation</nlg:Realisation>
-  </nlg:Record>
-</nlg:Recording>
+<nlg:NLG xmlns:nlg="http://code.google.com/p/simplenlg/schemas/version1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1 RealizerSchema.xsd ">
+	<nlg:Recording name="">
+		<nlg:Record name="">
+			<nlg:Document cat="DOCUMENT" title="" />
+		</nlg:Record>
+	</nlg:Recording>
+</nlg:NLG>

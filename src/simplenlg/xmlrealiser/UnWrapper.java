@@ -24,30 +24,28 @@ import simplenlg.lexicon.*;
  */
 public class UnWrapper {
 
-	// Create wrapper objects from xml.
-	public static simplenlg.xmlrealiser.wrapper.DocumentElement unmarshal(Reader xmlReader) throws XMLRealiserException
+	// Create wrapper objects from xml for a request to realise, or the xml for a recording.
+	// Both are elements of NLGSpec.
+	public static simplenlg.xmlrealiser.wrapper.NLGSpec getNLGSpec(Reader xmlReader) throws XMLRealiserException
 	{
-		simplenlg.xmlrealiser.wrapper.DocumentElement wt = null;
+		simplenlg.xmlrealiser.wrapper.NLGSpec wt = null;
 		try {
-			JAXBContext jc = JAXBContext.newInstance(simplenlg.xmlrealiser.wrapper.DocumentElement.class);
+			JAXBContext jc = JAXBContext.newInstance(simplenlg.xmlrealiser.wrapper.NLGSpec.class);
 			Unmarshaller u = jc.createUnmarshaller();
 			Object obj = u.unmarshal(xmlReader);
-			if (obj instanceof JAXBElement<?> )
+			if (obj instanceof simplenlg.xmlrealiser.wrapper.NLGSpec )
 			{
-				JAXBElement<?> x = (JAXBElement<?>)obj;
-				Object obj2 = x.getValue();
-				if (obj2 instanceof simplenlg.xmlrealiser.wrapper.DocumentElement )
-				{
-					wt = (simplenlg.xmlrealiser.wrapper.DocumentElement)obj2;
-				}
+				wt = (simplenlg.xmlrealiser.wrapper.NLGSpec)obj;
 			}
-		} catch (Throwable e) {
+		} 
+		
+		catch (Throwable e) {
 			throw new XMLRealiserException("XML unmarshal error", e);
 		}
 
 		return wt;
 	}
-	
+		
 	NLGFactory factory = null;
 	public UnWrapper(Lexicon lexicon)
 	{
