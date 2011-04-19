@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<nlg:Request xmlns:nlg="http://code.google.com/p/simplenlg/schemas/version1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1 RealizerSchema.xsd ">
-  <nlg:Document cat="DOCUMENT" title="">
-    <nlg:child xsi:type="nlg:NLGElement"/>
-  </nlg:Document>
-</nlg:Request>
+<nlg:NLG xmlns:nlg="http://code.google.com/p/simplenlg/schemas/version1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1 RealizerSchema.xsd ">
+  <nlg:Request>
+    <nlg:Document cat="DOCUMENT" title=""/>
+  </nlg:Request>
+</nlg:NLG>

@@ -15,18 +15,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for StringElement complex type.
+ * <p>Java class for RequestType complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="StringElement">
+ * &lt;complexType name="RequestType">
  *   &lt;complexContent>
- *     &lt;extension base="{http://code.google.com/p/simplenlg/schemas/version1}NLGElement">
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="val" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Document" type="{http://code.google.com/p/simplenlg/schemas/version1}DocumentElement"/>
  *       &lt;/sequence>
- *     &lt;/extension>
+ *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
@@ -34,38 +34,36 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "StringElement", propOrder = {
-    "val"
+@XmlType(name = "RequestType", propOrder = {
+    "document"
 })
-public class StringElement
-    extends NLGElement
-{
+public class RequestType {
 
-    @XmlElement(required = true)
-    protected String val;
+    @XmlElement(name = "Document", required = true)
+    protected DocumentElement document;
 
     /**
-     * Gets the value of the val property.
+     * Gets the value of the document property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link DocumentElement }
      *     
      */
-    public String getVal() {
-        return val;
+    public DocumentElement getDocument() {
+        return document;
     }
 
     /**
-     * Sets the value of the val property.
+     * Sets the value of the document property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link DocumentElement }
      *     
      */
-    public void setVal(String value) {
-        this.val = value;
+    public void setDocument(DocumentElement value) {
+        this.document = value;
     }
 
 }
