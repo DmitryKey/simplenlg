@@ -11,22 +11,7 @@
         </sealing>
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.lexicon"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.syntax.english"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.syntax"/>
         <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.xmlrealiser.wrapper"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.xmlrealiser{XMLRealiserException.java"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.orthography.english"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.morphology"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.xmlrealiser{UnWrapper.java"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.features"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.phrasespec"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.framework"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.format.english"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.orthography"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.morphology.english"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.aggregation"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.realiser.english"/>
-        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.xmlrealiser{XMLRealiser.java"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.xmlrealiser"/>
     </selectedElements>
 </jardesc>

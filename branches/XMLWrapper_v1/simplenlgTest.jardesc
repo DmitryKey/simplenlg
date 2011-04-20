@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
+<jardesc>
+    <jar path="XMLWrapper_v1/lib/simplenlgTest.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/XMLWrapper_v1/simplenlgTest.jardesc" exportErrors="false" exportWarnings="true" includeDirectoryEntries="false" overwrite="false" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
+    <selectedProjects/>
+    <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
+        <sealing sealJar="false">
+            <packagesToSeal/>
+            <packagesToUnSeal/>
+        </sealing>
+    </manifest>
+    <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.lexicon"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.syntax.english"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.syntax"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.orthography.english"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.morphology"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.features"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.phrasespec"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.framework"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.format.english"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.orthography"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.morphology.english"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.aggregation"/>
+        <javaElement handleIdentifier="=XMLWrapper_v1/src&lt;simplenlg.realiser.english"/>
+    </selectedElements>
+</jardesc>
