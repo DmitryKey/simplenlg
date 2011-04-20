@@ -31,7 +31,7 @@ public class Tester {
 		String xmlFile = "";
 		String lexDB;
 		int ix=0;
-		String usage = "usage: Tester [-test <xml file with RecordSet element or path to such files> | <xml file with Request element>] <NIH db location>";
+		String usage = "usage: Tester [-test <xml file with Recording element or path to such files> | <xml file with Request element>] <NIH db location>";
 		if (args.length <2)
 		{
 			System.out.println(usage);
