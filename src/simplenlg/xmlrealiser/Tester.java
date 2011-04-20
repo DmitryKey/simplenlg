@@ -31,13 +31,13 @@ public class Tester {
 		String xmlFile = "";
 		String lexDB;
 		int ix=0;
-		String usage = "usage: Tester [-tests <xml file based on TestSet schema or path to such files> | <xml file based on RealizerSchema>] <NIH db location>";
+		String usage = "usage: Tester [-test <xml file with RecordSet element or path to such files> | <xml file with Request element>] <NIH db location>";
 		if (args.length <2)
 		{
 			System.out.println(usage);
 			return;
 		}
-		if (args[ix].matches("-tests"))
+		if (args[ix].matches("-test"))
 		{
 			ix++;
 			processTestSets = true;
