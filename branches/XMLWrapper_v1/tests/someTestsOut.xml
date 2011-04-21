@@ -239,16 +239,16 @@
           </child>
         </child>
       </Document>
-      <Realisation>* an 18 thing but a 180 thing 
-* an 18x thing but a 08 thing 
-* an 11g thing but a 9i thing 
-* an 8th thing but a 9th thing 
-* an 11th thing but a 1100 thing 
-* an 11.000 thing but a 11000 thing 
-* an 81000 thing but a 180,000 thing 
-* an 81,000 thing but a 01834 thing 
-* an 8% thing but a 9% thing 
-* an 8432425 thing but a 42nd thing 
+      <Realisation>* an 18 thing but a 180 thing
+* an 18x thing but a 08 thing
+* an 11g thing but a 9i thing
+* an 8th thing but a 9th thing
+* an 11th thing but a 1100 thing
+* an 11.000 thing but an 11000 thing
+* an 81000 thing but a 180,000 thing
+* an 81,000 thing but a 01834 thing
+* an 8% thing but a 9% thing
+* an 8432425 thing but a 42nd thing
 </Realisation>
     </Record>
     <Record name="punctuation problem 1">
@@ -261,12 +261,10 @@
             <head cat="VERB">be</head>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
-                <val>an</val>
-              </preMod>
-              <preMod xsi:type="StringElement">
                 <val>80 %</val>
               </preMod>
               <head cat="NOUN">in-stent restenosis</head>
+              <spec cat="DETERMINER">an</spec>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
               <head cat="PREPOSITION">in</head>
@@ -281,7 +279,7 @@
           </vp>
         </child>
       </Document>
-      <Realisation>There is an, 80 % in-stent restenosis in the proximal right coronary artery.
+      <Realisation>There is an 80 % in-stent restenosis in the proximal right coronary artery.
 
 </Realisation>
     </Record>
@@ -335,7 +333,6 @@
           <vp xsi:type="VPPhraseSpec">
             <head cat="VERB">be</head>
             <compl xsi:type="NPPhraseSpec">
-              <preMod xsi:type="CoordinatedPhraseElement" conj=","/>
               <head cat="NOUN">vessel</head>
               <postMod xsi:type="PPPhraseSpec">
                 <head cat="PREPOSITION">with</head>
@@ -348,7 +345,7 @@
           </vp>
         </child>
       </Document>
-      <Realisation>The right coronary artery is a  vessel with luminal irregularities.
+      <Realisation>The right coronary artery is a vessel with luminal irregularities.
 
 </Realisation>
     </Record>
@@ -376,9 +373,9 @@
           </child>
         </child>
       </Document>
-      <Realisation>* Normal coronary arteries. 
-* Normal left heart hemodynamics. 
-* Normal right heart hemodynamics. 
+      <Realisation>* Normal coronary arteries.
+* Normal left heart hemodynamics.
+* Normal right heart hemodynamics.
 </Realisation>
     </Record>
   </Recording>

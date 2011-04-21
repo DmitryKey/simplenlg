@@ -5,7 +5,6 @@
 // Generated on: 2011.04.19 at 02:14:06 PM EDT 
 //
 
-
 package simplenlg.xmlrealiser.wrapper;
 
 import java.util.ArrayList;
@@ -16,11 +15,13 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for CoordinatedPhraseElement complex type.
+ * <p>
+ * Java class for CoordinatedPhraseElement complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="CoordinatedPhraseElement">
@@ -38,102 +39,93 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "CoordinatedPhraseElement", propOrder = {
-    "coord"
-})
-public class CoordinatedPhraseElement
-    extends NLGElement
-{
+@XmlType(name = "CoordinatedPhraseElement", propOrder = { "coord" })
+public class CoordinatedPhraseElement extends NLGElement {
 
-    @XmlElement(required = true)
-    protected List<NLGElement> coord;
-    @XmlAttribute
-    protected String conj;
-    @XmlAttribute
-    protected PhraseCategory cat;
+	@XmlElement(required = true)
+	protected List<NLGElement> coord;
+	@XmlAttribute
+	protected String conj;
+	@XmlAttribute
+	protected PhraseCategory cat;
     @XmlAttribute(name = "PERSON")
     protected Person person;
 
-    /**
-     * Gets the value of the coord property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the coord property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getCoord().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link NLGElement }
-     * 
-     * 
-     */
-    public List<NLGElement> getCoord() {
-        if (coord == null) {
-            coord = new ArrayList<NLGElement>();
-        }
-        return this.coord;
-    }
+	/**
+	 * Gets the value of the coord property.
+	 * 
+	 * <p>
+	 * This accessor method returns a reference to the live list, not a
+	 * snapshot. Therefore any modification you make to the returned list will
+	 * be present inside the JAXB object. This is why there is not a
+	 * <CODE>set</CODE> method for the coord property.
+	 * 
+	 * <p>
+	 * For example, to add a new item, do as follows:
+	 * 
+	 * <pre>
+	 * getCoord().add(newItem);
+	 * </pre>
+	 * 
+	 * 
+	 * <p>
+	 * Objects of the following type(s) are allowed in the list
+	 * {@link NLGElement }
+	 * 
+	 * 
+	 */
+	public List<NLGElement> getCoord() {
+		if (coord == null) {
+			coord = new ArrayList<NLGElement>();
+		}
+		return this.coord;
+	}
 
-    /**
-     * Gets the value of the conj property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getConj() {
-        if (conj == null) {
-            return "and";
-        } else {
-            return conj;
-        }
-    }
+	/**
+	 * Gets the value of the conj property.
+	 * 
+	 * @return possible object is {@link String }
+	 * 
+	 */
+	public String getConj() {
+		if (conj == null) {
+			return "and";
+		} else {
+			return conj;
+		}
+	}
 
-    /**
-     * Sets the value of the conj property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setConj(String value) {
-        this.conj = value;
-    }
+	/**
+	 * Sets the value of the conj property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link String }
+	 * 
+	 */
+	public void setConj(String value) {
+		this.conj = value;
+	}
 
-    /**
-     * Gets the value of the cat property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link PhraseCategory }
-     *     
-     */
-    public PhraseCategory getCat() {
-        return cat;
-    }
+	/**
+	 * Gets the value of the cat property.
+	 * 
+	 * @return possible object is {@link PhraseCategory }
+	 * 
+	 */
+	public PhraseCategory getCat() {
+		return cat;
+	}
 
-    /**
-     * Sets the value of the cat property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link PhraseCategory }
-     *     
-     */
-    public void setCat(PhraseCategory value) {
-        this.cat = value;
-    }
+	/**
+	 * Sets the value of the cat property.
+	 * 
+	 * @param value
+	 *            allowed object is {@link PhraseCategory }
+	 * 
+	 */
+	public void setCat(PhraseCategory value) {
+		this.cat = value;
+	}
 
     /**
      * Gets the value of the person property.

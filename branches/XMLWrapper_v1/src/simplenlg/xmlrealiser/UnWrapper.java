@@ -304,6 +304,7 @@ public class UnWrapper {
 		}
 		LexicalCategory lexCat = LexicalCategory.ANY;
 		ElementCategory cat = UnwrapCategory(wordElement.getCat());
+		
 		if (cat != null && cat instanceof LexicalCategory)
 		{
 			lexCat = (LexicalCategory)cat;

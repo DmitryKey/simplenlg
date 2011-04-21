@@ -29,7 +29,6 @@ import simplenlg.framework.ListElement;
 import simplenlg.framework.NLGElement;
 import simplenlg.framework.NLGModule;
 import simplenlg.framework.StringElement;
-import simplenlg.framework.CoordinatedPhraseElement;
 
 /**
  * <p>
@@ -119,13 +118,20 @@ public class TextFormatter extends NLGModule {
 					break;
 
 				case LIST_ITEM:
+					// cch fix
+					//realisation.append(" * ").append(element.getRealisation()); //$NON-NLS-1$
 					realisation.append(" * "); //$NON-NLS-1$
 
 					for (NLGElement eachComponent : components) {
 						realisedComponent = realise(eachComponent);
+						
 						if (realisedComponent != null) {
 							realisation.append(realisedComponent
-									.getRealisation()).append(' ');							
+									.getRealisation());	
+							
+							if(components.indexOf(eachComponent) < components.size()-1) {
+								realisation.append(' ');
+							}
 						}
 					}
 					//finally, append newline
@@ -141,16 +147,8 @@ public class TextFormatter extends NLGModule {
 					if (realisedComponent != null) {
 						realisation.append(realisedComponent.getRealisation()).append(' ');
 					}
-				}
-			} else if (element instanceof CoordinatedPhraseElement) {
-				CoordinatedPhraseElement c = (CoordinatedPhraseElement)element;
-				for (NLGElement eachComponent : c.getChildren()) {
-					realisedComponent = realise(eachComponent);
-					if (realisedComponent != null) {
-						realisation.append(realisedComponent.getRealisation()).append(' ');
-					}
-				}
-			}
+				}				
+			} 
 		}
 		
 		return new StringElement(realisation.toString());
