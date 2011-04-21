@@ -27,4 +27,4 @@ Once we have a lexicon, we can create an NLGFactory (object which creates simple
 → For more examples, look at {{{testsrc/MultipleLexiconTest.java}}} and {{{testsrc/NIHDBLexiconTest.java}}}.
 
 ----
-{{{[1]}}} Note that in simplenlg V4, there are no lexicon methods to directly get inflected variants of a word; in other words, there is no equivalent in V4 of the simplenlg V3 {{{getPlural(), getPastParticiple()}}}, etc. methods.
+{{{[1]}}} Note that in simplenlg V4, there are no lexicon methods to directly get inflected variants of a word; in other words, there is no equivalent in V4 of the simplenlg V3 {{{getPlural(), getPastParticiple()}}}, etc. methods.  It is possible in V4 to compute inflected variants of words, but the process is more complicated: basically we need to create an InflectedWordElement around the base form, add appropriate features to this InflectedWordElement, and then realise it.
