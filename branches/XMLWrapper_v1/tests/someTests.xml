@@ -279,13 +279,17 @@
 					<vp xsi:type="VPPhraseSpec">
 						<head cat="VERB">be</head>
 						<compl xsi:type="NPPhraseSpec">
-							<preMod xsi:type="StringElement">
-								<val>95 %</val>
-							</preMod>
-							<preMod xsi:type="CoordinatedPhraseElement" conj=",">
-								<coord xsi:type="AdjPhraseSpec">
+							<!--							<preMod xsi:type="StringElement">-->
+							<!--								<val>95 %</val>-->
+							<!--							</preMod>-->
+<!--							<preMod xsi:type="CoordinatedPhraseElement" conj=",">-->
+<!--								<coord xsi:type="AdjPhraseSpec">-->
+							<preMod xsi:type="AdjPhraseSpec">
 									<head cat="ADJECTIVE">eccentric</head>
-								</coord>
+									<preMod xsi:type="StringElement">
+										<val>95 %</val>
+									</preMod>
+<!--								</coord>-->
 							</preMod>
 							<head cat="NOUN">in-stent restenosis</head>
 							<postMod xsi:type="StringElement">
@@ -317,7 +321,7 @@
 					<vp xsi:type="VPPhraseSpec">
 						<head cat="VERB">be</head>
 						<compl xsi:type="NPPhraseSpec">
-<!--							<preMod xsi:type="CoordinatedPhraseElement" conj="," />-->
+							<!--							<preMod xsi:type="CoordinatedPhraseElement" conj="," />-->
 							<head cat="NOUN">vessel</head>
 							<postMod xsi:type="PPPhraseSpec">
 								<head cat="PREPOSITION">with</head>
