@@ -1,0 +1,153 @@
+<nlg:NLGSpec xmlns="http://code.google.com/p/simplenlg/schemas/version1"
+	xmlns:nlg="http://code.google.com/p/simplenlg/schemas/version1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1 RealizerSchema.xsd ">
+
+	<Recording name="cch examples">
+
+		<Record name="doc example 1">
+			<Document>
+				<child xsi:type="SPhraseSpec">
+					<subj xsi:type="NPPhraseSpec">
+						<head cat="NOUN">transfusion of whole blood</head>
+					</subj>
+					<vp xsi:type="VPPhraseSpec" PASSIVE="true" TENSE="PRESENT">
+						<head cat="VERB">indicate</head>
+					</vp>
+				</child>
+			</Document>
+		</Record>
+
+		<Record name="doc example 2">
+			<Document>
+				<child xsi:type="SPhraseSpec">
+					<preMod xsi:type="PPPhraseSpec">
+						<head cat="PREPOSITION">as a result of</head>
+						<compl xsi:type="NPPhraseSpec">
+							<head cat="NOUN">procedure</head>
+							<spec cat="DETERMINER">the</spec>
+						</compl>
+					</preMod>
+					<subj xsi:type="NPPhraseSpec">
+						<head cat="NOUN">patient</head>
+						<spec cat="DETERMINER">the</spec>
+					</subj>
+					<vp xsi:type="CoordinatedPhraseElement" conj="and">
+						<coord xsi:type="VPPhraseSpec" TENSE="PAST">
+							<head cat="VERB">have</head>
+							<compl xsi:type="NPPhraseSpec">
+								<head cat="NOUN">adverse contrast media reaction</head>
+								<spec cat="DETERMINER">a</spec>
+							</compl>
+						</coord>
+						<coord xsi:type="VPPhraseSpec" TENSE="PAST">
+							<head cat="VERB">have</head>
+							<compl xsi:type="NPPhraseSpec">
+								<head cat="NOUN">decreased platelet count</head>
+								<spec cat="DETERMINER">a</spec>
+							</compl>
+						</coord>
+						<coord xsi:type="VPPhraseSpec" TENSE="PAST">
+							<head cat="VERB">go</head>
+							<postMod xsi:type="PPPhraseSpec">
+								<head cat="PREPOSITION">into</head>
+								<compl xsi:type="NPPhraseSpec">
+									<head cat="NOUN">cardiogenic shock</head>
+								</compl>
+							</postMod>
+						</coord>
+					</vp>
+				</child>
+			</Document>
+		</Record>
+
+		<Record name="doc example 3">
+			<Document>
+				<child xsi:type="DocumentElement" cat="LIST_ITEM"
+					xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1 ">
+					<child xsi:type="DocumentElement" cat="SENTENCE"
+						xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1">
+						<child xsi:type="NPPhraseSpec">
+							<head cat="NOUN">normal coronary arteries</head>
+						</child>
+					</child>
+				</child>
+				<child xsi:type="DocumentElement" cat="LIST_ITEM"
+					xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1">
+					<child xsi:type="DocumentElement" cat="SENTENCE"
+						xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1">
+						<child xsi:type="NPPhraseSpec">
+							<head cat="NOUN">normal left heart hemodynamics</head>
+						</child>
+					</child>
+				</child>
+				<child xsi:type="DocumentElement" cat="LIST_ITEM"
+					xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1">
+					<child xsi:type="DocumentElement" cat="SENTENCE"
+						xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1">
+						<child xsi:type="NPPhraseSpec">
+							<head cat="NOUN">normal right heart hemodynamics</head>
+						</child>
+					</child>
+				</child>
+			</Document>
+		</Record>
+
+		<Record name="doc example 4">
+			<Document>
+				<child xsi:type="SPhraseSpec">
+					<subj xsi:type="NPPhraseSpec">
+						<head cat="ADVERB">there</head>
+					</subj>
+					<vp xsi:type="VPPhraseSpec">
+						<head cat="VERB">be</head>
+						<compl xsi:type="NPPhraseSpec">
+							<preMod xsi:type="CoordinatedPhraseElement" conj=",">
+								<coord xsi:type="AdjPhraseSpec">
+									<head cat="ADJECTIVE">eccentric</head>
+								</coord>
+								<coord xsi:type="AdjPhraseSpec">
+									<head cat="ADJECTIVE">tubular</head>
+								</coord>
+							</preMod>
+							<head cat="NOUN">restenosis</head>
+							<postMod xsi:type="StringElement">
+								<val>(18 mm x 1 mm)</val>
+							</postMod>
+							<spec>a</spec>
+						</compl>
+						<postMod xsi:type="PPPhraseSpec">
+							<preMod xsi:type="VPPhraseSpec" FORM="GERUND">
+								<head cat="VERB">extend</head>
+							</preMod>
+							<head cat="PREPOSITION">from</head>
+							<compl xsi:type="NPPhraseSpec">
+								<preMod xsi:type="AdjPhraseSpec">
+									<head cat="ADJECTIVE">proximal</head>
+								</preMod>
+								<spec cat="DETERMINER">the</spec>
+							</compl>
+							<postMod xsi:type="PPPhraseSpec">
+								<head cat="PREPOSITION">to</head>
+								<compl xsi:type="NPPhraseSpec">
+									<preMod xsi:type="AdjPhraseSpec">
+										<head cat="ADJECTIVE">mid</head>
+									</preMod>
+									<head cat="NOUN">right coronary artery</head>
+									<spec cat="DETERMINER">the</spec>
+								</compl>
+							</postMod>
+						</postMod>
+						<postMod xsi:type="PPPhraseSpec">
+							<head cat="PREPOSITION">with</head>
+							<compl xsi:type="NPPhraseSpec">
+								<head cat="NOUN">TIMI 1 flow</head>
+							</compl>
+						</postMod>
+					</vp>
+				</child>
+			</Document>
+		</Record>
+
+	</Recording>
+</nlg:NLGSpec>
