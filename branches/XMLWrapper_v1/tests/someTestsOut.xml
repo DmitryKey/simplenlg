@@ -292,10 +292,10 @@
           <vp xsi:type="VPPhraseSpec">
             <head base="be" cat="VERB"/>
             <compl xsi:type="NPPhraseSpec">
+              <preMod xsi:type="StringElement">
+                <val>95 %</val>
+              </preMod>
               <preMod xsi:type="AdjPhraseSpec">
-                <preMod xsi:type="StringElement">
-                  <val>95 %</val>
-                </preMod>
                 <head base="eccentric" cat="ADJECTIVE"/>
               </preMod>
               <head base="in-stent restenosis" cat="NOUN"/>
@@ -317,7 +317,7 @@
           </vp>
         </child>
       </Document>
-      <Realisation>There is a 95 % eccentric in-stent restenosis (8 mm length) in the proximal right coronary artery.
+      <Realisation>There is a 95 %, eccentric in-stent restenosis (8 mm length) in the proximal right coronary artery.
 
 </Realisation>
     </Record>
