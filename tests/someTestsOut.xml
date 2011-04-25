@@ -15,18 +15,18 @@
       <Document cat="PARAGRAPH">
         <child xsi:type="SPhraseSpec">
           <subj xsi:type="NPPhraseSpec">
-            <head cat="NOUN">patient</head>
-            <spec cat="DETERMINER">the</spec>
+            <head base="patient" cat="NOUN"/>
+            <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
           </subj>
           <vp xsi:type="VPPhraseSpec" TENSE="PAST">
-            <head cat="VERB">lie</head>
+            <head base="lie" cat="VERB"/>
             <postMod xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">etherise</head>
+              <head base="etherise" cat="VERB"/>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">upon</head>
+                <head base="upon" cat="PREPOSITION"/>
                 <compl xsi:type="NPPhraseSpec">
-                  <head cat="NOUN">table</head>
-                  <spec cat="DETERMINER">a</spec>
+                  <head base="table" cat="NOUN"/>
+                  <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
                 </compl>
               </postMod>
             </postMod>
@@ -34,18 +34,18 @@
         </child>
         <child xsi:type="SPhraseSpec">
           <subj xsi:type="NPPhraseSpec">
-            <head cat="NOUN">patient</head>
-            <spec cat="DETERMINER">the</spec>
+            <head base="patient" cat="NOUN"/>
+            <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
           </subj>
           <vp xsi:type="VPPhraseSpec" TENSE="PAST">
-            <head var="IRREGULAR" cat="VERB">lie</head>
+            <head var="IRREGULAR" base="lie" cat="VERB"/>
             <postMod xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">etherise</head>
+              <head base="etherise" cat="VERB"/>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">upon</head>
+                <head base="upon" cat="PREPOSITION"/>
                 <compl xsi:type="NPPhraseSpec">
-                  <head cat="NOUN">table</head>
-                  <spec cat="DETERMINER">a</spec>
+                  <head base="table" cat="NOUN"/>
+                  <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
                 </compl>
               </postMod>
             </postMod>
@@ -64,15 +64,15 @@
               <preMod xsi:type="StringElement">
                 <val>18</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>180</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -82,15 +82,15 @@
               <preMod xsi:type="StringElement">
                 <val>18x</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>08</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -100,15 +100,15 @@
               <preMod xsi:type="StringElement">
                 <val>11g</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>9i</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -118,15 +118,15 @@
               <preMod xsi:type="StringElement">
                 <val>8th</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>9th</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -136,15 +136,15 @@
               <preMod xsi:type="StringElement">
                 <val>11th</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>1100</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -154,15 +154,15 @@
               <preMod xsi:type="StringElement">
                 <val>11.000</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>11000</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -172,15 +172,15 @@
               <preMod xsi:type="StringElement">
                 <val>81000</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>180,000</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -190,15 +190,15 @@
               <preMod xsi:type="StringElement">
                 <val>81,000</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>01834</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -208,15 +208,15 @@
               <preMod xsi:type="StringElement">
                 <val>8%</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>9%</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -226,15 +226,15 @@
               <preMod xsi:type="StringElement">
                 <val>8432425</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
             <coord xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>42nd</val>
               </preMod>
-              <head cat="NOUN">thing</head>
-              <spec cat="DETERMINER">a</spec>
+              <head base="thing" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </coord>
           </child>
         </child>
@@ -255,25 +255,25 @@
       <Document cat="PARAGRAPH">
         <child xsi:type="SPhraseSpec">
           <subj xsi:type="NPPhraseSpec">
-            <head cat="ADVERB">there</head>
+            <head base="there" cat="ADVERB"/>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">be</head>
+            <head base="be" cat="VERB"/>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>80 %</val>
               </preMod>
-              <head cat="NOUN">in-stent restenosis</head>
-              <spec cat="DETERMINER">an</spec>
+              <head base="in-stent restenosis" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="an" cat="DETERMINER"/>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">in</head>
+              <head base="in" cat="PREPOSITION"/>
               <compl xsi:type="NPPhraseSpec">
                 <preMod xsi:type="AdjPhraseSpec">
-                  <head cat="ADJECTIVE">proximal</head>
+                  <head base="proximal" cat="ADJECTIVE"/>
                 </preMod>
-                <head cat="NOUN">right coronary artery</head>
-                <spec cat="DETERMINER">the</spec>
+                <head base="right coronary artery" cat="NOUN"/>
+                <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
               </compl>
             </postMod>
           </vp>
@@ -287,31 +287,31 @@
       <Document cat="PARAGRAPH">
         <child xsi:type="SPhraseSpec">
           <subj xsi:type="NPPhraseSpec">
-            <head cat="ADVERB">there</head>
+            <head base="there" cat="ADVERB"/>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">be</head>
+            <head base="be" cat="VERB"/>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="AdjPhraseSpec">
                 <preMod xsi:type="StringElement">
                   <val>95 %</val>
                 </preMod>
-                <head cat="ADJECTIVE">eccentric</head>
+                <head base="eccentric" cat="ADJECTIVE"/>
               </preMod>
-              <head cat="NOUN">in-stent restenosis</head>
+              <head base="in-stent restenosis" cat="NOUN"/>
               <postMod xsi:type="StringElement">
                 <val>(8 mm length)</val>
               </postMod>
-              <spec>a</spec>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">in</head>
+              <head base="in" cat="PREPOSITION"/>
               <compl xsi:type="NPPhraseSpec">
                 <preMod xsi:type="AdjPhraseSpec">
-                  <head cat="ADJECTIVE">proximal</head>
+                  <head base="proximal" cat="ADJECTIVE"/>
                 </preMod>
-                <head cat="NOUN">right coronary artery</head>
-                <spec cat="DETERMINER">the</spec>
+                <head base="right coronary artery" cat="NOUN"/>
+                <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
               </compl>
             </postMod>
           </vp>
@@ -325,20 +325,20 @@
       <Document cat="PARAGRAPH">
         <child xsi:type="SPhraseSpec">
           <subj xsi:type="NPPhraseSpec">
-            <head cat="NOUN">right coronary artery</head>
-            <spec cat="DETERMINER">the</spec>
+            <head base="right coronary artery" cat="NOUN"/>
+            <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">be</head>
+            <head base="be" cat="VERB"/>
             <compl xsi:type="NPPhraseSpec">
-              <head cat="NOUN">vessel</head>
+              <head base="vessel" cat="NOUN"/>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">with</head>
+                <head base="with" cat="PREPOSITION"/>
                 <compl xsi:type="NPPhraseSpec">
-                  <head cat="NOUN">luminal irregularities</head>
+                  <head base="luminal irregularities" cat="NOUN"/>
                 </compl>
               </postMod>
-              <spec cat="DETERMINER">a</spec>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </compl>
           </vp>
         </child>
@@ -352,21 +352,21 @@
         <child xsi:type="DocumentElement" cat="LIST_ITEM">
           <child xsi:type="DocumentElement" cat="SENTENCE">
             <child xsi:type="NPPhraseSpec">
-              <head cat="NOUN">normal coronary arteries</head>
+              <head base="normal coronary arteries" cat="NOUN"/>
             </child>
           </child>
         </child>
         <child xsi:type="DocumentElement" cat="LIST_ITEM">
           <child xsi:type="DocumentElement" cat="SENTENCE">
             <child xsi:type="NPPhraseSpec">
-              <head cat="NOUN">normal left heart hemodynamics</head>
+              <head base="normal left heart hemodynamics" cat="NOUN"/>
             </child>
           </child>
         </child>
         <child xsi:type="DocumentElement" cat="LIST_ITEM">
           <child xsi:type="DocumentElement" cat="SENTENCE">
             <child xsi:type="NPPhraseSpec">
-              <head cat="NOUN">normal right heart hemodynamics</head>
+              <head base="normal right heart hemodynamics" cat="NOUN"/>
             </child>
           </child>
         </child>

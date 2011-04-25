@@ -5,10 +5,10 @@
       <Document>
         <child xsi:type="SPhraseSpec">
           <subj xsi:type="NPPhraseSpec">
-            <head cat="NOUN">transfusion of whole blood</head>
+            <head base="transfusion of whole blood" cat="NOUN"/>
           </subj>
           <vp xsi:type="VPPhraseSpec" TENSE="PRESENT" PASSIVE="true">
-            <head cat="VERB">indicate</head>
+            <head base="indicate" cat="VERB"/>
           </vp>
         </child>
       </Document>
@@ -18,37 +18,37 @@
       <Document>
         <child xsi:type="SPhraseSpec">
           <preMod xsi:type="PPPhraseSpec">
-            <head cat="PREPOSITION">as a result of</head>
+            <head base="as a result of" cat="PREPOSITION"/>
             <compl xsi:type="NPPhraseSpec">
-              <head cat="NOUN">procedure</head>
-              <spec cat="DETERMINER">the</spec>
+              <head base="procedure" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
             </compl>
           </preMod>
           <subj xsi:type="NPPhraseSpec">
-            <head cat="NOUN">patient</head>
-            <spec cat="DETERMINER">the</spec>
+            <head base="patient" cat="NOUN"/>
+            <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
           </subj>
           <vp xsi:type="CoordinatedPhraseElement" conj="and">
             <coord xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">have</head>
+              <head base="have" cat="VERB"/>
               <compl xsi:type="NPPhraseSpec">
-                <head cat="NOUN">adverse contrast media reaction</head>
-                <spec cat="DETERMINER">a</spec>
+                <head base="adverse contrast media reaction" cat="NOUN"/>
+                <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
               </compl>
             </coord>
             <coord xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">have</head>
+              <head base="have" cat="VERB"/>
               <compl xsi:type="NPPhraseSpec">
-                <head cat="NOUN">decreased platelet count</head>
-                <spec cat="DETERMINER">a</spec>
+                <head base="decreased platelet count" cat="NOUN"/>
+                <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
               </compl>
             </coord>
             <coord xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">go</head>
+              <head base="go" cat="VERB"/>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">into</head>
+                <head base="into" cat="PREPOSITION"/>
                 <compl xsi:type="NPPhraseSpec">
-                  <head cat="NOUN">cardiogenic shock</head>
+                  <head base="cardiogenic shock" cat="NOUN"/>
                 </compl>
               </postMod>
             </coord>
@@ -62,79 +62,79 @@
         <child xsi:type="DocumentElement" cat="LIST_ITEM">
           <child xsi:type="DocumentElement" cat="SENTENCE">
             <child xsi:type="NPPhraseSpec">
-              <head cat="NOUN">normal coronary arteries</head>
+              <head base="normal coronary arteries" cat="NOUN"/>
             </child>
           </child>
         </child>
         <child xsi:type="DocumentElement" cat="LIST_ITEM">
           <child xsi:type="DocumentElement" cat="SENTENCE">
             <child xsi:type="NPPhraseSpec">
-              <head cat="NOUN">normal left heart hemodynamics</head>
+              <head base="normal left heart hemodynamics" cat="NOUN"/>
             </child>
           </child>
         </child>
         <child xsi:type="DocumentElement" cat="LIST_ITEM">
           <child xsi:type="DocumentElement" cat="SENTENCE">
             <child xsi:type="NPPhraseSpec">
-              <head cat="NOUN">normal right heart hemodynamics</head>
+              <head base="normal right heart hemodynamics" cat="NOUN"/>
             </child>
           </child>
         </child>
       </Document>
-      <Realisation>* Normal coronary arteries. 
-* Normal left heart hemodynamics. 
-* Normal right heart hemodynamics. 
+      <Realisation>* Normal coronary arteries.
+* Normal left heart hemodynamics.
+* Normal right heart hemodynamics.
 </Realisation>
     </Record>
     <Record name="doc example 4">
       <Document>
         <child xsi:type="SPhraseSpec">
           <subj xsi:type="NPPhraseSpec">
-            <head cat="ADVERB">there</head>
+            <head base="there" cat="ADVERB"/>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">be</head>
+            <head base="be" cat="VERB"/>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="CoordinatedPhraseElement" conj=",">
                 <coord xsi:type="AdjPhraseSpec">
-                  <head cat="ADJECTIVE">eccentric</head>
+                  <head base="eccentric" cat="ADJECTIVE"/>
                 </coord>
                 <coord xsi:type="AdjPhraseSpec">
-                  <head cat="ADJECTIVE">tubular</head>
+                  <head base="tubular" cat="ADJECTIVE"/>
                 </coord>
               </preMod>
-              <head cat="NOUN">restenosis</head>
+              <head base="restenosis" cat="NOUN"/>
               <postMod xsi:type="StringElement">
                 <val>(18 mm x 1 mm)</val>
               </postMod>
-              <spec>a</spec>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
               <preMod xsi:type="VPPhraseSpec" FORM="GERUND">
-                <head cat="VERB">extend</head>
+                <head base="extend" cat="VERB"/>
               </preMod>
-              <head cat="PREPOSITION">from</head>
+              <head base="from" cat="PREPOSITION"/>
               <compl xsi:type="NPPhraseSpec">
                 <preMod xsi:type="AdjPhraseSpec">
-                  <head cat="ADJECTIVE">proximal</head>
+                  <head base="proximal" cat="ADJECTIVE"/>
                 </preMod>
-                <spec cat="DETERMINER">the</spec>
+                <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
               </compl>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">to</head>
+                <head base="to" cat="PREPOSITION"/>
                 <compl xsi:type="NPPhraseSpec">
                   <preMod xsi:type="AdjPhraseSpec">
-                    <head cat="ADJECTIVE">mid</head>
+                    <head base="mid" cat="ADJECTIVE"/>
                   </preMod>
-                  <head cat="NOUN">right coronary artery</head>
-                  <spec cat="DETERMINER">the</spec>
+                  <head base="right coronary artery" cat="NOUN"/>
+                  <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
                 </compl>
               </postMod>
             </postMod>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">with</head>
+              <head base="with" cat="PREPOSITION"/>
               <compl xsi:type="NPPhraseSpec">
-                <head cat="NOUN">TIMI 1 flow</head>
+                <head base="TIMI 1 flow" cat="NOUN"/>
               </compl>
             </postMod>
           </vp>

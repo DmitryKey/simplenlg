@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!-- Schema for simplenlg edited by Christopher Howell (Agfa Healthcare Corporation) -->
+	<!--
+		Schema for simplenlg edited by Christopher Howell (Agfa Healthcare
+		Corporation)
+	-->
 <xs:schema targetNamespace="http://code.google.com/p/simplenlg/schemas/version1"
 	elementFormDefault="qualified" attributeFormDefault="unqualified"
 	version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:nlg="http://code.google.com/p/simplenlg/schemas/version1">
 	<xs:element name="NLGSpec">
-	<xs:complexType>
-		<xs:choice>
-			<xs:element name="Request" type="nlg:RequestType"/>
-			<xs:element name="Recording" type="nlg:RecordSet" />
-		</xs:choice>
-	</xs:complexType>
+		<xs:complexType>
+			<xs:choice>
+				<xs:element name="Request" type="nlg:RequestType" />
+				<xs:element name="Recording" type="nlg:RecordSet" />
+			</xs:choice>
+		</xs:complexType>
 	</xs:element>
-    <xs:complexType name="RequestType">
-    	<xs:sequence>
-    		<xs:element name="Document" type="nlg:DocumentElement"></xs:element>
-    	</xs:sequence>
-    </xs:complexType>
+	<xs:complexType name="RequestType">
+		<xs:sequence>
+			<xs:element name="Document" type="nlg:DocumentElement"></xs:element>
+		</xs:sequence>
+	</xs:complexType>
 	<xs:complexType name="RecordSet">
 		<xs:sequence>
-			<xs:element name="Record" type="nlg:DocumentRealisation" maxOccurs="unbounded" minOccurs="1" />
+			<xs:element name="Record" type="nlg:DocumentRealisation"
+				maxOccurs="unbounded" minOccurs="1" />
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" />
 	</xs:complexType>
 	<xs:complexType name="DocumentRealisation">
 		<xs:sequence>
-			<xs:element name="Document" type="nlg:DocumentElement" maxOccurs="1" minOccurs="1" />
-			<xs:element name="Realisation" type="xs:string" minOccurs="0" maxOccurs="1" />
+			<xs:element name="Document" type="nlg:DocumentElement"
+				maxOccurs="1" minOccurs="1" />
+			<xs:element name="Realisation" type="xs:string" minOccurs="0"
+				maxOccurs="1" />
 		</xs:sequence>
 		<xs:attribute name="name" type="xs:string" />
 	</xs:complexType>
@@ -34,7 +40,8 @@
 		<xs:complexContent>
 			<xs:extension base="nlg:NLGElement">
 				<xs:sequence>
-					<xs:element name="child" type="nlg:NLGElement" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="child" type="nlg:NLGElement"
+						minOccurs="0" maxOccurs="unbounded" />
 				</xs:sequence>
 				<xs:attributeGroup ref="nlg:docAtts" />
 			</xs:extension>
@@ -48,8 +55,10 @@
 		<xs:complexContent>
 			<xs:extension base="nlg:PhraseElement">
 				<xs:sequence>
-					<xs:element name="cuePhrase" type="nlg:NLGElement" minOccurs="0" />
-					<xs:element name="subj" type="nlg:NLGElement" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="cuePhrase" type="nlg:NLGElement"
+						minOccurs="0" />
+					<xs:element name="subj" type="nlg:NLGElement" minOccurs="0"
+						maxOccurs="unbounded" />
 					<xs:element name="vp" type="nlg:NLGElement" />
 				</xs:sequence>
 				<xs:attributeGroup ref="nlg:sPhraseAtts" />
@@ -92,7 +101,7 @@
 		<xs:complexContent>
 			<xs:extension base="nlg:PhraseElement">
 				<xs:sequence>
-					<xs:element name="spec" type="nlg:WordElement" minOccurs="0" />
+					<xs:element name="spec" type="nlg:NLGElement" minOccurs="0" />
 				</xs:sequence>
 				<xs:attributeGroup ref="nlg:npPhraseAtts" />
 			</xs:extension>
@@ -137,7 +146,8 @@
 		<xs:complexContent>
 			<xs:extension base="nlg:NLGElement">
 				<xs:sequence>
-					<xs:element name="coord" type="nlg:NLGElement" maxOccurs="unbounded" />
+					<xs:element name="coord" type="nlg:NLGElement"
+						maxOccurs="unbounded" />
 				</xs:sequence>
 				<xs:attributeGroup ref="nlg:CoordinatedPhraseAtts" />
 			</xs:extension>
@@ -147,16 +157,22 @@
 		<xs:attribute name="conj" type="xs:string" default="and" />
 		<xs:attribute name="cat" type="nlg:phraseCategory" />
 		<xs:attribute name="PERSON" type="nlg:person" />
+		<xs:attribute name="POSSESSIVE" type="xs:boolean"></xs:attribute>
 	</xs:attributeGroup>
 	<xs:complexType name="PhraseElement" abstract="true">
 		<xs:complexContent>
 			<xs:extension base="nlg:NLGElement">
 				<xs:sequence>
-					<xs:element name="frontMod" type="nlg:NLGElement" minOccurs="0" maxOccurs="unbounded" />
-					<xs:element name="preMod" type="nlg:NLGElement" minOccurs="0" maxOccurs="unbounded" />
-					<xs:element name="head" type="nlg:WordElement" minOccurs="0" />
-					<xs:element name="compl" type="nlg:NLGElement" minOccurs="0" maxOccurs="unbounded" />
-					<xs:element name="postMod" type="nlg:NLGElement" minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="frontMod" type="nlg:NLGElement"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="preMod" type="nlg:NLGElement"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="head" type="nlg:WordElement"
+						minOccurs="0" />
+					<xs:element name="compl" type="nlg:NLGElement"
+						minOccurs="0" maxOccurs="unbounded" />
+					<xs:element name="postMod" type="nlg:NLGElement"
+						minOccurs="0" maxOccurs="unbounded" />
 				</xs:sequence>
 				<xs:attribute name="cat" type="nlg:phraseCategory" />
 			</xs:extension>
@@ -174,8 +190,8 @@
 	<xs:complexType name="NLGElement" abstract="true">
 		<xs:sequence />
 	</xs:complexType>
-	<xs:complexType name="WordElement" mixed="true">
-		<xs:complexContent mixed="true">
+	<xs:complexType name="WordElement">
+		<xs:complexContent>
 			<xs:extension base="nlg:NLGElement">
 				<xs:attributeGroup ref="nlg:wordAtts" />
 			</xs:extension>
@@ -184,6 +200,7 @@
 	<xs:attributeGroup name="wordAtts">
 		<xs:attribute name="cat" type="nlg:lexicalCategory" />
 		<xs:attribute name="id" type="xs:string" />
+		<xs:attribute name="base" type="xs:string" />
 		<xs:attribute name="EXPLETIVE_SUBJECT" type="xs:boolean" />
 		<xs:attribute name="PROPER" type="xs:boolean" />
 		<xs:attribute name="var" type="nlg:inflection" />

@@ -113,13 +113,13 @@ public class OrthographyProcessor extends NLGModule {
 			} else if (element instanceof CoordinatedPhraseElement) {
 				realisedElement = realiseCoordinatedPhrase(element
 						.getChildren());
-			
+
 			} else {
 				realisedElement = element;
 			}
 
-			//make the realised element inherit the original category
-			//essential if list items are to be properly formatted later
+			// make the realised element inherit the original category
+			// essential if list items are to be properly formatted later
 			if (realisedElement != null) {
 				realisedElement.setCategory(category);
 			}
@@ -172,6 +172,7 @@ public class OrthographyProcessor extends NLGModule {
 	 */
 	private void terminateSentence(StringBuffer realisation,
 			boolean interrogative) {
+
 		char character = realisation.charAt(realisation.length() - 2);
 		if (character != '.' && character != '?') {
 			if (interrogative) {
