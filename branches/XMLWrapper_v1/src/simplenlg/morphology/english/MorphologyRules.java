@@ -416,12 +416,14 @@ public abstract class MorphologyRules {
 	private static void checkPossessive(InflectedWordElement element,
 			StringBuffer realised) {
 
-		if (element.getFeatureAsBoolean(Feature.POSSESSIVE).booleanValue()) {
-			if (realised.charAt(realised.length() - 1) == 's') {
-				realised.append('\'');
+		if (realised.length() > 0) {
+			if (element.getFeatureAsBoolean(Feature.POSSESSIVE).booleanValue()) {
+				if (realised.charAt(realised.length() - 1) == 's') {
+					realised.append('\'');
 
-			} else {
-				realised.append("'s"); //$NON-NLS-1$
+				} else {
+					realised.append("'s"); //$NON-NLS-1$
+				}
 			}
 		}
 	}

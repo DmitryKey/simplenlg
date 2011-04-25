@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<nlg:NLGSpec xmlns="http://code.google.com/p/simplenlg/schemas/version1"
+	xmlns:nlg="http://code.google.com/p/simplenlg/schemas/version1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://code.google.com/p/simplenlg/schemas/version1 RealizerSchema.xsd ">
+
+	<Recording name="NPPhraseSpec examples">
+		<Record name="Possessive Spec">
+			<Document>
+				<child xsi:type="NPPhraseSpec">
+					<head xsi:type="WordElement" cat="NOUN" base="patient" />
+					<spec xsi:type="NPPhraseSpec" POSSESSIVE="true">
+						<head cat="NOUN" base="John" />
+					</spec>
+				</child>
+			</Document>
+		</Record>
+
+		<Record name="Determiner Spec">
+			<Document>
+				<child xsi:type="NPPhraseSpec">
+					<head xsi:type="WordElement" cat="NOUN" base="patient" />
+					<spec xsi:type="WordElement" cat="DETERMINER" base="the" />
+				</child>
+			</Document>
+		</Record>
+
+		<Record name="Complex NP">
+			<Document>
+				<child xsi:type="NPPhraseSpec" number="PLURAL">
+					<head xsi:type="WordElement" cat="NOUN" base="bone" />
+					<spec xsi:type="CoordinatedPhraseElement" conj="and" POSSESSIVE="true">
+						<coord xsi:type="NPPhraseSpec" PRONOMINAL="true">
+							<head xsi:type="WordElement" cat="NOUN" base="dog" />
+							<spec xsi:type="WordElement" cat="DETERMINER" base="the" />
+						</coord>
+						<coord xsi:type="NPPhraseSpec">
+							<head xsi:type="WordElement" cat="NOUN" base="woman" />
+							<spec xsi:type="WordElement" cat="DETERMINER" base="the" />
+						</coord>
+					</spec>
+				</child>
+			</Document>
+		</Record>
+	</Recording>
+</nlg:NLGSpec>

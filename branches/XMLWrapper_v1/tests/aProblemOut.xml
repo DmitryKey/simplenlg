@@ -5,60 +5,60 @@
       <Document>
         <child xsi:type="SPhraseSpec">
           <subj xsi:type="NPPhraseSpec">
-            <head cat="ADVERB">there</head>
+            <head base="there" cat="ADVERB"/>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">be</head>
+            <head base="be" cat="VERB"/>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="CoordinatedPhraseElement" conj=",">
                 <coord xsi:type="AdjPhraseSpec">
-                  <head cat="ADJECTIVE">eccentric</head>
+                  <head base="eccentric" cat="ADJECTIVE"/>
                 </coord>
                 <coord xsi:type="AdjPhraseSpec">
-                  <head cat="ADJECTIVE">tubular</head>
+                  <head base="tubular" cat="ADJECTIVE"/>
                 </coord>
               </preMod>
-              <head cat="NOUN">stenosis</head>
-              <spec>a</spec>
+              <head base="stenosis" cat="NOUN"/>
+              <spec xsi:type="WordElement" base="a" cat="DETERMINER"/>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">in</head>
+              <head base="in" cat="PREPOSITION"/>
               <compl xsi:type="NPPhraseSpec">
-                <head cat="NOUN">third obtuse marginal branch</head>
-                <spec cat="DETERMINER">the</spec>
+                <head base="third obtuse marginal branch" cat="NOUN"/>
+                <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
               </compl>
             </postMod>
           </vp>
         </child>
         <child xsi:type="SPhraseSpec">
           <subj xsi:type="NPPhraseSpec">
-            <head cat="ADVERB">there</head>
+            <head base="there" cat="ADVERB"/>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">be</head>
+            <head base="be" cat="VERB"/>
             <compl xsi:type="NPPhraseSpec">
-              <preMod xsi:type="StringElement">
-                <val>an</val>
-              </preMod>
               <preMod xsi:type="StringElement">
                 <val>80 %</val>
               </preMod>
-              <head cat="NOUN">stenosis</head>
+              <head base="stenosis" cat="NOUN"/>
+              <spec xsi:type="StringElement">
+                <val>an</val>
+              </spec>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">in</head>
+              <head base="in" cat="PREPOSITION"/>
               <compl xsi:type="NPPhraseSpec">
                 <preMod xsi:type="AdjPhraseSpec">
-                  <head cat="ADJECTIVE">proximal</head>
+                  <head base="proximal" cat="ADJECTIVE"/>
                 </preMod>
-                <head cat="NOUN">right coronary artery</head>
-                <spec cat="DETERMINER">the</spec>
+                <head base="right coronary artery" cat="NOUN"/>
+                <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
               </compl>
             </postMod>
           </vp>
         </child>
       </Document>
-      <Realisation>There is an eccentric, tubular stenosis in the third obtuse marginal branch.There is an, 80 % stenosis in the proximal right coronary artery.</Realisation>
+      <Realisation>There is an eccentric, tubular stenosis in the third obtuse marginal branch.There is an 80 % stenosis in the proximal right coronary artery.</Realisation>
     </Record>
   </Recording>
 </NLGSpec>

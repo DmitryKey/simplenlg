@@ -23,47 +23,44 @@ public class Recording {
 	String recordingFolder;
 	RecordSet record = null;
 	File recordingFile;
-	
-	public Recording(String directoryPath)
-	{
+
+	public Recording(String directoryPath) {
 		recordingFolder = directoryPath;
 	}
-	
-	public boolean RecordingOn()
-	{
+
+	public boolean RecordingOn() {
 		return recordingOn;
 	}
-	
-	public String GetRecordingFile()
-	{
+
+	public String GetRecordingFile() {
 		if (recordingOn)
 			return recordingFile.getAbsolutePath();
 		else
 			return "";
 	}
-	
+
 	public void start() throws IOException {
-		
+
 		if (recordingFolder.isEmpty() || recordingOn) {
 			return;
 		}
-		
+
 		File recordingDir = new File(recordingFolder);
-		if (!recordingDir.exists())
-		{
+		if (!recordingDir.exists()) {
 			boolean ok = recordingDir.mkdirs();
 			if (!ok) {
 				return;
 			}
-			
-			recordingFile = File.createTempFile("xmlrealiser", ".xml", recordingDir);
+
+			recordingFile = File.createTempFile("xmlrealiser", ".xml",
+					recordingDir);
 			recordingOn = true;
 			record = new RecordSet();
 		}
 	}
-	
-	public void addRecord(simplenlg.xmlrealiser.wrapper.DocumentElement input, String output)
-	{
+
+	public void addRecord(simplenlg.xmlrealiser.wrapper.DocumentElement input,
+			String output) {
 		if (!recordingOn) {
 			return;
 		}
@@ -75,68 +72,74 @@ public class Recording {
 		t.setRealisation(output);
 		record.getRecord().add(t);
 	}
-	
-	public void finish() throws JAXBException, IOException, TransformerException {
+
+	public void finish() throws JAXBException, IOException,
+			TransformerException {
 		if (!recordingOn) {
 			return;
 		}
-		
+
 		recordingOn = false;
 		FileOutputStream os = new FileOutputStream(recordingFile);
 		os.getChannel().truncate(0);
 		writeRecording(record, os);
 	}
-	
-	public static void writeRecording(RecordSet record, OutputStream os) throws JAXBException, IOException, TransformerException
-	{
+
+	public static void writeRecording(RecordSet record, OutputStream os)
+			throws JAXBException, IOException, TransformerException {
 		JAXBContext jc;
-		jc = JAXBContext.newInstance(simplenlg.xmlrealiser.wrapper.RecordSet.class);
+		jc = JAXBContext
+				.newInstance(simplenlg.xmlrealiser.wrapper.RecordSet.class);
 		Marshaller m = jc.createMarshaller();
-		
+
 		// For the meaning of the next property, see the
-		// Java Architecture for XML Binding JAXB RI Vendor Extensions Runtime Properties 
-		// It was added so that the namespace declarations would be at the top of the file, once,
+		// Java Architecture for XML Binding JAXB RI Vendor Extensions Runtime
+		// Properties
+		// It was added so that the namespace declarations would be at the top
+		// of the file, once,
 		// instead of on the elements.
-		m.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper", new RecordingNamespacePrefixMapper());
-		
+		m.setProperty("com.sun.xml.internal.bind.namespacePrefixMapper",
+				new RecordingNamespacePrefixMapper());
+
 		NLGSpec nlg = new NLGSpec();
 		nlg.setRecording(record);
-		
+
 		StringWriter osTemp = new StringWriter();
 		m.marshal(nlg, osTemp);
-		
+
 		// Prettify it.
-		Source xmlInput = new StreamSource(new StringReader(osTemp.toString())); 
-		StreamResult xmlOutput = new StreamResult(new OutputStreamWriter(os, "UTF-8")); 
-		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-		if (transformer != null)
-		{
-			transformer.setOutputProperty(OutputKeys.INDENT, "yes"); 
-			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2"); 
+		Source xmlInput = new StreamSource(new StringReader(osTemp.toString()));
+		StreamResult xmlOutput = new StreamResult(new OutputStreamWriter(os,
+				"UTF-8"));
+		Transformer transformer = TransformerFactory.newInstance()
+				.newTransformer();
+		if (transformer != null) {
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty(
+					"{http://xml.apache.org/xslt}indent-amount", "2");
 			transformer.transform(xmlInput, xmlOutput);
 		}
 	}
 }
+
 /**
- * Coerces the JAXB marshaller to declare the "xsi" and "xsd" namespaces at the root element
- * instead of putting them inline on each element that uses one of the namespaces.
+ * Coerces the JAXB marshaller to declare the "xsi" and "xsd" namespaces at the
+ * root element instead of putting them inline on each element that uses one of
+ * the namespaces.
  */
 class RecordingNamespacePrefixMapper extends NamespacePrefixMapper {
 
-    @Override
-    public String getPreferredPrefix(String namespaceUri, String suggestion, 
-                    boolean requirePrefix) {
-        return suggestion;
-    }
+	@Override
+	public String getPreferredPrefix(String namespaceUri, String suggestion,
+			boolean requirePrefix) {
+		return suggestion;
+	}
 
-    @Override
-    public String[] getPreDeclaredNamespaceUris2() {
-        return new String[]{
-                "xsi",
-                "http://www.w3.org/2001/XMLSchema-instance",
-                "xsd",
-                "http://www.w3.org/2001/XMLSchema"
-        };
+	@Override
+	public String[] getPreDeclaredNamespaceUris2() {
+		return new String[] { "xsi",
+				"http://www.w3.org/2001/XMLSchema-instance", "xsd",
+				"http://www.w3.org/2001/XMLSchema" };
 
-    }
+	}
 }
