@@ -11,6 +11,7 @@ import simplenlg.features.Feature;
 import simplenlg.features.Form;
 import simplenlg.features.Inflection;
 import simplenlg.features.InternalFeature;
+import simplenlg.features.LexicalFeature;
 import simplenlg.features.Tense;
 import simplenlg.framework.CoordinatedPhraseElement;
 import simplenlg.framework.DocumentCategory;
@@ -170,14 +171,7 @@ public class UnWrapper {
 				simplenlg.xmlrealiser.wrapper.NPPhraseSpec wp = (simplenlg.xmlrealiser.wrapper.NPPhraseSpec) wps;
 
 				NPPhraseSpec p = factory.createNounPhrase(head);
-				hp = p;
-
-				if (wp.getNUMBER() != null) {
-					p.setFeature(Feature.NUMBER, wp.getNUMBER());
-				}
-				if (wp.getPERSON() != null) {
-					p.setFeature(Feature.PERSON, wp.getPERSON());
-				}
+				hp = p;				
 				
 				if (wp.getSpec() != null) {
 					// p.setSpecifier(UnwrapWordElement(wp.getSpec()));
@@ -195,9 +189,7 @@ public class UnWrapper {
 					}
 				}
 				
-				p.setFeature(Feature.ELIDED, wp.isELIDED());
-				p.setFeature(Feature.POSSESSIVE, wp.isPOSSESSIVE());
-				p.setFeature(Feature.PRONOMINAL, wp.isPRONOMINAL());
+				setNPFeatures(wp, p);
 			}
 
 			// Adjective Phrase
@@ -343,7 +335,8 @@ public class UnWrapper {
 			lexCat = (LexicalCategory) cat;
 		}
 
-		String baseForm = getBaseWord(wordElement);
+		//String baseForm = getBaseWord(wordElement);
+		String baseForm = wordElement.getBase();
 		NLGElement word = null;
 
 		if (baseForm != null) {
@@ -362,11 +355,11 @@ public class UnWrapper {
 					Inflection defaultInflection = Enum.valueOf(
 							Inflection.class, wordElement.getVar().toString());
 					we.setDefaultInflectionalVariant(defaultInflection);
-				}
-
+				}				
+				
 				// Spelling variant may have been given as base form in xml.
 				// If so, use that variant.
-				if (!baseForm.matches(we.getBaseForm())) {
+				if (!baseForm.matches(we.getBaseForm())) { 
 					we.setDefaultSpellingVariant(baseForm);
 				}
 			}
@@ -375,15 +368,15 @@ public class UnWrapper {
 		return word;
 	}
 
-	String getBaseWord(simplenlg.xmlrealiser.wrapper.WordElement lex) {
-		// List<String> c = lex.getContent();
-		// if (c.isEmpty())
-		// return "";
-		// else
-		// return (String) c.get(0);
-		return lex.getBase();
-
-	}
+	// String getBaseWord(simplenlg.xmlrealiser.wrapper.WordElement lex) {
+	// // List<String> c = lex.getContent();
+	// // if (c.isEmpty())
+	// // return "";
+	// // else
+	// // return (String) c.get(0);
+	// return lex.getBase();
+	//
+	// }
 
 	ElementCategory UnwrapCategory(Object cat) {
 		if (cat == null) {
@@ -401,5 +394,34 @@ public class UnWrapper {
 		} else {
 			return null;
 		}
+	}
+	
+	void setNPFeatures(simplenlg.xmlrealiser.wrapper.NPPhraseSpec wp, simplenlg.phrasespec.NPPhraseSpec p) {
+		if (wp.getNUMBER() != null) {
+			//map number feature from wrapper ~NumberAgr to actual NumberAgr
+			String numString = wp.getNUMBER().toString();
+			simplenlg.features.NumberAgreement simplenlgNum = simplenlg.features.NumberAgreement.valueOf(numString);
+			//p.setFeature(Feature.NUMBER, wp.getNUMBER());
+			p.setFeature(Feature.NUMBER, simplenlgNum);
+		}
+		
+		if (wp.getPERSON() != null) {
+			//map person feature from wrapper Person to actual Person
+			String perString = wp.getPERSON().toString();
+			simplenlg.features.Person simplenlgPers = simplenlg.features.Person.valueOf(perString);
+			p.setFeature(Feature.PERSON, simplenlgPers);
+		}
+		
+		if(wp.getGENDER() != null) {
+			//map gender feature from wrapper Gender to actual Gender
+			String genString = wp.getGENDER().toString();
+			simplenlg.features.Gender simplenlgGen = simplenlg.features.Gender.valueOf(genString);
+			p.setFeature(LexicalFeature.GENDER, simplenlgGen);			
+		}
+		
+		p.setFeature(Feature.ELIDED, wp.isELIDED());
+		p.setFeature(Feature.POSSESSIVE, wp.isPOSSESSIVE());
+		p.setFeature(Feature.PRONOMINAL, wp.isPRONOMINAL());
+		
 	}
 }

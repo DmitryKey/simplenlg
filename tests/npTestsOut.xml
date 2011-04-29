@@ -4,9 +4,13 @@
     <Record name="Possessive Spec">
       <Document>
         <child xsi:type="NPPhraseSpec">
-          <head base="patient" cat="NOUN"/>
+          <head cat="NOUN">
+            <base>patient</base>
+          </head>
           <spec xsi:type="NPPhraseSpec" POSSESSIVE="true">
-            <head base="John" cat="NOUN"/>
+            <head cat="NOUN">
+              <base>John</base>
+            </head>
           </spec>
         </child>
       </Document>
@@ -15,8 +19,12 @@
     <Record name="Determiner Spec">
       <Document>
         <child xsi:type="NPPhraseSpec">
-          <head base="patient" cat="NOUN"/>
-          <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
+          <head cat="NOUN">
+            <base>patient</base>
+          </head>
+          <spec xsi:type="WordElement" cat="DETERMINER">
+            <base>the</base>
+          </spec>
         </child>
       </Document>
       <Realisation>The patient.</Realisation>
@@ -24,20 +32,110 @@
     <Record name="Complex NP">
       <Document>
         <child xsi:type="NPPhraseSpec">
-          <head base="bone" cat="NOUN"/>
+          <head cat="NOUN">
+            <base>house</base>
+          </head>
           <spec xsi:type="CoordinatedPhraseElement" POSSESSIVE="true" conj="and">
             <coord xsi:type="NPPhraseSpec" PRONOMINAL="true">
-              <head base="dog" cat="NOUN"/>
-              <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
+              <head cat="NOUN">
+                <base>dog</base>
+              </head>
+              <spec xsi:type="WordElement" cat="DETERMINER">
+                <base>the</base>
+              </spec>
             </coord>
             <coord xsi:type="NPPhraseSpec">
-              <head base="woman" cat="NOUN"/>
-              <spec xsi:type="WordElement" base="the" cat="DETERMINER"/>
+              <head cat="NOUN">
+                <base>woman</base>
+              </head>
+              <spec xsi:type="WordElement" cat="DETERMINER">
+                <base>the</base>
+              </spec>
             </coord>
           </spec>
         </child>
       </Document>
-      <Realisation>It and the woman's bone.</Realisation>
+      <Realisation>It and the woman's house.</Realisation>
+    </Record>
+    <Record name="Pronominal1">
+      <Document>
+        <child xsi:type="NPPhraseSpec" PRONOMINAL="true" NUMBER="PLURAL">
+          <head cat="NOUN">
+            <base>house</base>
+          </head>
+          <spec xsi:type="WordElement">
+            <base>the</base>
+          </spec>
+        </child>
+      </Document>
+      <Realisation>They.</Realisation>
+    </Record>
+    <Record name="Pronominal2">
+      <Document>
+        <child xsi:type="NPPhraseSpec" PRONOMINAL="true" GENDER="FEMININE">
+          <head cat="NOUN">
+            <base>singer</base>
+          </head>
+          <spec xsi:type="WordElement">
+            <base>the</base>
+          </spec>
+        </child>
+      </Document>
+      <Realisation>She.</Realisation>
+    </Record>
+    <Record name="Pronominal3">
+      <Document>
+        <child xsi:type="NPPhraseSpec" PRONOMINAL="true" POSSESSIVE="true" GENDER="FEMININE">
+          <head cat="NOUN">
+            <base>singer</base>
+          </head>
+          <spec xsi:type="WordElement">
+            <base>the</base>
+          </spec>
+        </child>
+      </Document>
+      <Realisation>Her.</Realisation>
+    </Record>
+    <Record name="Plural1">
+      <Document>
+        <child xsi:type="NPPhraseSpec" NUMBER="PLURAL">
+          <head cat="NOUN">
+            <base>house</base>
+          </head>
+          <spec xsi:type="WordElement">
+            <base>the</base>
+          </spec>
+        </child>
+      </Document>
+      <Realisation>The houses.</Realisation>
+    </Record>
+    <Record name="Plural2">
+      <Document>
+        <child xsi:type="NPPhraseSpec" NUMBER="PLURAL">
+          <head cat="NOUN">
+            <base>house</base>
+          </head>
+          <spec xsi:type="CoordinatedPhraseElement" POSSESSIVE="true" conj="and">
+            <coord xsi:type="NPPhraseSpec" PRONOMINAL="true">
+              <head cat="NOUN">
+                <base>dog</base>
+              </head>
+              <spec xsi:type="WordElement" cat="DETERMINER">
+                <base>the</base>
+              </spec>
+            </coord>
+            <coord xsi:type="NPPhraseSpec">
+              <head cat="NOUN">
+                <base>woman</base>
+              </head>
+              <spec xsi:type="WordElement" cat="DETERMINER">
+                <base>the</base>
+              </spec>
+            </coord>
+          </spec>
+        </child>
+      </Document>
+      <Realisation>They and the women's houses.</Realisation>
     </Record>
   </Recording>
 </NLGSpec>

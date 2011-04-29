@@ -1,10 +1,10 @@
 package simplenlg.xmlrealiser;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FilenameFilter;
-import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Vector;
@@ -12,7 +12,6 @@ import java.util.Vector;
 import javax.xml.bind.JAXBException;
 import javax.xml.transform.TransformerException;
 
-import simplenlg.xmlrealiser.XMLRealiser;
 import simplenlg.xmlrealiser.XMLRealiser.LexiconType;
 import simplenlg.xmlrealiser.wrapper.DocumentRealisation;
 import simplenlg.xmlrealiser.wrapper.RecordSet;
