@@ -111,6 +111,7 @@
 		<xs:attribute name="ADJECTIVE_ORDERING" type="xs:boolean" />
 		<xs:attribute name="ELIDED" type="xs:boolean" />
 		<xs:attribute name="NUMBER" type="nlg:numberAgreement" />
+		<xs:attribute name="GENDER" type="nlg:gender"></xs:attribute>
 		<xs:attribute name="PERSON" type="nlg:person" />
 		<xs:attribute name="POSSESSIVE" type="xs:boolean" />
 		<xs:attribute name="PRONOMINAL" type="xs:boolean" />
@@ -193,6 +194,9 @@
 	<xs:complexType name="WordElement">
 		<xs:complexContent>
 			<xs:extension base="nlg:NLGElement">
+				<xs:sequence>
+					<xs:element name="base" type="xs:string" />
+				</xs:sequence>
 				<xs:attributeGroup ref="nlg:wordAtts" />
 			</xs:extension>
 		</xs:complexContent>
@@ -200,7 +204,6 @@
 	<xs:attributeGroup name="wordAtts">
 		<xs:attribute name="cat" type="nlg:lexicalCategory" />
 		<xs:attribute name="id" type="xs:string" />
-		<xs:attribute name="base" type="xs:string" />
 		<xs:attribute name="EXPLETIVE_SUBJECT" type="xs:boolean" />
 		<xs:attribute name="PROPER" type="xs:boolean" />
 		<xs:attribute name="var" type="nlg:inflection" />

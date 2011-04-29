@@ -3,11 +3,16 @@
  */
 package simplenlg.xmlrealiser;
 
-import simplenlg.framework.*;
-import simplenlg.lexicon.*;
-import simplenlg.realiser.english.*;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 
-import java.io.*;
+import simplenlg.framework.DocumentElement;
+import simplenlg.framework.NLGElement;
+import simplenlg.lexicon.Lexicon;
+import simplenlg.lexicon.NIHDBLexicon;
+import simplenlg.lexicon.XMLLexicon;
+import simplenlg.realiser.english.Realiser;
 /**
  * @author Christopher Howell Agfa Healthcare Corporation
  *
