@@ -600,7 +600,7 @@ abstract class ClauseHelper {
 			ListElement realisedElement) {
 
 		PhraseElement doPhrase = phraseFactory.createVerbPhrase("do"); //$NON-NLS-1$
-		doPhrase.setTense(phrase.getTense());
+		doPhrase.setFeature(Feature.TENSE, phrase.getFeature(Feature.TENSE));
 		doPhrase.setFeature(Feature.PERSON, phrase.getFeature(Feature.PERSON));
 		doPhrase.setFeature(Feature.NUMBER, phrase.getFeature(Feature.NUMBER));
 		realisedElement.addComponent(parent.realise(doPhrase));
