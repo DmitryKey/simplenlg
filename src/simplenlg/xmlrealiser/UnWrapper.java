@@ -121,6 +121,7 @@ public class UnWrapper {
 		else if (wps instanceof simplenlg.xmlrealiser.wrapper.SPhraseSpec) {
 			simplenlg.xmlrealiser.wrapper.SPhraseSpec wp = (simplenlg.xmlrealiser.wrapper.SPhraseSpec) wps;
 			SPhraseSpec sp = factory.createClause();
+			NLGElement vp = null;
 
 			ArrayList<NLGElement> subjects = new ArrayList<NLGElement>();
 			for (simplenlg.xmlrealiser.wrapper.NLGElement p : wp.getSubj()) {
@@ -131,8 +132,10 @@ public class UnWrapper {
 			if (subjects.size() > 0) {
 				sp.setFeature(InternalFeature.SUBJECTS, subjects);
 			}
+
 			if (wp.getVp() != null) {
-				sp.setVerbPhrase(UnwrapNLGElement(wp.getVp()));
+				vp = UnwrapNLGElement(wp.getVp());
+				sp.setVerbPhrase(vp);
 			}
 
 			if (wp.getCuePhrase() != null) {
@@ -140,18 +143,11 @@ public class UnWrapper {
 						.getCuePhrase()));
 			}
 
-			if (wp.getCLAUSESTATUS() != null) {
-				sp.setFeature(InternalFeature.CLAUSE_STATUS, Enum.valueOf(
-						ClauseStatus.class, wp.getCLAUSESTATUS().toString()));
-			}
-
 			if (wp.getCOMPLEMENTISER() != null) {
 				sp.setFeature(Feature.COMPLEMENTISER, wp.getCOMPLEMENTISER());
 			}
 
-			if (wp.getPERSON() != null) {
-				sp.setFeature(Feature.PERSON, wp.getPERSON());
-			}
+			setSFeatures(wp, sp, vp);
 
 			// Common phrase components.
 			UnwrapPhraseComponents(sp, wps);
@@ -171,24 +167,25 @@ public class UnWrapper {
 				simplenlg.xmlrealiser.wrapper.NPPhraseSpec wp = (simplenlg.xmlrealiser.wrapper.NPPhraseSpec) wps;
 
 				NPPhraseSpec p = factory.createNounPhrase(head);
-				hp = p;				
-				
+				hp = p;
+
 				if (wp.getSpec() != null) {
 					// p.setSpecifier(UnwrapWordElement(wp.getSpec()));
-					simplenlg.xmlrealiser.wrapper.NLGElement spec = wp.getSpec();
+					simplenlg.xmlrealiser.wrapper.NLGElement spec = wp
+							.getSpec();
 
 					if (spec instanceof simplenlg.xmlrealiser.wrapper.WordElement) {
 						WordElement specifier = (WordElement) UnwrapWordElement((simplenlg.xmlrealiser.wrapper.WordElement) spec);
-						
-						if(specifier != null) {
-							p.setSpecifier(specifier);							
+
+						if (specifier != null) {
+							p.setSpecifier(specifier);
 						}
-						
+
 					} else {
 						p.setSpecifier(UnwrapNLGElement(spec));
 					}
 				}
-				
+
 				setNPFeatures(wp, p);
 			}
 
@@ -223,22 +220,7 @@ public class UnWrapper {
 				simplenlg.xmlrealiser.wrapper.VPPhraseSpec wp = (simplenlg.xmlrealiser.wrapper.VPPhraseSpec) wps;
 				VPPhraseSpec p = factory.createVerbPhrase(head);
 				hp = p;
-
-				if (wp.getFORM() != null) {
-					p.setFeature(Feature.FORM, Enum.valueOf(Form.class, wp
-							.getFORM().toString()));
-				}
-				if (wp.getPERSON() != null) {
-					p.setFeature(Feature.PERSON, wp.getPERSON());
-				}
-				if (wp.getTENSE() != null) {
-					p.setFeature(Feature.TENSE, Enum.valueOf(Tense.class, wp
-							.getTENSE().toString()));
-				}
-				p.setFeature(Feature.NEGATED, wp.isNEGATED());
-				p.setFeature(Feature.PASSIVE, wp.isPASSIVE());
-				p.setFeature(Feature.PERFECT, wp.isPERFECT());
-				p.setFeature(Feature.PROGRESSIVE, wp.isPROGRESSIVE());
+				setVPFeatures(wp, p);
 			}
 
 			// Common phrase components.
@@ -307,7 +289,7 @@ public class UnWrapper {
 			if (wp.getPERSON() != null) {
 				cp.setFeature(Feature.PERSON, wp.getPERSON());
 			}
-			
+
 			cp.setFeature(Feature.POSSESSIVE, wp.isPOSSESSIVE());
 
 			for (simplenlg.xmlrealiser.wrapper.NLGElement p : wp.getCoord()) {
@@ -335,7 +317,7 @@ public class UnWrapper {
 			lexCat = (LexicalCategory) cat;
 		}
 
-		//String baseForm = getBaseWord(wordElement);
+		// String baseForm = getBaseWord(wordElement);
 		String baseForm = wordElement.getBase();
 		NLGElement word = null;
 
@@ -355,11 +337,11 @@ public class UnWrapper {
 					Inflection defaultInflection = Enum.valueOf(
 							Inflection.class, wordElement.getVar().toString());
 					we.setDefaultInflectionalVariant(defaultInflection);
-				}				
-				
+				}
+
 				// Spelling variant may have been given as base form in xml.
 				// If so, use that variant.
-				if (!baseForm.matches(we.getBaseForm())) { 
+				if (!baseForm.matches(we.getBaseForm())) {
 					we.setDefaultSpellingVariant(baseForm);
 				}
 			}
@@ -395,33 +377,90 @@ public class UnWrapper {
 			return null;
 		}
 	}
-	
-	void setNPFeatures(simplenlg.xmlrealiser.wrapper.NPPhraseSpec wp, simplenlg.phrasespec.NPPhraseSpec p) {
+
+	void setNPFeatures(simplenlg.xmlrealiser.wrapper.NPPhraseSpec wp,
+			simplenlg.phrasespec.NPPhraseSpec p) {
 		if (wp.getNUMBER() != null) {
-			//map number feature from wrapper ~NumberAgr to actual NumberAgr
+			// map number feature from wrapper ~NumberAgr to actual NumberAgr
 			String numString = wp.getNUMBER().toString();
-			simplenlg.features.NumberAgreement simplenlgNum = simplenlg.features.NumberAgreement.valueOf(numString);
-			//p.setFeature(Feature.NUMBER, wp.getNUMBER());
+			simplenlg.features.NumberAgreement simplenlgNum = simplenlg.features.NumberAgreement
+					.valueOf(numString);
+			// p.setFeature(Feature.NUMBER, wp.getNUMBER());
 			p.setFeature(Feature.NUMBER, simplenlgNum);
 		}
-		
+
 		if (wp.getPERSON() != null) {
-			//map person feature from wrapper Person to actual Person
+			// map person feature from wrapper Person to actual Person
 			String perString = wp.getPERSON().toString();
-			simplenlg.features.Person simplenlgPers = simplenlg.features.Person.valueOf(perString);
+			simplenlg.features.Person simplenlgPers = simplenlg.features.Person
+					.valueOf(perString);
 			p.setFeature(Feature.PERSON, simplenlgPers);
 		}
-		
-		if(wp.getGENDER() != null) {
-			//map gender feature from wrapper Gender to actual Gender
+
+		if (wp.getGENDER() != null) {
+			// map gender feature from wrapper Gender to actual Gender
 			String genString = wp.getGENDER().toString();
-			simplenlg.features.Gender simplenlgGen = simplenlg.features.Gender.valueOf(genString);
-			p.setFeature(LexicalFeature.GENDER, simplenlgGen);			
+			simplenlg.features.Gender simplenlgGen = simplenlg.features.Gender
+					.valueOf(genString);
+			p.setFeature(LexicalFeature.GENDER, simplenlgGen);
 		}
-		
+
 		p.setFeature(Feature.ELIDED, wp.isELIDED());
 		p.setFeature(Feature.POSSESSIVE, wp.isPOSSESSIVE());
 		p.setFeature(Feature.PRONOMINAL, wp.isPRONOMINAL());
-		
+
+	}
+
+	void setVPFeatures(simplenlg.xmlrealiser.wrapper.VPPhraseSpec wp,
+			simplenlg.phrasespec.VPPhraseSpec p) {
+		if (wp.getFORM() != null) {
+			p.setFeature(Feature.FORM, Enum.valueOf(Form.class, wp.getFORM()
+					.toString()));
+		}
+
+		if (wp.getPERSON() != null) {
+			p.setFeature(Feature.PERSON, wp.getPERSON());
+		}
+
+		if (wp.getTENSE() != null) {
+			p.setFeature(Feature.TENSE, Enum.valueOf(Tense.class, wp.getTENSE()
+					.toString()));
+		}
+
+		p.setFeature(Feature.NEGATED, wp.isNEGATED());
+		p.setFeature(Feature.PASSIVE, wp.isPASSIVE());
+		p.setFeature(Feature.PERFECT, wp.isPERFECT());
+		p.setFeature(Feature.PROGRESSIVE, wp.isPROGRESSIVE());
+	}
+
+	/*
+	 * Set the features for a sentence. This method also checks whether any
+	 * features have been set on the VP, in which case, they are set if they
+	 * haven't been set on the S
+	 */
+	void setSFeatures(simplenlg.xmlrealiser.wrapper.SPhraseSpec wp,
+			simplenlg.phrasespec.SPhraseSpec sp,
+			simplenlg.framework.NLGElement vp) {
+
+		if (wp.getCLAUSESTATUS() != null) {
+			sp.setFeature(InternalFeature.CLAUSE_STATUS, Enum.valueOf(
+					ClauseStatus.class, wp.getCLAUSESTATUS().toString()));
+		}
+
+		if (wp.getPERSON() != null) {
+			sp.setFeature(Feature.PERSON, wp.getPERSON());
+		}
+
+		if (wp.getTENSE() != null) {
+			sp.setFeature(Feature.TENSE, Enum.valueOf(Tense.class, wp
+					.getTENSE().toString()));
+			
+		} else if(vp != null && vp.hasFeature(Feature.TENSE)) {
+			sp.setFeature(Feature.TENSE, vp.getFeature(Feature.TENSE));
+		}
+
+		boolean sNeg = wp.isNEGATED() == null ? false : wp.isNEGATED();
+		boolean vNeg = vp == null ? false : vp.getFeatureAsBoolean(Feature.NEGATED).booleanValue();		
+		sp.setFeature(Feature.NEGATED, sNeg || vNeg);
 	}
 }
