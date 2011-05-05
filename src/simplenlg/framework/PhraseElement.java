@@ -53,7 +53,7 @@ public class PhraseElement extends NLGElement {
 	 */
 	public PhraseElement(PhraseCategory newCategory) {
 		setCategory(newCategory);
-		
+
 		// set default feature value
 		setFeature(Feature.ELIDED, false);
 	}
@@ -175,11 +175,11 @@ public class PhraseElement extends NLGElement {
 			headElement = (NLGElement) newHead;
 		else
 			headElement = new StringElement(newHead.toString());
-		
+
 		setFeature(InternalFeature.HEAD, headElement);
-		
+
 	}
-	
+
 	/**
 	 * Retrieves the current head of this phrase.
 	 * 
@@ -205,6 +205,13 @@ public class PhraseElement extends NLGElement {
 	 * existing discourse function exists on the complement.
 	 * </p>
 	 * 
+	 * <p>
+	 * Complements can have different functions. For example, the phrase <I>John
+	 * gave Mary a flower</I> has two complements, one a direct object and one
+	 * indirect. If a complement is not specified for its discourse function,
+	 * then this is automatically set to <code>DiscourseFunction.OBJECT</code>.
+	 * </p>
+	 * 
 	 * @param newComplement
 	 *            the new complement as an <code>NLGElement</code>.
 	 */
@@ -213,6 +220,13 @@ public class PhraseElement extends NLGElement {
 		if (complements == null) {
 			complements = new ArrayList<NLGElement>();
 		}
+
+		// check if the new complement has a discourse function; if not, assume
+		// object
+		if(!newComplement.hasFeature(InternalFeature.DISCOURSE_FUNCTION)) {
+			newComplement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.OBJECT);
+		}
+
 		complements.add(newComplement);
 		setFeature(InternalFeature.COMPLEMENTS, complements);
 		if (newComplement.isA(PhraseCategory.CLAUSE)
@@ -254,7 +268,7 @@ public class PhraseElement extends NLGElement {
 		if (function == null || complements == null)
 			return;
 		List<NLGElement> complementsToRemove = new ArrayList<NLGElement>();
-		for (NLGElement complement: complements)
+		for (NLGElement complement : complements)
 			if (function == complement
 					.getFeature(InternalFeature.DISCOURSE_FUNCTION))
 				complementsToRemove.add(complement);
@@ -263,10 +277,10 @@ public class PhraseElement extends NLGElement {
 			complements.removeAll(complementsToRemove);
 			setFeature(InternalFeature.COMPLEMENTS, complements);
 		}
-		
+
 		return;
 	}
-	
+
 	/**
 	 * <p>
 	 * Adds a new complement to the phrase element. Complements will be realised
@@ -338,6 +352,32 @@ public class PhraseElement extends NLGElement {
 	}
 
 	/**
+	 * Set the postmodifier for this phrase. This resets all previous
+	 * postmodifiers to <code>null</code> and replaces them with the given
+	 * string.
+	 * 
+	 * @param newPostModifier
+	 *            the postmodifier
+	 */
+	public void setPostModifier(String newPostModifier) {
+		this.setFeature(InternalFeature.POSTMODIFIERS, null);
+		addPostModifier(newPostModifier);
+	}
+
+	/**
+	 * Set the postmodifier for this phrase. This resets all previous
+	 * postmodifiers to <code>null</code> and replaces them with the given
+	 * string.
+	 * 
+	 * @param newPostModifier
+	 *            the postmodifier
+	 */
+	public void setPostModifier(NLGElement newPostModifier) {
+		this.setFeature(InternalFeature.POSTMODIFIERS, null);
+		addPostModifier(newPostModifier);
+	}
+
+	/**
 	 * Adds a new front modifier to the phrase element.
 	 * 
 	 * @param newFrontModifier
@@ -371,6 +411,30 @@ public class PhraseElement extends NLGElement {
 	}
 
 	/**
+	 * Set the frontmodifier for this phrase. This resets all previous front
+	 * modifiers to <code>null</code> and replaces them with the given string.
+	 * 
+	 * @param newFrontModifier
+	 *            the front modifier
+	 */
+	public void setFrontModifier(String newFrontModifier) {
+		this.setFeature(InternalFeature.FRONT_MODIFIERS, null);
+		addFrontModifier(newFrontModifier);
+	}
+
+	/**
+	 * Set the front modifier for this phrase. This resets all previous front
+	 * modifiers to <code>null</code> and replaces them with the given string.
+	 * 
+	 * @param newFrontModifier
+	 *            the front modifier
+	 */
+	public void setFrontModifier(NLGElement newFrontModifier) {
+		this.setFeature(InternalFeature.FRONT_MODIFIERS, null);
+		addFrontModifier(newFrontModifier);
+	}
+
+	/**
 	 * Adds a new pre-modifier to the phrase element.
 	 * 
 	 * @param newPreModifier
@@ -393,27 +457,29 @@ public class PhraseElement extends NLGElement {
 	 *            create a <code>StringElement</code>.
 	 */
 	public void addPreModifier(String newPreModifier) {
-		addPreModifier (new StringElement(newPreModifier));
+		addPreModifier(new StringElement(newPreModifier));
 	}
-	
+
 	/**
 	 * Set the premodifier for this phrase. This resets all previous
 	 * premodifiers to <code>null</code> and replaces them with the given
 	 * string.
 	 * 
-	 * @param newPreModifier the premodifier
+	 * @param newPreModifier
+	 *            the premodifier
 	 */
 	public void setPreModifier(String newPreModifier) {
 		this.setFeature(InternalFeature.PREMODIFIERS, null);
 		addPreModifier(newPreModifier);
 	}
-	
+
 	/**
 	 * Set the premodifier for this phrase. This resets all previous
 	 * premodifiers to <code>null</code> and replaces them with the given
 	 * string.
 	 * 
-	 * @param newPreModifier the premodifier
+	 * @param newPreModifier
+	 *            the premodifier
 	 */
 	public void setPreModifier(NLGElement newPreModifier) {
 		this.setFeature(InternalFeature.PREMODIFIERS, null);
@@ -429,12 +495,12 @@ public class PhraseElement extends NLGElement {
 		// default addModifier - always make modifier a preModifier
 		if (modifier == null)
 			return;
-		
+
 		// assume is preModifier, add in appropriate form
 		if (modifier instanceof NLGElement)
-			addPreModifier((NLGElement)modifier);
+			addPreModifier((NLGElement) modifier);
 		else
-			addPreModifier((String)modifier);
+			addPreModifier((String) modifier);
 		return;
 	}
 
@@ -455,7 +521,7 @@ public class PhraseElement extends NLGElement {
 	public List<NLGElement> getPostModifiers() {
 		return getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
 	}
-	
+
 	/**
 	 * Retrieves the current list of frony modifiers for the phrase.
 	 * 

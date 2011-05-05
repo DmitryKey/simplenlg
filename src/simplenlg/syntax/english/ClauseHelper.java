@@ -193,6 +193,7 @@ abstract class ClauseHelper {
 				realisedElement.addComponent(parent.realise(phraseFactory
 						.createPrepositionPhrase("by"))); //$NON-NLS-1$
 			}
+			
 			for (NLGElement subject : allSubjects) {
 
 				subject.setFeature(Feature.PASSIVE, true);
@@ -336,15 +337,17 @@ abstract class ClauseHelper {
 				&& verbPhrase != null
 				&& !InterrogativeType.WHAT_OBJECT.equals(phrase
 						.getFeature(Feature.INTERROGATIVE_TYPE))) {
+			
 			// complements of a clause are stored in the VPPhraseSpec
 			for (NLGElement subject : verbPhrase
 					.getFeatureAsElementList(InternalFeature.COMPLEMENTS)) {
 
-				if (subject.isA(PhraseCategory.NOUN_PHRASE)
-						&& DiscourseFunction.OBJECT
+				//AG: complement needn't be an NP
+				//subject.isA(PhraseCategory.NOUN_PHRASE) &&				
+				if (DiscourseFunction.OBJECT
 								.equals(subject
 										.getFeature(InternalFeature.DISCOURSE_FUNCTION))) {
-					subject.setFeature(Feature.PASSIVE, true);
+					subject.setFeature(Feature.PASSIVE, true);					
 					currentElement = parent.realise(subject);
 					
 					if (currentElement != null) {
@@ -600,7 +603,7 @@ abstract class ClauseHelper {
 			ListElement realisedElement) {
 
 		PhraseElement doPhrase = phraseFactory.createVerbPhrase("do"); //$NON-NLS-1$
-		doPhrase.setFeature(Feature.TENSE, phrase.getFeature(Feature.TENSE));
+		doPhrase.setTense(phrase.getTense());
 		doPhrase.setFeature(Feature.PERSON, phrase.getFeature(Feature.PERSON));
 		doPhrase.setFeature(Feature.NUMBER, phrase.getFeature(Feature.NUMBER));
 		realisedElement.addComponent(parent.realise(doPhrase));

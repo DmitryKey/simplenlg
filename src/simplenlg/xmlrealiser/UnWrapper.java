@@ -12,6 +12,7 @@ import simplenlg.features.Form;
 import simplenlg.features.Inflection;
 import simplenlg.features.InternalFeature;
 import simplenlg.features.LexicalFeature;
+import simplenlg.features.Person;
 import simplenlg.features.Tense;
 import simplenlg.framework.CoordinatedPhraseElement;
 import simplenlg.framework.DocumentCategory;
@@ -115,6 +116,13 @@ public class UnWrapper {
 			simplenlg.xmlrealiser.wrapper.StringElement wp = (simplenlg.xmlrealiser.wrapper.StringElement) wps;
 			NLGElement p = factory.createStringElement(wp.getVal());
 			return p;
+		}
+
+		// WordElements (delegate to UnwrapWordElement) -- useful to have
+		// because it is called by unWrapPhraseComponents, and pre/post mods
+		// might be WordElements
+		if(wps instanceof simplenlg.xmlrealiser.wrapper.WordElement) {
+			return UnwrapWordElement((simplenlg.xmlrealiser.wrapper.WordElement) wps);
 		}
 
 		// Sentence
@@ -234,8 +242,10 @@ public class UnWrapper {
 
 	public void UnwrapPhraseComponents(PhraseElement hp,
 			simplenlg.xmlrealiser.wrapper.NLGElement wps) {
+
 		if (hp != null && wps != null) {
 			simplenlg.xmlrealiser.wrapper.PhraseElement wp = (simplenlg.xmlrealiser.wrapper.PhraseElement) wps;
+
 			for (simplenlg.xmlrealiser.wrapper.NLGElement p : wp.getFrontMod()) {
 				NLGElement p1 = UnwrapNLGElement(p);
 
@@ -243,6 +253,7 @@ public class UnWrapper {
 					hp.addFrontModifier(p1);
 				}
 			}
+
 			for (simplenlg.xmlrealiser.wrapper.NLGElement p : wp.getPreMod()) {
 				NLGElement p1 = UnwrapNLGElement(p);
 
@@ -250,6 +261,7 @@ public class UnWrapper {
 					hp.addPreModifier(p1);
 				}
 			}
+
 			for (simplenlg.xmlrealiser.wrapper.NLGElement p : wp.getPostMod()) {
 				NLGElement p1 = UnwrapNLGElement(p);
 
@@ -257,6 +269,7 @@ public class UnWrapper {
 					hp.addPostModifier(p1);
 				}
 			}
+
 			for (simplenlg.xmlrealiser.wrapper.NLGElement p : wp.getCompl()) {
 				NLGElement p1 = UnwrapNLGElement(p);
 
@@ -425,6 +438,10 @@ public class UnWrapper {
 		if (wp.getTENSE() != null) {
 			p.setFeature(Feature.TENSE, Enum.valueOf(Tense.class, wp.getTENSE()
 					.toString()));
+		}				
+		
+		if(wp.getMODAL() != null) {
+			p.setFeature(Feature.MODAL, wp.getMODAL());
 		}
 
 		p.setFeature(Feature.NEGATED, wp.isNEGATED());
@@ -448,19 +465,42 @@ public class UnWrapper {
 		}
 
 		if (wp.getPERSON() != null) {
-			sp.setFeature(Feature.PERSON, wp.getPERSON());
+			sp.setFeature(Feature.PERSON, Enum.valueOf(Person.class, wp.getPERSON().toString()));
+		}
+		
+		if(wp.getFORM() != null) {
+			sp.setFeature(Feature.FORM, Enum.valueOf(Form.class, wp.getFORM().toString()));
 		}
 
 		if (wp.getTENSE() != null) {
 			sp.setFeature(Feature.TENSE, Enum.valueOf(Tense.class, wp
 					.getTENSE().toString()));
-			
-		} else if(vp != null && vp.hasFeature(Feature.TENSE)) {
+
+		} else if (vp != null && vp.hasFeature(Feature.TENSE)) {
 			sp.setFeature(Feature.TENSE, vp.getFeature(Feature.TENSE));
 		}
-
+		
+		//modal -- set on S or inherited from VP
+		if(wp.getMODAL() != null) {
+			sp.setFeature(Feature.MODAL, wp.getMODAL());
+		} else if(vp != null && vp.hasFeature(Feature.MODAL)) {
+			sp.setFeature(Feature.MODAL, vp.getFeature(Feature.MODAL));
+		}
+		
+		//passive: can be set on S or VP
+		boolean sPass = wp.isPASSIVE() == null ? false : wp.isPASSIVE();
+		boolean vPass = vp == null ? false : vp.getFeatureAsBoolean(Feature.PASSIVE).booleanValue();
+		sp.setFeature(Feature.PASSIVE, sPass || vPass);
+		
+		//progressive: can be set on S or VP
+		boolean sProg = wp.isPROGRESSIVE() == null ? false : wp.isPROGRESSIVE();
+		boolean vProg = vp == null ? false : vp.getFeatureAsBoolean(Feature.PROGRESSIVE).booleanValue();
+		sp.setFeature(Feature.PROGRESSIVE, sProg || vProg);
+		
+		//negation: can be set on S or VP
 		boolean sNeg = wp.isNEGATED() == null ? false : wp.isNEGATED();
-		boolean vNeg = vp == null ? false : vp.getFeatureAsBoolean(Feature.NEGATED).booleanValue();		
+		boolean vNeg = vp == null ? false : vp.getFeatureAsBoolean(
+				Feature.NEGATED).booleanValue();
 		sp.setFeature(Feature.NEGATED, sNeg || vNeg);
 	}
 }
