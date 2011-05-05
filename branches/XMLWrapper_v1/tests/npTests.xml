@@ -74,7 +74,7 @@
 				</child>
 			</Document>
 		</Record>
-		
+
 		<Record name="Pronominal2">
 			<Document>
 				<child xsi:type="NPPhraseSpec" GENDER="FEMININE" PRONOMINAL="true">
@@ -87,10 +87,11 @@
 				</child>
 			</Document>
 		</Record>
-		
+
 		<Record name="Pronominal3">
 			<Document>
-				<child xsi:type="NPPhraseSpec" GENDER="FEMININE" PRONOMINAL="true" POSSESSIVE="true">
+				<child xsi:type="NPPhraseSpec" GENDER="FEMININE" PRONOMINAL="true"
+					POSSESSIVE="true">
 					<head cat="NOUN">
 						<base>singer</base>
 					</head>
@@ -139,6 +140,60 @@
 							</spec>
 						</coord>
 					</spec>
+				</child>
+			</Document>
+		</Record>
+
+		<Record name="NP + StringElement Premodifier">
+			<Document>
+				<child xsi:type="NPPhraseSpec">
+					<head xsi:type="WordElement" cat="NOUN">
+						<base>patient</base>
+					</head>
+					<spec xsi:type="NPPhraseSpec" POSSESSIVE="true">
+						<head xsi:type="WordElement" cat="NOUN">
+							<base>John</base>
+						</head>
+					</spec>
+					<preMod xsi:type="StringElement">
+						<val>difficult</val>
+					</preMod>
+				</child>
+			</Document>
+		</Record>
+		
+		<Record name="NP + wordElement Premodifier">
+			<Document>
+				<child xsi:type="NPPhraseSpec">
+					<head xsi:type="WordElement" cat="NOUN">
+						<base>patient</base>
+					</head>
+					<spec xsi:type="NPPhraseSpec" POSSESSIVE="true">
+						<head xsi:type="WordElement" cat="NOUN">
+							<base>John</base>
+						</head>
+					</spec>
+					<preMod xsi:type="WordElement" cat="ADJECTIVE">
+						<base>difficult</base>
+					</preMod>
+				</child>
+			</Document>
+		</Record>
+		
+		<Record name="NP + wordElement complement">
+			<Document>
+				<child xsi:type="NPPhraseSpec">
+					<head xsi:type="WordElement" cat="NOUN">
+						<base>patient</base>
+					</head>
+					<spec xsi:type="NPPhraseSpec" POSSESSIVE="true">
+						<head xsi:type="WordElement" cat="DETERMINER">
+							<base>the</base>
+						</head>
+					</spec>
+					<compl xsi:type="WordElement" cat="ADJECTIVE">
+						<base>jack</base>
+					</compl>
 				</child>
 			</Document>
 		</Record>

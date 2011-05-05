@@ -152,7 +152,7 @@ public class OrthographyProcessor extends NLGModule {
 					InternalFeature.INTERROGATIVE).booleanValue());
 
 			((DocumentElement) element).clearComponents();
-			realisation.append(' ');
+			// realisation.append(' ');
 			element.setRealisation(realisation.toString());
 			realisedElement = element;
 		}
@@ -172,7 +172,6 @@ public class OrthographyProcessor extends NLGModule {
 	 */
 	private void terminateSentence(StringBuffer realisation,
 			boolean interrogative) {
-
 		char character = realisation.charAt(realisation.length() - 2);
 		if (character != '.' && character != '?') {
 			if (interrogative) {
@@ -237,13 +236,19 @@ public class OrthographyProcessor extends NLGModule {
 		for (int i = 0; i < components.size(); i++) {
 			NLGElement thisElement = components.get(i);
 			realisedChild = realise(thisElement);
-			realisation.append(realisedChild.getRealisation());
+			String childRealisation = realisedChild.getRealisation();
 
-			if (components.size() > 1 && i < components.size() - 1) {
-				realisation.append(listSeparator);
+			// check that the child realisation is non-empty
+			if (childRealisation != null && childRealisation.length() > 0
+					&& !childRealisation.matches("^[\\s\\n]+$")) {
+				realisation.append(realisedChild.getRealisation());
+
+				if (components.size() > 1 && i < components.size() - 1) {
+					realisation.append(listSeparator);
+				}
+
+				realisation.append(' ');
 			}
-
-			realisation.append(' ');
 		}
 
 		if (realisation.length() > 0) {
