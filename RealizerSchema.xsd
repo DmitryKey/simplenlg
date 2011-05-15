@@ -176,6 +176,7 @@
 						minOccurs="0" maxOccurs="unbounded" />
 				</xs:sequence>
 				<xs:attribute name="cat" type="nlg:phraseCategory" />
+				<xs:attribute name="discourseFunction" type="nlg:discourseFunction"></xs:attribute>
 			</xs:extension>
 		</xs:complexContent>
 	</xs:complexType>
@@ -312,6 +313,7 @@
 		<xs:restriction base="xs:string">
 			<xs:enumeration value="HOW" />
 			<xs:enumeration value="WHAT_OBJECT" />
+			<xs:enumeration value="WHAT_SUBJECT" />
 			<xs:enumeration value="WHERE" />
 			<xs:enumeration value="WHO_INDIRECT_OBJECT" />
 			<xs:enumeration value="WHO_OBJECT" />
