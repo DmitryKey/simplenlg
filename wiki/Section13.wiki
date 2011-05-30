@@ -33,7 +33,7 @@ Subordinate clauses can be added to the main clause using the {{{addComplement}}
 {{{
 	SPhraseSpec p = nlgFactory.createClause("I", "be", "happy");
 	SPhraseSpec q = nlgFactory.createClause("I", "eat", "fish");
-	CoordinatedPhraseElement pq = nlgFactory.createCoordinatedPhrase();
+	CoordinatedPhraseElement pq = nlgFactory.createdCoordinatedPhrase();
          // may revert to nlgFactory.createCoordinatedPhrase( ) ;
 
 	q.setFeature(Feature.COMPLEMENTISER, "because");
