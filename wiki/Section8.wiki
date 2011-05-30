@@ -50,5 +50,5 @@ The output will be:
 {{{[1]}}} Note that we can also construct the noun phrase "the monkey" in the following way:
 {{{ 
 	NPPhraseSpec object = nlgFactory.createNounPhrase("monkey");
-	object.setDeterminer("the");
+	object.setDeterminer("the"); // currently this is 'deprecated'!
 }}}
