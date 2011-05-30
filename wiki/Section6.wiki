@@ -32,7 +32,9 @@ In order to set this in the past, we would add the line:
 }}}
 
 thus rendering the sentence:
- {{{Mary chased the monkey.}}}
+{{{
+        Mary chased the monkey.
+}}}
 
 If Mary is instead busy with other things and forced to postpone her exercise, we could write:
 {{{
@@ -52,7 +54,9 @@ If negated is set to true, the negative form of the sentence is produced. For ex
 }}}
 
 will change the resulting sentence to:
- {{{Mary will not chase the monkey.}}}
+{{{
+        Mary will not chase the monkey.
+}}}
 
 
 *Questions*
@@ -64,7 +68,9 @@ Simplenlg can generate simple yes/no questions.  For example:
 	p.setFeature(Feature.INTERROGATIVE_TYPE, InterrogativeType.YES_NO);
 }}}
 will generate:
- {{{Does Mary chase the monkey?}}}
+{{{
+        Does Mary chase the monkey?
+}}}
 
 Simplenlg can also generate simple WH questions.  For example:
 {{{
@@ -73,7 +79,9 @@ Simplenlg can also generate simple WH questions.  For example:
 	p.setFeature(Feature.INTERROGATIVE_TYPE, InterrogativeType.WHO_OBJECT);
 }}}
 will generate:
- {{{Who does Mary chase?}}}
+{{{
+        Who does Mary chase?
+}}}
 
 → For more examples on questions, look at {{{testsrc/InterrogativeTest.java}}}.
 
