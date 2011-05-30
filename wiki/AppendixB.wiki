@@ -10,7 +10,7 @@ If you are using Eclipse to write your Java programs, you would
   * go to the Eclipse menu and select Project>Properties>Java Build Path
   * click on the Libraries tab
   * click on the *Add External jars...* button
-  * browse to the simplenlg jar file which you downloaded from the web
+  * browse to the simplenlg jar file which you downloaded, and extracted from the ZIP file, from the web
   * select the simplenlg jar file and click *Open*
   * click *OK*
  # In the project, create a new class which has the main method in it. In this example, let’s call the new class {{{TestMain}}}. 
