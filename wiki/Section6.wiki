@@ -40,7 +40,9 @@ If Mary is instead busy with other things and forced to postpone her exercise, w
 }}}
 
 yielding the sentence:
- {{{Mary will chase the monkey.}}}
+{{{
+        Mary will chase the monkey.
+}}}
 
 
 *Negation*
