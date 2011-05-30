@@ -17,7 +17,7 @@ To use the Specialist lexicon:
 *Notes:*
 
 You must use the lexAccess version of the lexicon.  Do *not* use
-main version in [http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexicon/current/web/release].
+main version in http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexicon/current/web/release.
 This will not work!
 
 If you use an old version of the lexicon, you may also need the lexCheck jar file.  This can be obtained from
