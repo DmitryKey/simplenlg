@@ -8,4 +8,4 @@ In order to make this a bit more explicit, the table below shows some of the way
 
 http://simplenlg.googlecode.com/svn/wiki/simplenlg_table4.png
 
-Note: Currently .setDeterminer( "the" )is set as deprecated!
+Note: Currently .setDeterminer( "the" ) is set as deprecated!
