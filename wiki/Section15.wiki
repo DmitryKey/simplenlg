@@ -41,7 +41,9 @@ And then realise the paragraph:
 }}}
 
 The resulting output is:
- {{{Mary chases the monkey. The monkey fights back. Mary is nervous.}}}
+{{{
+        Mary chases the monkey. The monkey fights back. Mary is nervous.
+}}}
 
 Note that in the last couple steps, we're using the realiser differently than in all of the previous examples: Instead of using {{{realiser.realiseSentence()}}}, as we did for individual sentences, we're now using the more general {{{realiser.realise()}}}. This returns an NLGElement (not a string) that can be printed by {{{System.out}}} normally.
 
