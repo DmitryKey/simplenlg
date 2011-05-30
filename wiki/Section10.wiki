@@ -8,7 +8,7 @@ An {{{SPhraseSpec}}} can have multiple subjects, objects and complements but not
 	NPPhraseSpec subject2 = nlgFactory.createNounPhrase("your", "giraffe");
 
 	CoordinatedPhraseElement subj = nlgFactory.createdCoordinatedPhrase(subject1, subject2); 
-// may revert to nlgFactory.createCoordinatedPhrase( subject1, subject2 ) ;
+                  // may revert to nlgFactory.createCoordinatedPhrase( subject1, subject2 ) ;
 	p.setSubject(subj);
 }}}
 The resulting output is:
@@ -24,7 +24,7 @@ Similarly, you can have multiple objects and complements in an {{{SPhraseSpec}}}
 	NPPhraseSpec object2 = nlgFactory.createNounPhrase("George");
 
 	CoordinatedPhraseElement obj = nlgFactory.createdCoordinatedPhrase(object1, object2); 
-// may revert to nlgFactory.createCoordinatedPhrase( subject1, subject2 ) ;
+                  // may revert to nlgFactory.createCoordinatedPhrase( subject1, subject2 ) ;
 	obj.addCoordinate("Martha");
         p.setObject(obj);
 }}}
