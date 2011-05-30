@@ -29,7 +29,9 @@ The above set of calls to simplenlg defines the components of the sentence we wi
 }}}
 
 The resulting output is:
- {{{Mary chases the monkey.}}}
+{{{
+        Mary chases the monkey.
+}}}
 
 When parts of speech are defined and assembled into an instance of the {{{SPhraseSpec}}} class, methods associated with that class such as {{{setSubject}}}, {{{setVerb}}} and {{{setObject}}}, assemble the parts of speech by obeying the simple grammar embodied in simplenlg{{{[1]}}}. 
 
