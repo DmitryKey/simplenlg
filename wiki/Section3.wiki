@@ -72,7 +72,9 @@ We now need to use the Realiser to output the string:
 }}}
 
 Not surprisingly, the resulting output is:
- {{{My dog is happy.}}}
+ {{{
+        My dog is happy.
+}}}
 
 It’s important to note that you only need to create the {{{Lexicon}}}, {{{NLGFactory}}}, and {{{Realiser}}} once within your program; you don’t need to create them for every sentence you generate. So a good idea is to create these at the start of your program and user them over the lifetime of the program run.
 
