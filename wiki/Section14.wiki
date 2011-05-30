@@ -72,7 +72,7 @@ You can then realise this section as in the previous example:
 
 ----
 
-{{{[1]}}} You may also add individual sentences thusly:
+{{{[1]}}} You may also add individual sentences thus:
 {{{
 	DocumentElement par1 = nlgFactory.createParagraph();
 	par1.addComponent(s1); // ...etc.
