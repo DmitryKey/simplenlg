@@ -14,7 +14,7 @@ The above paper is also the best academic citation for simplenlg.
 SimpleNLG is currently hosted on Google Code.
 
 Earlier versions of simplenlg can be found on
-[http://www.csd.abdn.ac.uk/research/simplenlg/]; these are no longer beinf maintained.  Please note that earlier versions of simplenlg have different licensing, in particular versions before V4.0 cannot be used commercially.
+[http://www.csd.abdn.ac.uk/research/simplenlg/]; these are no longer being maintained.  Please note that earlier versions of simplenlg have different licensing, in particular versions before V4.0 cannot be used commercially.
 
 
 = Summary of features =
