@@ -23,4 +23,4 @@ This will not work!
 If you use an old version of the lexicon, you may also need the lexCheck jar file.  This can be obtained from
 [http://lexsrv3.nlm.nih.gov/LexSysGroup/Projects/lexCheck/current/web/download.html]
 
-The [http://www.nlm.nih.gov/copyright.html copyright conditions] of the Specialist lexicon state that it is in the public domain, but ask that its use be acknowledged.
+The [http://www.nlm.nih.gov/copyright.html copyright conditions] of the Specialist lexicon state that it is in the public domain, but asks that its use be acknowledged.
