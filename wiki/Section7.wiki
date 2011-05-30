@@ -33,7 +33,9 @@ We can then add any kind of complement:
 
 Which will generate:
 
-	{{{Mary chases the monkey very quickly despite her exhaustion.}}}
+{{{
+        Mary chases the monkey very quickly despite her exhaustion.
+}}}
 
 
 Note that only things of type {{{SPhraseSpec}}} can take a complement. 
