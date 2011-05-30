@@ -14,7 +14,7 @@ The phrase "in the park" is a prepositional phrase and there are a number of way
 A more sophisticated way of creating this prepositional phrase, however, would be to specify the parts of the prepositional phrase – the preposition, determiner, noun phrase –  and combine them: 
 {{{
 	NPPhraseSpec place = nlgFactory.createNounPhrase("park");
-	place.setDeterminer("the");
+	place.setDeterminer("the"); // Currently set as deprecated!
 	PPPhraseSpec pp = nlgFactory.createPrepositionPhrase();
 	pp.addComplement(place);
 	pp.setPreposition("in");
