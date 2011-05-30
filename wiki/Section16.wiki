@@ -26,7 +26,9 @@ You can combine {{{strings}}}, {{{SPhraseSpecs}}} and {{{TextSpecs}}} in a singl
 }}}
 
 Output: 
- {{{John is going to Tesco and Mary is going to Sainsburys. However I am going to school.}}}
+{{{
+        John is going to Tesco and Mary is going to Sainsburys. However I am going to school.
+}}}
 
 In this example, we used the cue phrase ‘however’ to smooth the transition from the first sentence to the next one. Cue phrases often express how a sentence relates to the previous clause or sentence and help sentences in a paragraph flow together. 
 
