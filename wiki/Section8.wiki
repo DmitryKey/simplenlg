@@ -12,7 +12,7 @@ To deem Mary ‘fast’, however, you will no longer want to refer to her simply
 While we're at it, let's also define the object as a noun phrase and the verb as a verb phrase.  This will allow us to do some fancier stuff later on, like adding a modifier to each.
 
 {{{
-	NPPhraseSpec object = nlgFactory.createNounPhrase("the monkey");  [1]
+	NPPhraseSpec object = nlgFactory.createNounPhrase("the monkey");  {{{[1]}}}
 	VPPhraseSpec verb = nlgFactory.createVerbPhrase("chase");
 }}}
 Now, we can apply the adjective ‘fast’ to Mary by writing:
