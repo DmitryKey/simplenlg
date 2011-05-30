@@ -3,7 +3,7 @@
 = simplenlg and Eclipse =
 If you are using Eclipse to write your Java programs, you would
 
-*jar distribution:*
+*Using jar distribution:*
 
  # Create a new Project (File>New>Project).
  # Add the simplenlg library to the project’s build path by doing the following:
