@@ -11,7 +11,9 @@ An {{{SPhraseSpec}}} can have multiple subjects, objects and complements but not
 	p.setSubject(subj);
 }}}
 The resulting output is:
- {{{Mary and your giraffe chase the monkey.}}}
+{{{
+        Mary and your giraffe chase the monkey.
+}}}
 
 simplenlg has automatically added the conjunction ‘and’ and has changed the ending of the verb so that it agrees with the multiple subjects of the sentence.
 
@@ -25,14 +27,18 @@ Similarly, you can have multiple objects and complements in an {{{SPhraseSpec}}}
         p.setObject(obj);
 }}}
 The resulting output will be:
- {{{Mary and your giraffe chase the monkey, George and Martha.}}}
+{{{
+        Mary and your giraffe chase the monkey, George and Martha.
+}}}
 
 If Mary and the devious giraffe run by so quickly that you can't see who they're chasing, you can change the conjunction on the coordinated elements:
 {{{
 	obj.setFeature(Feature.CONJUNCTION, "or");
 }}}
 The resulting output will be:
- {{{Mary and your giraffe chase the monkey, George or  Martha.}}}
+{{{
+        Mary and your giraffe chase the monkey, George or  Martha.
+}}}
 
 As with many methods in simplenlg, the {{{createCoordinatedPhrase}}} method can take all kinds of arguments – {{{NPPhraseSpec}}}, {{{PPPhraseSpec}}}, or even simple {{{string}}}s.
 
