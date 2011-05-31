@@ -8,6 +8,8 @@ http://simplenlg.googlecode.com/svn/wiki/NLG_Arch.png
 
 Many NLG systems consist of 3 components which are connected together in a pipeline. i.e. the output of document planning acts as input to microplanning and the output of the microplanner is the input to the surface realiser. The table below briefly outlines the different components of an NLG system and the shaded portion shows which tasks simplenlg performs.
 
+http://simplenlg.googlecode.com/svn/wiki/simplenlg_table5.png
+
 == Document Planner ==
 *content determination*
 decides what information will appear in the output text. This depends on what your goal is, who the audience is, what sort of input information is available to you in the first place and other constraints such as allowed text length. 
