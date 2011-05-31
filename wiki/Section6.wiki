@@ -86,6 +86,6 @@ will generate:
 → For more examples on questions, look at {{{testsrc/InterrogativeTest.java}}}.
 
 *Features*
-TENSE, NEGATED, and INTERROGATIVE_TYPE are examples of _features_ which can be set on a SPhraseSpec. Many other features are also allowed, including MODAL, PASSIVE, PERFECT, and PROGRESSIVE. Detailed information about allowable features are given in the Java API documentation.
+TENSE, NEGATED, and INTERROGATIVE_TYPE are examples of _features_ which can be set on a SPhraseSpec. Many other features are also allowed, including MODAL, PASSIVE, PERFECT, and PROGRESSIVE. Detailed information about allowable features are given in the simpleNLG API documentation.
 
 → For more examples on verbs, look at {{{testsrc/VerbPhraseTest.java}}}.
