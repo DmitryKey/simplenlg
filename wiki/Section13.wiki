@@ -25,7 +25,7 @@ The {{{CoordinatedPhraseElement c}}} can then be realised as a sentence:
 If you do not supply a conjunction using the method {{{setConjunction}}}, the conjunction ‘and’ will automatically be used because it is the default. In this case, the resulting sentence would be:
 {{{
         My cat likes fish, my dog likes bones and my horse likes grass.
-        NB: the word "bone" apears in stead of "bones" !
+        NB: the word "bone" apears instead of "bones" !
 }}}
 
 
