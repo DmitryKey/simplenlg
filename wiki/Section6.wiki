@@ -17,7 +17,7 @@ You can specify particles (prepositions which accompany a verb) by writing the f
 	p.setVerb("put down");
 }}}
 
-Verbs in simplenlg can have one of three different tenses: past, present and future. Let’s say we’ve written the following simplenlg code which yields the sentence "Mary chases George":
+Verbs in simplenlg can have one of three different tenses: past, present and future. Let’s say we’ve written the following simplenlg code which yields the sentence "Mary chases the monkey.":
 
 {{{
 	SPhraseSpec p = nlgFactory.createClause();
