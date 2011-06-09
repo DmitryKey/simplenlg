@@ -36,7 +36,7 @@ We can then pass these elements as a list to the {{{createParagraph}}} method:
 
 And then realise the paragraph:
 {{{
-	NLGElement output = realiser.realise(par1);
+	String output = realiser.realise(par1).getRealisation();
         System.out.println(output);
 }}}
 
@@ -45,8 +45,7 @@ The resulting output is:
         Mary chases the monkey. The monkey fights back. Mary is nervous.
 }}}
 
-Note that in the last couple steps, we're using the realiser differently than in all of the previous examples: Instead of using {{{realiser.realiseSentence()}}}, as we did for individual sentences, we're now using the more general {{{realiser.realise()}}}. This returns an NLGElement (not a string) that can be printed by {{{System.out}}} normally.
-
+Note that in the last couple steps, we're using the realiser differently than in all of the previous examples: Instead of using {{{realiser.realiseSentence()}}}, as we did for individual sentences, we're now using the more general {{{realiser.realise().getRealisation()}}}. 
 
 *Creating a Section*
 
@@ -64,7 +63,7 @@ A paragraph can then be added to this section:
 
 You can then realise this section as in the previous example:
 {{{
-    	NLGElement output = realiser.realise(section);
+    	String output = realiser.realise(section).getRealisation();
         System.out.println(output);
 }}}
 
