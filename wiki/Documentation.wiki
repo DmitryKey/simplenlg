@@ -5,3 +5,6 @@
 To learn how to start with simplenlg look at our [Tutorial].
 
 To view the simplenlg java api follow [http://simplenlg.googlecode.com/svn/trunk/docs/javadoc/index.html this link.]
+
+To learn about the XML interface (new in V4.3), look at
+[http://simplenlg.googlecode.com/svn/trunk/docs/XMLRepresentationOfTextSpecifications.pdf this file]
