@@ -28,6 +28,7 @@ The tutorial provides information about the simplenlg library, how to set it up 
 
 
 *Contributors:*
+ * James Christie
  * Albert Gatt
  * Roman Kutlak
  * Donald Matheson
