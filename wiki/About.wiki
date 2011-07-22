@@ -10,6 +10,8 @@ For details of its design and examples of its use, please refer to the following
 
 The above paper is also the best academic citation for simplenlg. 
 
+For other papers and presentations about simplenlg, please see the [Papers Papers and Presentations] page
+
 = Version history and hosting =
 SimpleNLG is currently hosted on Google Code.
 
