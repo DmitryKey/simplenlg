@@ -1,0 +1,15 @@
+#summary Papers and Presentations about Simplenlg
+
+= Papers and Presentations about Simplenlg =
+
+== Papers ==
+
+Marcel Bollman (2011).   Adapting SimpleNLG to German.  To appear in Proceedings of the 13th European Workshop on Natural Language Generation (ENLG-11).
+
+
+Albert Gatt and Ehud Reiter (2009). [http://aclweb.org/anthology-new/W/W09/W09-0613.pdf SimpleNLG: A realisation engine for practical applications]. Proceedings of the 12th European Workshop on Natural Language Generation (ENLG-09).
+
+== Presentations ==
+Pierre-Luc Vaudry  (2011).
+[http://rali.iro.umontreal.ca/sem/display_sem.php?semid=3437 SimpleNLG bilingue : l'ajout du fran ais un r alisateur de texte anglais].  Universite de Montreal.
+
