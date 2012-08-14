@@ -8,4 +8,5 @@ simplenlg.orthography.english
 simplenlg.phrasespec
 simplenlg.realiser.english
 simplenlg.syntax.english
-simplenlg.test
+simplenlg.xmlrealiser
+simplenlg.xmlrealiser.wrapper
