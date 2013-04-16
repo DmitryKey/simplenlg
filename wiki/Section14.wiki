@@ -69,6 +69,18 @@ You can then realise this section as in the previous example:
 
 → For more examples of {{{DocumentElements}}}, look at {{{testsrc/DocumentElementTest.java}}}.
 
+*HTML Output*
+
+By default, simplenlg produces plain text output.  If you want
+output with HTML markups, add an HTMLFormatter to your realiser,
+for example
+{{{
+        realiser.setFormatter(new HTMLFormatter());
+}}}
+
+→ For examples of simplenlg input and corresponding
+HTML output, look at {{{HTMLFormatterTest.java}}}.
+
 ----
 
 {{{[1]}}} You may also add individual sentences thus:
