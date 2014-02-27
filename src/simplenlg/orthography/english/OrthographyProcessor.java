@@ -55,11 +55,11 @@ import simplenlg.framework.StringElement;
 public class OrthographyProcessor extends NLGModule {
 
 	private boolean commaSepPremodifiers; // set whether to separate
-											// premodifiers using commas
+	                                      // premodifiers using commas
 
-	private boolean commaSepCuephrase; // set whether to include a comma after a
-										// cue phrase (if marked by the
-										// CUE_PHRASE=true) feature.
+	private boolean commaSepCuephrase;   // set whether to include a comma after a
+	                                      // cue phrase (if marked by the
+	                                      // CUE_PHRASE=true) feature.
 
 	@Override
 	public void initialise() {
@@ -117,36 +117,32 @@ public class OrthographyProcessor extends NLGModule {
 	public NLGElement realise(NLGElement element) {
 		NLGElement realisedElement = null;
 		Object function = null; //the element's discourse function
-		
+
 		//get the element's function first
 		if(element instanceof ListElement) {
-			List<NLGElement> children = element.getChildren();	
-			if (!children.isEmpty()) {
+			List<NLGElement> children = element.getChildren();
+			if(!children.isEmpty()) {
 				NLGElement firstChild = children.get(0);
-				function = firstChild
-						.getFeature(InternalFeature.DISCOURSE_FUNCTION);
+				function = firstChild.getFeature(InternalFeature.DISCOURSE_FUNCTION);
 			}
 		} else {
 			function = element.getFeature(InternalFeature.DISCOURSE_FUNCTION);
 		}
-		
-		
-		if (element != null) {
+
+		if(element != null) {
 			ElementCategory category = element.getCategory();
 
-			if (category instanceof DocumentCategory
-					&& element instanceof DocumentElement) {
-				List<NLGElement> components = ((DocumentElement) element)
-						.getComponents();
+			if(category instanceof DocumentCategory && element instanceof DocumentElement) {
+				List<NLGElement> components = ((DocumentElement) element).getComponents();
 
-				switch ((DocumentCategory) category) {
+				switch((DocumentCategory) category){
 
-				case SENTENCE:
+				case SENTENCE :
 					realisedElement = realiseSentence(components, element);
 					break;
 
-				case LIST_ITEM:
-					if (components != null && components.size() > 0) {
+				case LIST_ITEM :
+					if(components != null && components.size() > 0) {
 						// recursively realise whatever's in the list item
 						// NB: this will realise embedded lists within list
 						// items
@@ -154,42 +150,39 @@ public class OrthographyProcessor extends NLGModule {
 					}
 					break;
 
-				default:
-					((DocumentElement) element)
-							.setComponents(realise(components));
+				default :
+					((DocumentElement) element).setComponents(realise(components));
 					realisedElement = element;
 				}
 
-			} else if (element instanceof ListElement) {
+			} else if(element instanceof ListElement) {
 				// AG: changes here: if we have a premodifier, then we ask the
 				// realiseList method to separate with a comma.
 				// if it's a postmod, we need commas at the start and end only
 				// if it's appositive
 				StringBuffer buffer = new StringBuffer();
-							
 
-				if (DiscourseFunction.PRE_MODIFIER.equals(function)) {
-					realiseList(buffer, element.getChildren(),
-							this.commaSepPremodifiers ? "," : "");
+				if(DiscourseFunction.PRE_MODIFIER.equals(function)) {
+					realiseList(buffer, element.getChildren(), this.commaSepPremodifiers ? "," : "");
 
-				} else if (DiscourseFunction.POST_MODIFIER.equals(function)) {// &&
-																				// appositive)
-																				// {
+				} else if(DiscourseFunction.POST_MODIFIER.equals(function)) {// &&
+					                                                         // appositive)
+					                                                         // {
 					List<NLGElement> postmods = element.getChildren();
 					// bug fix due to Owen Bennett
 					int len = postmods.size();
 
-					for (int i = 0; i < len; i++) {
+					for(int i = 0; i < len; i++ ) {
 						// for(NLGElement postmod: element.getChildren()) {
 						NLGElement postmod = postmods.get(i);
 
 						// if the postmod is appositive, it's sandwiched in
 						// commas
-						if (postmod.getFeatureAsBoolean(Feature.APPOSITIVE)) {
+						if(postmod.getFeatureAsBoolean(Feature.APPOSITIVE)) {
 							buffer.append(", ");
 							buffer.append(realise(postmod));
 
-							if (i < len - 1) {
+							if(i < len - 1) {
 								buffer.append(", ");
 							}
 						} else {
@@ -203,11 +196,10 @@ public class OrthographyProcessor extends NLGModule {
 				}
 
 				// realiseList(buffer, element.getChildren(), "");
-				realisedElement = new StringElement(buffer.toString());				
+				realisedElement = new StringElement(buffer.toString());
 
-			} else if (element instanceof CoordinatedPhraseElement) {
-				realisedElement = realiseCoordinatedPhrase(element
-						.getChildren());
+			} else if(element instanceof CoordinatedPhraseElement) {
+				realisedElement = realiseCoordinatedPhrase(element.getChildren());
 
 			} else {
 				realisedElement = element;
@@ -215,22 +207,23 @@ public class OrthographyProcessor extends NLGModule {
 
 			// make the realised element inherit the original category
 			// essential if list items are to be properly formatted later
-			if (realisedElement != null) {
+			if(realisedElement != null) {
 				realisedElement.setCategory(category);
 			}
-			
+
 			//check if this is a cue phrase; if param is set, postfix a comma
-			if((DiscourseFunction.CUE_PHRASE.equals(function) || DiscourseFunction.FRONT_MODIFIER.equals(function)) && this.commaSepCuephrase) {
+			if((DiscourseFunction.CUE_PHRASE.equals(function) || DiscourseFunction.FRONT_MODIFIER.equals(function))
+			   && this.commaSepCuephrase) {
 				String realisation = realisedElement.getRealisation();
-				
+
 				if(!realisation.endsWith(",")) {
 					realisation = realisation + ",";
 				}
-				
+
 				realisedElement.setRealisation(realisation);
 			}
 		}
-		
+
 		//remove preceding and trailing whitespace from internal punctuation
 		removePunctSpace(realisedElement);
 		return realisedElement;
@@ -242,11 +235,16 @@ public class OrthographyProcessor extends NLGModule {
 	 * @param realisedElement
 	 */
 	private void removePunctSpace(NLGElement realisedElement) {
-		String realisation = realisedElement.getRealisation();
 
-		if (realisation != null) {
-			realisation = realisation.replaceAll(" ,", ",");
-			realisedElement.setRealisation(realisation);
+		if(realisedElement != null) {
+
+			String realisation = realisedElement.getRealisation();
+
+			if(realisation != null) {
+				realisation = realisation.replaceAll(" ,", ",");
+				realisedElement.setRealisation(realisation);
+			}
+
 		}
 	}
 
@@ -261,18 +259,15 @@ public class OrthographyProcessor extends NLGModule {
 	 *            the <code>NLGElement</code> representing the sentence.
 	 * @return the realised element as an <code>NLGElement</code>.
 	 */
-	private NLGElement realiseSentence(List<NLGElement> components,
-			NLGElement element) {
+	private NLGElement realiseSentence(List<NLGElement> components, NLGElement element) {
 
 		NLGElement realisedElement = null;
-		if (components != null && components.size() > 0) {
+		if(components != null && components.size() > 0) {
 			StringBuffer realisation = new StringBuffer();
 			realiseList(realisation, components, "");
 
 			capitaliseFirstLetter(realisation);
-			terminateSentence(realisation,
-					element.getFeatureAsBoolean(InternalFeature.INTERROGATIVE)
-							.booleanValue());
+			terminateSentence(realisation, element.getFeatureAsBoolean(InternalFeature.INTERROGATIVE).booleanValue());
 
 			((DocumentElement) element).clearComponents();
 			// realisation.append(' ');
@@ -294,11 +289,10 @@ public class OrthographyProcessor extends NLGModule {
 	 *            a <code>boolean</code> flag showing <code>true</code> if the
 	 *            sentence is an interrogative, <code>false</code> otherwise.
 	 */
-	private void terminateSentence(StringBuffer realisation,
-			boolean interrogative) {
+	private void terminateSentence(StringBuffer realisation, boolean interrogative) {
 		char character = realisation.charAt(realisation.length() - 2);
-		if (character != '.' && character != '?') {
-			if (interrogative) {
+		if(character != '.' && character != '?') {
+			if(interrogative) {
 				realisation.append('?');
 			} else {
 				realisation.append('.');
@@ -316,7 +310,7 @@ public class OrthographyProcessor extends NLGModule {
 	 */
 	private void capitaliseFirstLetter(StringBuffer realisation) {
 		char character = realisation.charAt(0);
-		if (character >= 'a' && character <= 'z') {
+		if(character >= 'a' && character <= 'z') {
 			character = (char) ('A' + (character - 'a'));
 			realisation.setCharAt(0, character);
 		}
@@ -326,9 +320,9 @@ public class OrthographyProcessor extends NLGModule {
 	public List<NLGElement> realise(List<NLGElement> elements) {
 		List<NLGElement> realisedList = new ArrayList<NLGElement>();
 
-		if (elements != null && elements.size() > 0) {
-			for (NLGElement eachElement : elements) {
-				if (eachElement instanceof DocumentElement) {
+		if(elements != null && elements.size() > 0) {
+			for(NLGElement eachElement : elements) {
+				if(eachElement instanceof DocumentElement) {
 					realisedList.add(realise(eachElement));
 				} else {
 					realisedList.add(eachElement);
@@ -352,22 +346,20 @@ public class OrthographyProcessor extends NLGModule {
 	 *            the string to use to separate elements of the list, empty if
 	 *            no separator needed
 	 */
-	private void realiseList(StringBuffer realisation,
-			List<NLGElement> components, String listSeparator) {
+	private void realiseList(StringBuffer realisation, List<NLGElement> components, String listSeparator) {
 
 		NLGElement realisedChild = null;
 
-		for (int i = 0; i < components.size(); i++) {
+		for(int i = 0; i < components.size(); i++ ) {
 			NLGElement thisElement = components.get(i);
 			realisedChild = realise(thisElement);
 			String childRealisation = realisedChild.getRealisation();
 
 			// check that the child realisation is non-empty
-			if (childRealisation != null && childRealisation.length() > 0
-					&& !childRealisation.matches("^[\\s\\n]+$")) {
+			if(childRealisation != null && childRealisation.length() > 0 && !childRealisation.matches("^[\\s\\n]+$")) {
 				realisation.append(realisedChild.getRealisation());
 
-				if (components.size() > 1 && i < components.size() - 1) {
+				if(components.size() > 1 && i < components.size() - 1) {
 					realisation.append(listSeparator);
 				}
 
@@ -375,7 +367,7 @@ public class OrthographyProcessor extends NLGModule {
 			}
 		}
 
-		if (realisation.length() > 0) {
+		if(realisation.length() > 0) {
 			realisation.setLength(realisation.length() - 1);
 		}
 	}
@@ -397,11 +389,10 @@ public class OrthographyProcessor extends NLGModule {
 
 		int length = components.size();
 
-		for (int index = 0; index < length; index++) {
+		for(int index = 0; index < length; index++ ) {
 			realisedChild = components.get(index);
-			if (index < length - 2
-					&& DiscourseFunction.CONJUNCTION.equals(realisedChild
-							.getFeature(InternalFeature.DISCOURSE_FUNCTION))) {
+			if(index < length - 2
+			   && DiscourseFunction.CONJUNCTION.equals(realisedChild.getFeature(InternalFeature.DISCOURSE_FUNCTION))) {
 
 				realisation.append(", "); //$NON-NLS-1$
 			} else {
