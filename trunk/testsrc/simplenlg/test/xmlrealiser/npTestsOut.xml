@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<NLGSpec xmlns="http://code.google.com/p/simplenlg/schemas/version1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?><NLGSpec xmlns="http://simplenlg.googlecode.com/svn/trunk/res/xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Recording name="NPPhraseSpec examples">
     <Record name="Possessive Spec">
       <Document>
@@ -35,7 +34,7 @@
           <head cat="NOUN">
             <base>house</base>
           </head>
-          <spec xsi:type="CoordinatedPhraseElement" POSSESSIVE="true" conj="and">
+          <spec xsi:type="CoordinatedPhraseElement" conj="and" POSSESSIVE="true">
             <coord xsi:type="NPPhraseSpec" PRONOMINAL="true">
               <head cat="NOUN">
                 <base>dog</base>
@@ -59,7 +58,7 @@
     </Record>
     <Record name="Pronominal1">
       <Document>
-        <child xsi:type="NPPhraseSpec" PRONOMINAL="true" NUMBER="PLURAL">
+        <child xsi:type="NPPhraseSpec" NUMBER="PLURAL" PRONOMINAL="true">
           <head cat="NOUN">
             <base>house</base>
           </head>
@@ -72,7 +71,7 @@
     </Record>
     <Record name="Pronominal2">
       <Document>
-        <child xsi:type="NPPhraseSpec" PRONOMINAL="true" GENDER="FEMININE">
+        <child xsi:type="NPPhraseSpec" GENDER="FEMININE" PRONOMINAL="true">
           <head cat="NOUN">
             <base>singer</base>
           </head>
@@ -85,7 +84,7 @@
     </Record>
     <Record name="Pronominal3">
       <Document>
-        <child xsi:type="NPPhraseSpec" PRONOMINAL="true" POSSESSIVE="true" GENDER="FEMININE">
+        <child xsi:type="NPPhraseSpec" GENDER="FEMININE" POSSESSIVE="true" PRONOMINAL="true">
           <head cat="NOUN">
             <base>singer</base>
           </head>
@@ -115,7 +114,7 @@
           <head cat="NOUN">
             <base>house</base>
           </head>
-          <spec xsi:type="CoordinatedPhraseElement" POSSESSIVE="true" conj="and">
+          <spec xsi:type="CoordinatedPhraseElement" conj="and" POSSESSIVE="true">
             <coord xsi:type="NPPhraseSpec" PRONOMINAL="true">
               <head cat="NOUN">
                 <base>dog</base>
@@ -176,12 +175,12 @@
     <Record name="NP + wordElement complement">
       <Document>
         <child xsi:type="NPPhraseSpec">
-          <head cat="NOUN">
-            <base>patient</base>
-          </head>
           <compl xsi:type="WordElement" cat="ADJECTIVE">
             <base>jack</base>
           </compl>
+          <head cat="NOUN">
+            <base>patient</base>
+          </head>
           <spec xsi:type="NPPhraseSpec" POSSESSIVE="true">
             <head cat="DETERMINER">
               <base>the</base>

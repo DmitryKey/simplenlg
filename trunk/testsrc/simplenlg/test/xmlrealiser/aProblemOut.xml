@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<NLGSpec xmlns="http://code.google.com/p/simplenlg/schemas/version1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?><NLGSpec xmlns="http://simplenlg.googlecode.com/svn/trunk/res/xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Recording name="">
     <Record name="">
       <Document>
@@ -10,9 +9,6 @@
             </head>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">
-              <base>be</base>
-            </head>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="CoordinatedPhraseElement" conj=",">
                 <coord xsi:type="AdjPhraseSpec">
@@ -34,9 +30,6 @@
               </spec>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">
-                <base>in</base>
-              </head>
               <compl xsi:type="NPPhraseSpec">
                 <head cat="NOUN">
                   <base>third obtuse marginal branch</base>
@@ -45,7 +38,13 @@
                   <base>the</base>
                 </spec>
               </compl>
+              <head cat="PREPOSITION">
+                <base>in</base>
+              </head>
             </postMod>
+            <head cat="VERB">
+              <base>be</base>
+            </head>
           </vp>
         </child>
         <child xsi:type="SPhraseSpec">
@@ -55,9 +54,6 @@
             </head>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">
-              <base>be</base>
-            </head>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>80 %</val>
@@ -70,9 +66,6 @@
               </spec>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">
-                <base>in</base>
-              </head>
               <compl xsi:type="NPPhraseSpec">
                 <preMod xsi:type="AdjPhraseSpec">
                   <head cat="ADJECTIVE">
@@ -86,7 +79,13 @@
                   <base>the</base>
                 </spec>
               </compl>
+              <head cat="PREPOSITION">
+                <base>in</base>
+              </head>
             </postMod>
+            <head cat="VERB">
+              <base>be</base>
+            </head>
           </vp>
         </child>
       </Document>

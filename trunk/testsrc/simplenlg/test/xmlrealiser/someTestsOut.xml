@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<NLGSpec xmlns="http://code.google.com/p/simplenlg/schemas/version1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?><NLGSpec xmlns="http://simplenlg.googlecode.com/svn/trunk/res/xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Recording name="Some Tests">
     <Record name="Hello World">
       <Document cat="PARAGRAPH">
@@ -23,17 +22,8 @@
             </spec>
           </subj>
           <vp xsi:type="VPPhraseSpec" TENSE="PAST">
-            <head cat="VERB">
-              <base>lie</base>
-            </head>
             <postMod xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">
-                <base>etherise</base>
-              </head>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">
-                  <base>upon</base>
-                </head>
                 <compl xsi:type="NPPhraseSpec">
                   <head cat="NOUN">
                     <base>table</base>
@@ -42,8 +32,17 @@
                     <base>a</base>
                   </spec>
                 </compl>
+                <head cat="PREPOSITION">
+                  <base>upon</base>
+                </head>
               </postMod>
+              <head cat="VERB">
+                <base>etherise</base>
+              </head>
             </postMod>
+            <head cat="VERB">
+              <base>lie</base>
+            </head>
           </vp>
         </child>
         <child xsi:type="SPhraseSpec">
@@ -56,17 +55,8 @@
             </spec>
           </subj>
           <vp xsi:type="VPPhraseSpec" TENSE="PAST">
-            <head var="IRREGULAR" cat="VERB">
-              <base>lie</base>
-            </head>
             <postMod xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">
-                <base>etherise</base>
-              </head>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">
-                  <base>upon</base>
-                </head>
                 <compl xsi:type="NPPhraseSpec">
                   <head cat="NOUN">
                     <base>table</base>
@@ -75,8 +65,17 @@
                     <base>a</base>
                   </spec>
                 </compl>
+                <head cat="PREPOSITION">
+                  <base>upon</base>
+                </head>
               </postMod>
+              <head cat="VERB">
+                <base>etherise</base>
+              </head>
             </postMod>
+            <head cat="VERB" var="IRREGULAR">
+              <base>lie</base>
+            </head>
           </vp>
         </child>
       </Document>
@@ -368,9 +367,6 @@
             </head>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">
-              <base>be</base>
-            </head>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>80 %</val>
@@ -383,9 +379,6 @@
               </spec>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">
-                <base>in</base>
-              </head>
               <compl xsi:type="NPPhraseSpec">
                 <preMod xsi:type="AdjPhraseSpec">
                   <head cat="ADJECTIVE">
@@ -399,7 +392,13 @@
                   <base>the</base>
                 </spec>
               </compl>
+              <head cat="PREPOSITION">
+                <base>in</base>
+              </head>
             </postMod>
+            <head cat="VERB">
+              <base>be</base>
+            </head>
           </vp>
         </child>
       </Document>
@@ -416,9 +415,6 @@
             </head>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">
-              <base>be</base>
-            </head>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="StringElement">
                 <val>95 %</val>
@@ -428,20 +424,17 @@
                   <base>eccentric</base>
                 </head>
               </preMod>
-              <head cat="NOUN">
-                <base>in-stent restenosis</base>
-              </head>
               <postMod xsi:type="StringElement">
                 <val>(8 mm length)</val>
               </postMod>
+              <head cat="NOUN">
+                <base>in-stent restenosis</base>
+              </head>
               <spec xsi:type="WordElement" cat="DETERMINER">
                 <base>a</base>
               </spec>
             </compl>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">
-                <base>in</base>
-              </head>
               <compl xsi:type="NPPhraseSpec">
                 <preMod xsi:type="AdjPhraseSpec">
                   <head cat="ADJECTIVE">
@@ -455,7 +448,13 @@
                   <base>the</base>
                 </spec>
               </compl>
+              <head cat="PREPOSITION">
+                <base>in</base>
+              </head>
             </postMod>
+            <head cat="VERB">
+              <base>be</base>
+            </head>
           </vp>
         </child>
       </Document>
@@ -475,27 +474,27 @@
             </spec>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">
-              <base>be</base>
-            </head>
             <compl xsi:type="NPPhraseSpec">
-              <head cat="NOUN">
-                <base>vessel</base>
-              </head>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">
-                  <base>with</base>
-                </head>
                 <compl xsi:type="NPPhraseSpec">
                   <head cat="NOUN">
                     <base>luminal irregularities</base>
                   </head>
                 </compl>
+                <head cat="PREPOSITION">
+                  <base>with</base>
+                </head>
               </postMod>
+              <head cat="NOUN">
+                <base>vessel</base>
+              </head>
               <spec xsi:type="WordElement" cat="DETERMINER">
                 <base>a</base>
               </spec>
             </compl>
+            <head cat="VERB">
+              <base>be</base>
+            </head>
           </vp>
         </child>
       </Document>

@@ -403,6 +403,7 @@ public class UnWrapper {
 			simplenlg.xmlrealiser.wrapper.XmlCoordinatedPhraseElement wp = (simplenlg.xmlrealiser.wrapper.XmlCoordinatedPhraseElement) wps;
 			CoordinatedPhraseElement cp = new CoordinatedPhraseElement();
 			ElementCategory cat = UnwrapCategory(wp.getCat());
+			
 			if (cat != null && cat instanceof PhraseCategory) {
 				cp.setCategory(cat);
 			}
@@ -412,11 +413,8 @@ public class UnWrapper {
 					cp.setConjunction(s);
 				}
 			}
-			if (wp.getPERSON() != null) {
-				cp.setFeature(Feature.PERSON, wp.getPERSON());
-			}
-
-			cp.setFeature(Feature.POSSESSIVE, wp.isPOSSESSIVE());
+			
+			setCoordinatedPhraseFeatures(wp, cp);
 
 			for (simplenlg.xmlrealiser.wrapper.XmlNLGElement p : wp.getCoord()) {
 				NLGElement p1 = UnwrapNLGElement(p);
@@ -506,7 +504,7 @@ public class UnWrapper {
 	 * Unwrap category.
 	 * 
 	 * @param cat
-	 *            the cat
+	 *            the xml category object
 	 * @return the element category
 	 */
 	private ElementCategory UnwrapCategory(Object cat) {
@@ -528,12 +526,62 @@ public class UnWrapper {
 	}
 
 	/**
+	 * Sets coordinated phrase features.
+	 * 
+	 * @param wp
+	 *            The xml CoordinatedPhraseElement object.
+	 * @param p
+	 *            the internal CoordinatedPhraseElement object to get the features.
+	 */
+	private void setCoordinatedPhraseFeatures(
+			simplenlg.xmlrealiser.wrapper.XmlCoordinatedPhraseElement wp,
+			simplenlg.framework.CoordinatedPhraseElement p) {
+		
+		if (wp.getPERSON() != null) {
+			p.setFeature(Feature.PERSON, wp.getPERSON());
+		}
+
+		if (wp.getTENSE() != null) {
+			p.setFeature(Feature.TENSE, Enum.valueOf(Tense.class, wp.getTENSE()
+					.toString()));
+		}
+
+		if (wp.getMODAL() != null) {
+			p.setFeature(Feature.MODAL, wp.getMODAL());
+		}
+		
+		if (wp.getNUMBER() != null) {
+			// map number feature from wrapper ~NumberAgr to actual NumberAgr
+			String numString = wp.getNUMBER().toString();
+			simplenlg.features.NumberAgreement simplenlgNum = simplenlg.features.NumberAgreement
+					.valueOf(numString);
+			// p.setFeature(Feature.NUMBER, wp.getNUMBER());
+			p.setFeature(Feature.NUMBER, simplenlgNum);
+		}
+
+		if (wp.getPERSON() != null) {
+			// map person feature from wrapper Person to actual Person
+			String perString = wp.getPERSON().toString();
+			simplenlg.features.Person simplenlgPers = simplenlg.features.Person
+					.valueOf(perString);
+			p.setFeature(Feature.PERSON, simplenlgPers);
+		}
+
+		// boolean features.
+		p.setFeature(Feature.APPOSITIVE, wp.isAPPOSITIVE());
+		p.setFeature(Feature.NEGATED, wp.isNEGATED());
+		p.setFeature(Feature.POSSESSIVE, wp.isPOSSESSIVE());
+		p.setFeature(Feature.PROGRESSIVE, wp.isPROGRESSIVE());
+		p.setFeature(Feature.RAISE_SPECIFIER, wp.isRAISESPECIFIER());
+		p.setFeature(Feature.SUPRESSED_COMPLEMENTISER, wp.isSUPRESSEDCOMPLEMENTISER());
+	}
+	/**
 	 * Sets the np features.
 	 * 
 	 * @param wp
-	 *            the wp
+	 *            The xml Noun Phrase object.
 	 * @param p
-	 *            the p
+	 *            the NPPhraseSpec object to get the features.
 	 */
 	private void setNPFeatures(
 			simplenlg.xmlrealiser.wrapper.XmlNPPhraseSpec wp,
@@ -574,9 +622,9 @@ public class UnWrapper {
 	 * Sets the vp features.
 	 * 
 	 * @param wp
-	 *            the wp
+	 *            The xml Verb Phrase object.
 	 * @param p
-	 *            the p
+	 *            the internal VP object to get features from xml object.
 	 */
 	private void setVPFeatures(
 			simplenlg.xmlrealiser.wrapper.XmlVPPhraseSpec wp,
@@ -599,10 +647,13 @@ public class UnWrapper {
 			p.setFeature(Feature.MODAL, wp.getMODAL());
 		}
 
+		p.setFeature(Feature.AGGREGATE_AUXILIARY, wp.isAGGREGATEAUXILIARY());
 		p.setFeature(Feature.NEGATED, wp.isNEGATED());
 		p.setFeature(Feature.PASSIVE, wp.isPASSIVE());
 		p.setFeature(Feature.PERFECT, wp.isPERFECT());
 		p.setFeature(Feature.PROGRESSIVE, wp.isPROGRESSIVE());
+		p.setFeature(Feature.SUPPRESS_GENITIVE_IN_GERUND, wp.isSUPPRESSGENITIVEINGERUND());
+		p.setFeature(Feature.SUPRESSED_COMPLEMENTISER, wp.isSUPRESSEDCOMPLEMENTISER());
 	}
 
 	/**
@@ -611,11 +662,11 @@ public class UnWrapper {
 	 * haven't been set on the S
 	 * 
 	 * @param wp
-	 *            the wp
+	 *            the xml SPhraseSpec object
 	 * @param sp
-	 *            the sp
+	 *            the sentence.
 	 * @param vp
-	 *            the vp
+	 *            the verb phrase.
 	 */
 	private void setSFeatures(simplenlg.xmlrealiser.wrapper.XmlSPhraseSpec wp,
 			simplenlg.phrasespec.SPhraseSpec sp,
@@ -660,6 +711,11 @@ public class UnWrapper {
 			sp.setFeature(Feature.INTERROGATIVE_TYPE, vp
 					.getFeature(Feature.INTERROGATIVE_TYPE));
 		}
+		
+		// set on clauses.
+		boolean sAggregateAuxiliary = wp.isAGGREGATEAUXILIARY() == null ? false : wp.isAGGREGATEAUXILIARY();
+		boolean vAggregateAuxiliary = vp == null ? false : vp.getFeatureAsBoolean(Feature.AGGREGATE_AUXILIARY).booleanValue();
+		sp.setFeature(Feature.AGGREGATE_AUXILIARY, sAggregateAuxiliary || vAggregateAuxiliary);
 
 		// passive: can be set on S or VP
 		boolean sPass = wp.isPASSIVE() == null ? false : wp.isPASSIVE();
@@ -678,6 +734,17 @@ public class UnWrapper {
 		boolean vNeg = vp == null ? false : vp.getFeatureAsBoolean(
 				Feature.NEGATED).booleanValue();
 		sp.setFeature(Feature.NEGATED, sNeg || vNeg);
+		
+		// set on clauses.
+		boolean ssgg = wp.isSUPPRESSGENITIVEINGERUND() == null ? false : wp.isSUPPRESSGENITIVEINGERUND();
+		boolean vsgg = vp == null ? false : vp.getFeatureAsBoolean(Feature.SUPPRESS_GENITIVE_IN_GERUND).booleanValue();
+		sp.setFeature(Feature.SUPPRESS_GENITIVE_IN_GERUND, ssgg || vsgg);
+		
+		// set on clauses.
+		boolean ssc = wp.isSUPRESSEDCOMPLEMENTISER() == null ? false : wp.isSUPRESSEDCOMPLEMENTISER();
+		boolean vsc = vp == null ? false : vp.getFeatureAsBoolean(Feature.SUPRESSED_COMPLEMENTISER).booleanValue();
+		sp.setFeature(Feature.SUPRESSED_COMPLEMENTISER, ssc || vsc);
+
 	}
 
 	/**

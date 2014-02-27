@@ -2,6 +2,16 @@
 	<!--
 		Schema for simplenlg edited by Christopher Howell (Agfa Healthcare
 		Corporation) and Albert Gatt (University of Malta)
+    
+    This is the schema for a realisation request.
+    Attribute groups contain feature attributes. Each group contains features that,
+    according to the javadoc of the Feature class, can apply to that type of element,
+    and are user-settable.
+    
+    This version of the schema is based on simplenlg 4.42.
+    
+    Java classes in \simplenlg\src\simplenlg\xmlrealiser\wrapper are generated from this
+    schema using xjc, the java utility., which is available in the JDK.
 	-->
 <xs:schema targetNamespace="http://simplenlg.googlecode.com/svn/trunk/res/xml"
 	elementFormDefault="qualified" attributeFormDefault="unqualified"
@@ -85,6 +95,7 @@
 	</xs:complexType>
 
 	<xs:attributeGroup name="sPhraseAtts">
+    <xs:attribute name="AGGREGATE_AUXILIARY" type="xs:boolean" />
 		<xs:attribute name="CLAUSE_STATUS" type="nlg:clauseStatus" />
 		<xs:attribute name="COMPLEMENTISER" type="xs:string" />
 		<xs:attribute name="FORM" type="nlg:form" />
@@ -95,6 +106,8 @@
 		<xs:attribute name="PERFECT" type="xs:boolean" />
 		<xs:attribute name="PERSON" type="nlg:person" />
 		<xs:attribute name="PROGRESSIVE" type="xs:boolean" />
+    <xs:attribute name="SUPPRESS_GENITIVE_IN_GERUND" type="xs:boolean" />
+    <xs:attribute name="SUPRESSED_COMPLEMENTISER" type="xs:boolean" />
 		<xs:attribute name="TENSE" type="nlg:tense" />
 	</xs:attributeGroup>
 
@@ -113,6 +126,7 @@
 	</xs:complexType>
 
 	<xs:attributeGroup name="vpPhraseAtts">
+    <xs:attribute name="AGGREGATE_AUXILIARY" type="xs:boolean" />
 		<xs:attribute name="FORM" type="nlg:form" />
 		<xs:attribute name="MODAL" type="xs:string" />
 		<xs:attribute name="NEGATED" type="xs:boolean" />
@@ -120,6 +134,8 @@
 		<xs:attribute name="PERFECT" type="xs:boolean" />
 		<xs:attribute name="PERSON" type="nlg:person" />
 		<xs:attribute name="PROGRESSIVE" type="xs:boolean" />
+		<xs:attribute name="SUPPRESS_GENITIVE_IN_GERUND" type="xs:boolean" />
+		<xs:attribute name="SUPRESSED_COMPLEMENTISER" type="xs:boolean" />
 		<xs:attribute name="TENSE" type="nlg:tense" />
 	</xs:attributeGroup>
 
@@ -215,8 +231,17 @@
 	<xs:attributeGroup name="CoordinatedPhraseAtts">
 		<xs:attribute name="conj" type="xs:string" default="and" />
 		<xs:attribute name="cat" type="nlg:phraseCategory" />
+		<xs:attribute name="APPOSITIVE" type="xs:boolean" />
+		<xs:attribute name="CONJUNCTION_TYPE" type="xs:string" />
+		<xs:attribute name="MODAL" type="xs:string" />
+		<xs:attribute name="NEGATED" type="xs:boolean" />
+		<xs:attribute name="NUMBER" type="nlg:numberAgreement" />
 		<xs:attribute name="PERSON" type="nlg:person" />
-		<xs:attribute name="POSSESSIVE" type="xs:boolean"></xs:attribute>
+		<xs:attribute name="POSSESSIVE" type="xs:boolean" />
+    <xs:attribute name="PROGRESSIVE" type="xs:boolean" />
+		<xs:attribute name="RAISE_SPECIFIER" type="xs:boolean" />
+		<xs:attribute name="SUPRESSED_COMPLEMENTISER" type="xs:boolean" />
+		<xs:attribute name="TENSE" type="nlg:tense" />
 	</xs:attributeGroup>
 
 	<xs:complexType name="PhraseElement" abstract="true">

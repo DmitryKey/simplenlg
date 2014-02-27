@@ -186,7 +186,7 @@ public class Recording {
 			throws JAXBException, IOException, TransformerException {
 		JAXBContext jc;
 		jc = JAXBContext
-				.newInstance(simplenlg.xmlrealiser.wrapper.RecordSet.class);
+				.newInstance(simplenlg.xmlrealiser.wrapper.NLGSpec.class);
 		Marshaller m = jc.createMarshaller();
 
 		// For the meaning of the next property, see the
