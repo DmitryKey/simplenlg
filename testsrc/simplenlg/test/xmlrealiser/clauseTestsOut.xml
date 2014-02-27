@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<NLGSpec xmlns="http://simplenlg.googlecode.com/svn/trunk/res/xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?><NLGSpec xmlns="http://simplenlg.googlecode.com/svn/trunk/res/xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Recording name="Clause tests">
     <Record name="Negation on VP">
       <Document cat="PARAGRAPH">
@@ -12,7 +11,7 @@
               <base>the</base>
             </spec>
           </subj>
-          <vp xsi:type="VPPhraseSpec" TENSE="PAST" NEGATED="true">
+          <vp xsi:type="VPPhraseSpec" NEGATED="true" TENSE="PAST">
             <postMod xsi:type="VPPhraseSpec" TENSE="PAST">
               <postMod xsi:type="PPPhraseSpec">
                 <compl xsi:type="NPPhraseSpec">
@@ -31,7 +30,7 @@
                 <base>etherise</base>
               </head>
             </postMod>
-            <head var="IRREGULAR" cat="VERB">
+            <head cat="VERB" var="IRREGULAR">
               <base>lie</base>
             </head>
           </vp>
@@ -43,7 +42,7 @@
     </Record>
     <Record name="Negation on S">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" NEGATED="true">
+        <child xsi:type="SPhraseSpec" NEGATED="true" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
               <base>patient</base>
@@ -71,7 +70,7 @@
                 <base>etherise</base>
               </head>
             </postMod>
-            <head var="IRREGULAR" cat="VERB">
+            <head cat="VERB" var="IRREGULAR">
               <base>lie</base>
             </head>
           </vp>
@@ -114,7 +113,7 @@
                 <base>etherise</base>
               </head>
             </postMod>
-            <head var="IRREGULAR" cat="VERB">
+            <head cat="VERB" var="IRREGULAR">
               <base>lie</base>
             </head>
           </vp>
@@ -154,7 +153,7 @@
     </Record>
     <Record name="Form test 1: S + infinitive">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" FORM="INFINITIVE">
+        <child xsi:type="SPhraseSpec" FORM="INFINITIVE" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
               <base>man</base>
@@ -182,7 +181,7 @@
     </Record>
     <Record name="Form test 2: S + GERUND">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" FORM="GERUND">
+        <child xsi:type="SPhraseSpec" FORM="GERUND" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
               <base>man</base>
@@ -210,7 +209,7 @@
     </Record>
     <Record name="Form test 2: S + IMPERATIVE">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" FORM="IMPERATIVE">
+        <child xsi:type="SPhraseSpec" FORM="IMPERATIVE" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
               <base>man</base>
@@ -248,7 +247,7 @@
             </spec>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <compl xsi:type="SPhraseSpec" TENSE="PAST" PROGRESSIVE="true">
+            <compl xsi:type="SPhraseSpec" PROGRESSIVE="true" TENSE="PAST">
               <subj xsi:type="NPPhraseSpec">
                 <head cat="NOUN">
                   <base>child</base>
@@ -318,7 +317,7 @@
     </Record>
     <Record name="Passive Sentence">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" PASSIVE="true">
+        <child xsi:type="SPhraseSpec" PASSIVE="true" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
               <base>child</base>
@@ -348,7 +347,7 @@
     </Record>
     <Record name="Modal">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" MODAL="should">
+        <child xsi:type="SPhraseSpec" MODAL="should" TENSE="PAST">
           <subj xsi:type="SPhraseSpec" TENSE="PAST">
             <subj xsi:type="NPPhraseSpec">
               <head cat="NOUN">
@@ -388,7 +387,7 @@
     </Record>
     <Record name="Modal+Passive">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" PASSIVE="true" MODAL="may">
+        <child xsi:type="SPhraseSpec" MODAL="may" PASSIVE="true" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
               <base>child</base>
@@ -494,7 +493,7 @@
     </Record>
     <Record name="Interrogative WH Object">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" INTERROGATIVE_TYPE="WHAT_OBJECT">
+        <child xsi:type="SPhraseSpec" INTERROGATIVE_TYPE="WHAT_OBJECT" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
               <base>dog</base>
@@ -524,7 +523,7 @@
     </Record>
     <Record name="Interrogative WH Subject">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" INTERROGATIVE_TYPE="WHAT_SUBJECT">
+        <child xsi:type="SPhraseSpec" INTERROGATIVE_TYPE="WHAT_SUBJECT" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
               <base>dog</base>
@@ -554,7 +553,7 @@
     </Record>
     <Record name="Interrogative WH Subject">
       <Document cat="PARAGRAPH">
-        <child xsi:type="SPhraseSpec" TENSE="PAST" INTERROGATIVE_TYPE="WHO_SUBJECT">
+        <child xsi:type="SPhraseSpec" INTERROGATIVE_TYPE="WHO_SUBJECT" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
               <base>dog</base>
@@ -590,7 +589,7 @@
               <base>transfusion of whole blood</base>
             </head>
           </subj>
-          <vp xsi:type="VPPhraseSpec" TENSE="PRESENT" PASSIVE="true">
+          <vp xsi:type="VPPhraseSpec" PASSIVE="true" TENSE="PRESENT">
             <head cat="VERB">
               <base>indicate</base>
             </head>
@@ -609,7 +608,7 @@
               <base>transfusion of whole blood</base>
             </head>
           </compl>
-          <vp xsi:type="VPPhraseSpec" TENSE="PRESENT" PASSIVE="true">
+          <vp xsi:type="VPPhraseSpec" PASSIVE="true" TENSE="PRESENT">
             <head cat="VERB">
               <base>indicate</base>
             </head>
@@ -635,7 +634,7 @@
               </head>
             </coord>
           </compl>
-          <vp xsi:type="VPPhraseSpec" TENSE="PRESENT" PASSIVE="true">
+          <vp xsi:type="VPPhraseSpec" PASSIVE="true" TENSE="PRESENT">
             <head cat="VERB">
               <base>recommend</base>
             </head>
@@ -811,7 +810,7 @@
             </coord>
           </vp>
         </child>
-        <child xsi:type="SPhraseSpec" TENSE="PRESENT" PASSIVE="true">
+        <child xsi:type="SPhraseSpec" PASSIVE="true" TENSE="PRESENT">
           <compl xsi:type="CoordinatedPhraseElement" conj="and">
             <coord xsi:type="NPPhraseSpec">
               <head cat="NOUN">
@@ -882,7 +881,7 @@
       <Document cat="PARAGRAPH">
         <child xsi:type="SPhraseSpec" TENSE="PAST">
           <subj xsi:type="NPPhraseSpec">
-            <head canned="false" cat="NOUN">
+            <head cat="NOUN">
               <base>the doctor on this shift</base>
             </head>
           </subj>

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<NLGSpec xmlns="http://simplenlg.googlecode.com/svn/trunk/res/xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?><NLGSpec xmlns="http://simplenlg.googlecode.com/svn/trunk/res/xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Recording name="Lexical variants">
     <Record name="InflVariantiUncount">
       <Document cat="PARAGRAPH">
@@ -13,19 +12,19 @@
             </spec>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">
-              <base>have</base>
-            </head>
             <compl xsi:type="NPPhraseSpec" NUMBER="PLURAL">
               <preMod xsi:type="AdjPhraseSpec">
                 <head cat="ADJECTIVE">
                   <base>mild</base>
                 </head>
               </preMod>
-              <head var="UNCOUNT" cat="NOUN">
+              <head cat="NOUN" var="UNCOUNT">
                 <base>calcification</base>
               </head>
             </compl>
+            <head cat="VERB">
+              <base>have</base>
+            </head>
           </vp>
         </child>
         <child xsi:type="SPhraseSpec">
@@ -38,9 +37,6 @@
             </spec>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">
-              <base>have</base>
-            </head>
             <compl xsi:type="NPPhraseSpec" NUMBER="PLURAL">
               <preMod xsi:type="AdjPhraseSpec">
                 <head cat="ADJECTIVE">
@@ -51,6 +47,9 @@
                 <base>calcification</base>
               </head>
             </compl>
+            <head cat="VERB">
+              <base>have</base>
+            </head>
           </vp>
         </child>
       </Document>
@@ -70,17 +69,8 @@
             </spec>
           </subj>
           <vp xsi:type="VPPhraseSpec" TENSE="PAST">
-            <head var="IRREGULAR" cat="VERB">
-              <base>lie</base>
-            </head>
             <postMod xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">
-                <base>etherise</base>
-              </head>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">
-                  <base>upon</base>
-                </head>
                 <compl xsi:type="NPPhraseSpec">
                   <head cat="NOUN">
                     <base>table</base>
@@ -89,8 +79,17 @@
                     <base>a</base>
                   </spec>
                 </compl>
+                <head cat="PREPOSITION">
+                  <base>upon</base>
+                </head>
               </postMod>
+              <head cat="VERB">
+                <base>etherise</base>
+              </head>
             </postMod>
+            <head cat="VERB" var="IRREGULAR">
+              <base>lie</base>
+            </head>
           </vp>
         </child>
       </Document>
@@ -110,14 +109,14 @@
             </spec>
           </subj>
           <vp xsi:type="VPPhraseSpec" TENSE="PAST">
-            <head var="IRREGULAR" cat="VERB">
-              <base>has</base>
-            </head>
             <compl xsi:type="NPPhraseSpec">
               <head cat="NOUN">
                 <base>Adam-Stokes disease</base>
               </head>
             </compl>
+            <head cat="VERB" var="IRREGULAR">
+              <base>has</base>
+            </head>
           </vp>
         </child>
         <child xsi:type="SPhraseSpec">
@@ -130,14 +129,14 @@
             </spec>
           </subj>
           <vp xsi:type="VPPhraseSpec" TENSE="PAST">
-            <head var="IRREGULAR" cat="VERB">
-              <base>has</base>
-            </head>
             <compl xsi:type="NPPhraseSpec">
               <head cat="NOUN">
                 <base>Adam Stokes disease</base>
               </head>
             </compl>
+            <head cat="VERB" var="IRREGULAR">
+              <base>has</base>
+            </head>
           </vp>
         </child>
       </Document>

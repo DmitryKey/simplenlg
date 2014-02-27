@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<NLGSpec xmlns="http://code.google.com/p/simplenlg/schemas/version1" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="UTF-8"?><NLGSpec xmlns="http://simplenlg.googlecode.com/svn/trunk/res/xml" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Recording name="cch examples">
     <Record name="doc example 1">
       <Document>
@@ -9,22 +8,19 @@
               <base>transfusion of whole blood</base>
             </head>
           </subj>
-          <vp xsi:type="VPPhraseSpec" TENSE="PRESENT" PASSIVE="true">
+          <vp xsi:type="VPPhraseSpec" PASSIVE="true" TENSE="PRESENT">
             <head cat="VERB">
               <base>indicate</base>
             </head>
           </vp>
         </child>
       </Document>
-      <Realisation>Transfusion of whole blood is indicated.</Realisation>
+      <Realisation>Is indicated by transfusion of whole blood.</Realisation>
     </Record>
     <Record name="doc example 2">
       <Document>
         <child xsi:type="SPhraseSpec">
           <preMod xsi:type="PPPhraseSpec">
-            <head cat="PREPOSITION">
-              <base>as a result of</base>
-            </head>
             <compl xsi:type="NPPhraseSpec">
               <head cat="NOUN">
                 <base>procedure</base>
@@ -33,6 +29,9 @@
                 <base>the</base>
               </spec>
             </compl>
+            <head cat="PREPOSITION">
+              <base>as a result of</base>
+            </head>
           </preMod>
           <subj xsi:type="NPPhraseSpec">
             <head cat="NOUN">
@@ -44,9 +43,6 @@
           </subj>
           <vp xsi:type="CoordinatedPhraseElement" conj="and">
             <coord xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">
-                <base>have</base>
-              </head>
               <compl xsi:type="NPPhraseSpec">
                 <head cat="NOUN">
                   <base>adverse contrast media reaction</base>
@@ -55,11 +51,11 @@
                   <base>a</base>
                 </spec>
               </compl>
-            </coord>
-            <coord xsi:type="VPPhraseSpec" TENSE="PAST">
               <head cat="VERB">
                 <base>have</base>
               </head>
+            </coord>
+            <coord xsi:type="VPPhraseSpec" TENSE="PAST">
               <compl xsi:type="NPPhraseSpec">
                 <head cat="NOUN">
                   <base>decreased platelet count</base>
@@ -68,21 +64,24 @@
                   <base>a</base>
                 </spec>
               </compl>
+              <head cat="VERB">
+                <base>have</base>
+              </head>
             </coord>
             <coord xsi:type="VPPhraseSpec" TENSE="PAST">
-              <head cat="VERB">
-                <base>go</base>
-              </head>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">
-                  <base>into</base>
-                </head>
                 <compl xsi:type="NPPhraseSpec">
                   <head cat="NOUN">
                     <base>cardiogenic shock</base>
                   </head>
                 </compl>
+                <head cat="PREPOSITION">
+                  <base>into</base>
+                </head>
               </postMod>
+              <head cat="VERB">
+                <base>go</base>
+              </head>
             </coord>
           </vp>
         </child>
@@ -133,9 +132,6 @@
             </head>
           </subj>
           <vp xsi:type="VPPhraseSpec">
-            <head cat="VERB">
-              <base>be</base>
-            </head>
             <compl xsi:type="NPPhraseSpec">
               <preMod xsi:type="CoordinatedPhraseElement" conj=",">
                 <coord xsi:type="AdjPhraseSpec">
@@ -149,12 +145,12 @@
                   </head>
                 </coord>
               </preMod>
-              <head cat="NOUN">
-                <base>restenosis</base>
-              </head>
               <postMod xsi:type="StringElement">
                 <val>(18 mm x 1 mm)</val>
               </postMod>
+              <head cat="NOUN">
+                <base>restenosis</base>
+              </head>
               <spec xsi:type="WordElement" cat="DETERMINER">
                 <base>a</base>
               </spec>
@@ -165,9 +161,6 @@
                   <base>extend</base>
                 </head>
               </preMod>
-              <head cat="PREPOSITION">
-                <base>from</base>
-              </head>
               <compl xsi:type="NPPhraseSpec">
                 <preMod xsi:type="AdjPhraseSpec">
                   <head cat="ADJECTIVE">
@@ -179,9 +172,6 @@
                 </spec>
               </compl>
               <postMod xsi:type="PPPhraseSpec">
-                <head cat="PREPOSITION">
-                  <base>to</base>
-                </head>
                 <compl xsi:type="NPPhraseSpec">
                   <preMod xsi:type="AdjPhraseSpec">
                     <head cat="ADJECTIVE">
@@ -195,18 +185,27 @@
                     <base>the</base>
                   </spec>
                 </compl>
+                <head cat="PREPOSITION">
+                  <base>to</base>
+                </head>
               </postMod>
+              <head cat="PREPOSITION">
+                <base>from</base>
+              </head>
             </postMod>
             <postMod xsi:type="PPPhraseSpec">
-              <head cat="PREPOSITION">
-                <base>with</base>
-              </head>
               <compl xsi:type="NPPhraseSpec">
                 <head cat="NOUN">
                   <base>TIMI 1 flow</base>
                 </head>
               </compl>
+              <head cat="PREPOSITION">
+                <base>with</base>
+              </head>
             </postMod>
+            <head cat="VERB">
+              <base>be</base>
+            </head>
           </vp>
         </child>
       </Document>
