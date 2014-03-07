@@ -50,8 +50,7 @@ public class CoordinationTest extends SimpleNLG4Test {
 	public void tearDown() {
 		super.tearDown();
 	}
-	
-	
+
 	/**
 	 * Test pre and post-modification of coordinate VPs inside a sentence.
 	 */
@@ -89,10 +88,9 @@ public class CoordinationTest extends SimpleNLG4Test {
 
 		// add postmod to the sentence
 		s.addPostModifier(this.inTheRoom);
-		Assert
-				.assertEquals(
-						"Jake however slowly got up and fell down behind the curtain in the room",
-						this.realiser.realise(s).getRealisation());
+		Assert.assertEquals(
+				"Jake however slowly got up and fell down behind the curtain in the room",
+				this.realiser.realise(s).getRealisation());
 	}
 
 	/**
@@ -129,18 +127,16 @@ public class CoordinationTest extends SimpleNLG4Test {
 		CoordinatedPhraseElement coord = this.phraseFactory
 				.createCoordinatedPhrase(vp1, vp2);
 		coord.setFeature(Feature.TENSE, Tense.PAST);
-		Assert
-				.assertEquals(
-						"had an adverse contrast media reaction and went into cardiogenic shock",
-						this.realiser.realise(coord).getRealisation());
+		Assert.assertEquals(
+				"had an adverse contrast media reaction and went into cardiogenic shock",
+				this.realiser.realise(coord).getRealisation());
 
 		// now put this in the sentence
 		s.setVerbPhrase(coord);
 		s.addFrontModifier("As a result of the procedure");
-		Assert
-				.assertEquals(
-						"As a result of the procedure the patient had an adverse contrast media reaction and went into cardiogenic shock",
-						this.realiser.realise(s).getRealisation());
+		Assert.assertEquals(
+				"As a result of the procedure the patient had an adverse contrast media reaction and went into cardiogenic shock",
+				this.realiser.realise(s).getRealisation());
 
 	}
 
@@ -156,17 +152,33 @@ public class CoordinationTest extends SimpleNLG4Test {
 		pq.addCoordinate(q);
 		pq.setFeature(Feature.CONJUNCTION, "");
 
-		//should come out without conjunction
+		// should come out without conjunction
 		Assert.assertEquals("I am happy I eat fish", this.realiser.realise(pq)
 				.getRealisation());
-		
-		//should come out without conjunction
+
+		// should come out without conjunction
 		pq.setFeature(Feature.CONJUNCTION, null);
 		Assert.assertEquals("I am happy I eat fish", this.realiser.realise(pq)
 				.getRealisation());
 
 	}
-	
 
-
+	/**
+	 * Check that the negation feature on a child of a coordinate phrase remains
+	 * as set, unless explicitly set otherwise at the parent level.
+	 */
+	@Test
+	public void testNegationFeature() {
+		SPhraseSpec s1 = this.phraseFactory
+				.createClause("he", "have", "asthma");
+		SPhraseSpec s2 = this.phraseFactory.createClause("he", "have",
+				"diabetes");
+		s1.setFeature(Feature.NEGATED, true);
+		CoordinatedPhraseElement coord = this.phraseFactory
+				.createCoordinatedPhrase(s1, s2);
+		String realisation = this.realiser.realise(coord).getRealisation();
+		System.out.println(realisation);
+		Assert.assertEquals("he does not have asthma and he has diabetes",
+				realisation);
+	}
 }
