@@ -44,6 +44,7 @@ public class XMLRealiser {
 	 * realised string. setLexicon (XML | NIHDB) <path to lexicon> returns "OK"
 	 * or not. startRecording <path to recording directory> returns "OK" or not.
 	 * stopRecording returns name of file which contains recording.
+	 * Recordings can be used as regression tests. See simplenlg/test/xmlrealiser/Tester.java
 	 */
 	public enum OpCode {
 
