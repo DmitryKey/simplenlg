@@ -22,14 +22,13 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Vector;
 
-import javax.xml.bind.JAXBException;
-import javax.xml.transform.TransformerException;
-
 import junit.framework.Assert;
 
+import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.*;
@@ -71,6 +70,11 @@ public class Tester {
 		XMLRealiser.setLexicon(lexType, lexDB);
 
 	}
+	
+	@AfterClass
+	public static void teardown() {
+		XMLRealiser.setLexicon(null, null);
+	}
 
 	@Parameters
 	public static Collection<File[]> TestFileNames() {
@@ -99,10 +103,13 @@ public class Tester {
 
 			FileReader reader = new FileReader(ThisTestFile);
 			input = XMLRealiser.getRecording(reader);
+			reader.close();
 		} catch (XMLRealiserException e) {
 			Assert.fail("Error parsing test document: " + ThisTestFile.getName() + " "+ e.getMessage());
 		} catch (FileNotFoundException e) {
 			Assert.fail("Error opening test document: " + ThisTestFile.getName() + " "+ e.getMessage());
+		} catch (IOException e) {
+			Assert.fail("IOException: " + ThisTestFile.getName() + " "+ e.getMessage());
 		}
 
 		String recordingName = input.getName();
