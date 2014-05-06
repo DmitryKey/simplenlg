@@ -1,44 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <NLGSpec xmlns="http://simplenlg.googlecode.com/svn/trunk/res/xml"
-xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 
 	<Recording name="cch examples">
-
 		<Record name="doc example 1">
 			<Document>
 				<child xsi:type="SPhraseSpec">
-					<subj xsi:type="NPPhraseSpec">
-						<head cat="NOUN">
-							<base>transfusion of whole blood</base>
+					<subj xsi:type="VPPhraseSpec" FORM="PRESENT_PARTICIPLE">
+						<head cat="VERB">
+							<base>refactor</base>
 						</head>
 					</subj>
-					<vp xsi:type="VPPhraseSpec" TENSE="PRESENT" PASSIVE="true">
+					<vp xsi:type="VPPhraseSpec" TENSE="PRESENT" >
 						<head cat="VERB">
-							<base>indicate</base>
+							<base>be</base>
 						</head>
+						<compl xsi:type="VPPhraseSpec" FORM="PAST_PARTICIPLE">
+							<head cat="VERB">
+								<base>need</base>
+							</head>
+						</compl>
+
 					</vp>
 				</child>
 			</Document>
-			<Realisation>Is indicated by transfusion of whole blood.</Realisation>
-		</Record>
-		<Record name="doc example 1-corrected">
-			<Document>
-				<child xsi:type="SPhraseSpec">
-					<subj xsi:type="NPPhraseSpec">
-						<head cat="NOUN">
-							<base>transfusion of whole blood</base>
-						</head>
-					</subj>
-					<vp xsi:type="VPPhraseSpec" TENSE="PRESENT" PROGRESSIVE="true">
-						<head cat="VERB">
-							<base>indicate</base>
-						</head>
-					</vp>
-				</child>
-			</Document>
-			<Realisation>Transfusion of whole blood is indicating.</Realisation>
+			<Realisation>Refactoring is needed.</Realisation>
 		</Record>
 		<Record name="doc example 2">
 			<Document>
