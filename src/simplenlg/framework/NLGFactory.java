@@ -69,68 +69,129 @@ public class NLGFactory {
 	 * 
 	 */
 	/** The lexicon to be used with this factory. */
-	private Lexicon lexicon;
+	private Lexicon                   lexicon;
 
 	/** The list of English pronouns. */
 	@SuppressWarnings("nls")
-	private static final List<String> PRONOUNS = Arrays.asList("I", "you",
-			"he", "she", "it", "me", "you", "him", "her", "it", "myself",
-			"yourself", "himself", "herself", "itself", "mine", "yours", "his",
-			"hers", "its", "we", "you", "they", "they", "they", "us", "you",
-			"them", "them", "them", "ourselves", "yourselves", "themselves",
-			"themselves", "themselves", "ours", "yours", "theirs", "theirs",
-			"theirs", "there");
+	private static final List<String> PRONOUNS               = Arrays.asList("I",
+	                                                                         "you",
+	                                                                         "he",
+	                                                                         "she",
+	                                                                         "it",
+	                                                                         "me",
+	                                                                         "you",
+	                                                                         "him",
+	                                                                         "her",
+	                                                                         "it",
+	                                                                         "myself",
+	                                                                         "yourself",
+	                                                                         "himself",
+	                                                                         "herself",
+	                                                                         "itself",
+	                                                                         "mine",
+	                                                                         "yours",
+	                                                                         "his",
+	                                                                         "hers",
+	                                                                         "its",
+	                                                                         "we",
+	                                                                         "you",
+	                                                                         "they",
+	                                                                         "they",
+	                                                                         "they",
+	                                                                         "us",
+	                                                                         "you",
+	                                                                         "them",
+	                                                                         "them",
+	                                                                         "them",
+	                                                                         "ourselves",
+	                                                                         "yourselves",
+	                                                                         "themselves",
+	                                                                         "themselves",
+	                                                                         "themselves",
+	                                                                         "ours",
+	                                                                         "yours",
+	                                                                         "theirs",
+	                                                                         "theirs",
+	                                                                         "theirs",
+	                                                                         "there");
 
 	/** The list of first-person English pronouns. */
 	@SuppressWarnings("nls")
-	private static final List<String> FIRST_PRONOUNS = Arrays.asList("I", "me",
-			"myself", "we", "us", "ourselves", "mine", "my", "ours", "our");
+	private static final List<String> FIRST_PRONOUNS         = Arrays.asList("I",
+	                                                                         "me",
+	                                                                         "myself",
+	                                                                         "we",
+	                                                                         "us",
+	                                                                         "ourselves",
+	                                                                         "mine",
+	                                                                         "my",
+	                                                                         "ours",
+	                                                                         "our");
 
 	/** The list of second person English pronouns. */
 	@SuppressWarnings("nls")
-	private static final List<String> SECOND_PRONOUNS = Arrays.asList("you",
-			"yourself", "yourselves", "yours", "your");
+	private static final List<String> SECOND_PRONOUNS        = Arrays.asList("you",
+	                                                                         "yourself",
+	                                                                         "yourselves",
+	                                                                         "yours",
+	                                                                         "your");
 
 	/** The list of reflexive English pronouns. */
 	@SuppressWarnings("nls")
-	private static final List<String> REFLEXIVE_PRONOUNS = Arrays.asList(
-			"myself", "yourself", "himself", "herself", "itself", "ourselves",
-			"yourselves", "themselves");
+	private static final List<String> REFLEXIVE_PRONOUNS     = Arrays.asList("myself",
+	                                                                         "yourself",
+	                                                                         "himself",
+	                                                                         "herself",
+	                                                                         "itself",
+	                                                                         "ourselves",
+	                                                                         "yourselves",
+	                                                                         "themselves");
 
 	/** The list of masculine English pronouns. */
 	@SuppressWarnings("nls")
-	private static final List<String> MASCULINE_PRONOUNS = Arrays.asList("he",
-			"him", "himself", "his");
+	private static final List<String> MASCULINE_PRONOUNS     = Arrays.asList("he", "him", "himself", "his");
 
 	/** The list of feminine English pronouns. */
 	@SuppressWarnings("nls")
-	private static final List<String> FEMININE_PRONOUNS = Arrays.asList("she",
-			"her", "herself", "hers");
+	private static final List<String> FEMININE_PRONOUNS      = Arrays.asList("she", "her", "herself", "hers");
 
 	/** The list of possessive English pronouns. */
 	@SuppressWarnings("nls")
-	private static final List<String> POSSESSIVE_PRONOUNS = Arrays.asList(
-			"mine", "ours", "yours", "his", "hers", "its", "theirs", "my",
-			"our", "your", "her", "their");
+	private static final List<String> POSSESSIVE_PRONOUNS    = Arrays.asList("mine",
+	                                                                         "ours",
+	                                                                         "yours",
+	                                                                         "his",
+	                                                                         "hers",
+	                                                                         "its",
+	                                                                         "theirs",
+	                                                                         "my",
+	                                                                         "our",
+	                                                                         "your",
+	                                                                         "her",
+	                                                                         "their");
 
 	/** The list of plural English pronouns. */
 	@SuppressWarnings("nls")
-	private static final List<String> PLURAL_PRONOUNS = Arrays
-			.asList("we", "us", "ourselves", "ours", "our", "they", "them",
-					"theirs", "their");
+	private static final List<String> PLURAL_PRONOUNS        = Arrays.asList("we",
+	                                                                         "us",
+	                                                                         "ourselves",
+	                                                                         "ours",
+	                                                                         "our",
+	                                                                         "they",
+	                                                                         "them",
+	                                                                         "theirs",
+	                                                                         "their");
 
 	/** The list of English pronouns that can be singular or plural. */
 	@SuppressWarnings("nls")
-	private static final List<String> EITHER_NUMBER_PRONOUNS = Arrays
-			.asList("there");
+	private static final List<String> EITHER_NUMBER_PRONOUNS = Arrays.asList("there");
 
 	/** The list of expletive English pronouns. */
 	@SuppressWarnings("nls")
-	private static final List<String> EXPLETIVE_PRONOUNS = Arrays
-			.asList("there");
+	private static final List<String> EXPLETIVE_PRONOUNS     = Arrays.asList("there");
 
 	/** regex for determining if a string is a single word or not **/
-	private static final String WORD_REGEX = "\\w*";
+	private static final String       WORD_REGEX             = "\\w*";
 
 	/**
 	 * Creates a new phrase factory with no associated lexicon.
@@ -179,10 +240,10 @@ public class NLGFactory {
 	 */
 	public NLGElement createWord(Object word, LexicalCategory category) {
 		NLGElement wordElement = null;
-		if (word instanceof NLGElement) {
+		if(word instanceof NLGElement) {
 			wordElement = (NLGElement) word;
 
-		} else if (word instanceof String && this.lexicon != null) {
+		} else if(word instanceof String && this.lexicon != null) {
 			// AG: change: should create a WordElement, not an
 			// InflectedWordElement
 			// wordElement = new InflectedWordElement(
@@ -192,7 +253,7 @@ public class NLGFactory {
 			// }
 			// wordElement = lexicon.getWord((String) word, category);
 			wordElement = lexicon.lookupWord((String) word, category);
-			if (PRONOUNS.contains(word)) {
+			if(PRONOUNS.contains(word)) {
 				setPronounFeatures(wordElement, (String) word);
 			}
 		}
@@ -231,19 +292,19 @@ public class NLGFactory {
 		// first get the word element
 		NLGElement inflElement = null;
 
-		if (word instanceof WordElement) {
+		if(word instanceof WordElement) {
 			inflElement = new InflectedWordElement((WordElement) word);
 
-		} else if (word instanceof String) {
+		} else if(word instanceof String) {
 			NLGElement baseword = createWord((String) word, category);
 
-			if (baseword != null && baseword instanceof WordElement) {
+			if(baseword != null && baseword instanceof WordElement) {
 				inflElement = new InflectedWordElement((WordElement) baseword);
 			} else {
 				inflElement = new InflectedWordElement((String) word, category);
 			}
 
-		} else if (word instanceof NLGElement) {
+		} else if(word instanceof NLGElement) {
 			inflElement = (NLGElement) word;
 		}
 
@@ -261,14 +322,14 @@ public class NLGFactory {
 	 */
 	private void setPronounFeatures(NLGElement wordElement, String word) {
 		wordElement.setCategory(LexicalCategory.PRONOUN);
-		if (FIRST_PRONOUNS.contains(word)) {
+		if(FIRST_PRONOUNS.contains(word)) {
 			wordElement.setFeature(Feature.PERSON, Person.FIRST);
-		} else if (SECOND_PRONOUNS.contains(word)) {
+		} else if(SECOND_PRONOUNS.contains(word)) {
 			wordElement.setFeature(Feature.PERSON, Person.SECOND);
 
-			if ("yourself".equalsIgnoreCase(word)) { //$NON-NLS-1$
+			if("yourself".equalsIgnoreCase(word)) { //$NON-NLS-1$
 				wordElement.setPlural(false);
-			} else if ("yourselves".equalsIgnoreCase(word)) { //$NON-NLS-1$
+			} else if("yourselves".equalsIgnoreCase(word)) { //$NON-NLS-1$
 				wordElement.setPlural(true);
 			} else {
 				wordElement.setFeature(Feature.NUMBER, NumberAgreement.BOTH);
@@ -276,32 +337,32 @@ public class NLGFactory {
 		} else {
 			wordElement.setFeature(Feature.PERSON, Person.THIRD);
 		}
-		if (REFLEXIVE_PRONOUNS.contains(word)) {
+		if(REFLEXIVE_PRONOUNS.contains(word)) {
 			wordElement.setFeature(LexicalFeature.REFLEXIVE, true);
 		} else {
 			wordElement.setFeature(LexicalFeature.REFLEXIVE, false);
 		}
-		if (MASCULINE_PRONOUNS.contains(word)) {
+		if(MASCULINE_PRONOUNS.contains(word)) {
 			wordElement.setFeature(LexicalFeature.GENDER, Gender.MASCULINE);
-		} else if (FEMININE_PRONOUNS.contains(word)) {
+		} else if(FEMININE_PRONOUNS.contains(word)) {
 			wordElement.setFeature(LexicalFeature.GENDER, Gender.FEMININE);
 		} else {
 			wordElement.setFeature(LexicalFeature.GENDER, Gender.NEUTER);
 		}
 
-		if (POSSESSIVE_PRONOUNS.contains(word)) {
+		if(POSSESSIVE_PRONOUNS.contains(word)) {
 			wordElement.setFeature(Feature.POSSESSIVE, true);
 		} else {
 			wordElement.setFeature(Feature.POSSESSIVE, false);
 		}
 
-		if (PLURAL_PRONOUNS.contains(word) && !SECOND_PRONOUNS.contains(word)) {
+		if(PLURAL_PRONOUNS.contains(word) && !SECOND_PRONOUNS.contains(word)) {
 			wordElement.setPlural(true);
-		} else if (!EITHER_NUMBER_PRONOUNS.contains(word)) {
+		} else if(!EITHER_NUMBER_PRONOUNS.contains(word)) {
 			wordElement.setPlural(false);
 		}
 
-		if (EXPLETIVE_PRONOUNS.contains(word)) {
+		if(EXPLETIVE_PRONOUNS.contains(word)) {
 			wordElement.setFeature(InternalFeature.NON_MORPH, true);
 			wordElement.setFeature(LexicalFeature.EXPLETIVE_SUBJECT, true);
 		}
@@ -318,18 +379,16 @@ public class NLGFactory {
 	 *            the created element representing the word.
 	 */
 	@SuppressWarnings("unused")
-	private void doLexiconLookUp(LexicalCategory category, String word,
-			NLGElement wordElement) {
+	private void doLexiconLookUp(LexicalCategory category, String word, NLGElement wordElement) {
 		WordElement baseWord = null;
 
-		if (LexicalCategory.NOUN.equals(category)
-				&& this.lexicon.hasWord(word, LexicalCategory.PRONOUN)) {
+		if(LexicalCategory.NOUN.equals(category) && this.lexicon.hasWord(word, LexicalCategory.PRONOUN)) {
 			baseWord = this.lexicon.lookupWord(word, LexicalCategory.PRONOUN);
 
-			if (baseWord != null) {
+			if(baseWord != null) {
 				wordElement.setFeature(InternalFeature.BASE_WORD, baseWord);
 				wordElement.setCategory(LexicalCategory.PRONOUN);
-				if (!PRONOUNS.contains(word)) {
+				if(!PRONOUNS.contains(word)) {
 					wordElement.setFeature(InternalFeature.NON_MORPH, true);
 				}
 			}
@@ -371,16 +430,14 @@ public class NLGFactory {
 	 *            the complement of the phrase.
 	 * @return a <code>PPPhraseSpec</code> representing this phrase.
 	 */
-	public PPPhraseSpec createPrepositionPhrase(Object preposition,
-			Object complement) {
+	public PPPhraseSpec createPrepositionPhrase(Object preposition, Object complement) {
 
 		PPPhraseSpec phraseElement = new PPPhraseSpec(this);
 
-		NLGElement prepositionalElement = createNLGElement(preposition,
-				LexicalCategory.PREPOSITION);
+		NLGElement prepositionalElement = createNLGElement(preposition, LexicalCategory.PREPOSITION);
 		setPhraseHead(phraseElement, prepositionalElement);
 
-		if (complement != null) {
+		if(complement != null) {
 			setComplement(phraseElement, complement);
 		}
 		return phraseElement;
@@ -415,38 +472,35 @@ public class NLGFactory {
 	 * @return NLGelement
 	 */
 	public NLGElement createNLGElement(Object element, LexicalCategory category) {
-		if (element == null)
+		if(element == null)
 			return null;
 
 		// InflectedWordElement - return underlying word
-		else if (element instanceof InflectedWordElement)
+		else if(element instanceof InflectedWordElement)
 			return ((InflectedWordElement) element).getBaseWord();
 
 		// StringElement - look up in lexicon if it is a word
 		// otherwise return element
-		else if (element instanceof StringElement) {
-			if (stringIsWord(((StringElement) element).getRealisation(),
-					category))
-				return createWord(((StringElement) element).getRealisation(),
-						category);
+		else if(element instanceof StringElement) {
+			if(stringIsWord(((StringElement) element).getRealisation(), category))
+				return createWord(((StringElement) element).getRealisation(), category);
 			else
 				return (StringElement) element;
 		}
 
 		// other NLGElement - return element
-		else if (element instanceof NLGElement)
+		else if(element instanceof NLGElement)
 			return (NLGElement) element;
 
 		// String - look up in lexicon if a word, otherwise return StringElement
-		else if (element instanceof String) {
-			if (stringIsWord((String) element, category))
+		else if(element instanceof String) {
+			if(stringIsWord((String) element, category))
 				return createWord(element, category);
 			else
 				return new StringElement((String) element);
 		}
 
-		throw new IllegalArgumentException(element.toString()
-				+ " is not a valid type");
+		throw new IllegalArgumentException(element.toString() + " is not a valid type");
 	}
 
 	/**
@@ -458,9 +512,7 @@ public class NLGFactory {
 	 */
 	private boolean stringIsWord(String string, LexicalCategory category) {
 		return lexicon != null
-				&& (lexicon.hasWord(string, category)
-						|| PRONOUNS.contains(string) || (string
-						.matches(WORD_REGEX)));
+		       && (lexicon.hasWord(string, category) || PRONOUNS.contains(string) || (string.matches(WORD_REGEX)));
 	}
 
 	/**
@@ -490,7 +542,7 @@ public class NLGFactory {
 	 * @return a <code>NPPhraseSpec</code> representing this phrase.
 	 */
 	public NPPhraseSpec createNounPhrase(Object noun) {
-		if (noun instanceof NPPhraseSpec)
+		if(noun instanceof NPPhraseSpec)
 			return (NPPhraseSpec) noun;
 		else
 			return createNounPhrase(null, noun);
@@ -506,14 +558,14 @@ public class NLGFactory {
 	 * @return a <code>NPPhraseSpec</code> representing this phrase.
 	 */
 	public NPPhraseSpec createNounPhrase(Object specifier, Object noun) {
-		if (noun instanceof NPPhraseSpec)
+		if(noun instanceof NPPhraseSpec)
 			return (NPPhraseSpec) noun;
 
 		NPPhraseSpec phraseElement = new NPPhraseSpec(this);
 		NLGElement nounElement = createNLGElement(noun, LexicalCategory.NOUN);
 		setPhraseHead(phraseElement, nounElement);
 
-		if (specifier != null)
+		if(specifier != null)
 			phraseElement.setSpecifier(specifier);
 
 		return phraseElement;
@@ -527,9 +579,8 @@ public class NLGFactory {
 	 * @param headElement
 	 *            the head element.
 	 */
-	private void setPhraseHead(PhraseElement phraseElement,
-			NLGElement headElement) {
-		if (headElement != null) {
+	private void setPhraseHead(PhraseElement phraseElement, NLGElement headElement) {
+		if(headElement != null) {
 			phraseElement.setHead(headElement);
 			headElement.setParent(phraseElement);
 		}
@@ -554,8 +605,7 @@ public class NLGFactory {
 	public AdjPhraseSpec createAdjectivePhrase(Object adjective) {
 		AdjPhraseSpec phraseElement = new AdjPhraseSpec(this);
 
-		NLGElement adjectiveElement = createNLGElement(adjective,
-				LexicalCategory.ADJECTIVE);
+		NLGElement adjectiveElement = createNLGElement(adjective, LexicalCategory.ADJECTIVE);
 		setPhraseHead(phraseElement, adjectiveElement);
 
 		return phraseElement;
@@ -607,8 +657,7 @@ public class NLGFactory {
 	public AdvPhraseSpec createAdverbPhrase(String adverb) {
 		AdvPhraseSpec phraseElement = new AdvPhraseSpec(this);
 
-		NLGElement adverbElement = createNLGElement(adverb,
-				LexicalCategory.ADVERB);
+		NLGElement adverbElement = createNLGElement(adverb, LexicalCategory.ADVERB);
 		setPhraseHead(phraseElement, adverbElement);
 		return phraseElement;
 	}
@@ -653,24 +702,23 @@ public class NLGFactory {
 	 *            clause.
 	 * @return a <code>SPhraseSpec</code> representing this phrase.
 	 */
-	public SPhraseSpec createClause(Object subject, Object verb,
-			Object directObject) {
+	public SPhraseSpec createClause(Object subject, Object verb, Object directObject) {
 
 		SPhraseSpec phraseElement = new SPhraseSpec(this);
 
-		if (verb != null) {
+		if(verb != null) {
 			// AG: fix here: check if "verb" is a VPPhraseSpec or a Verb
-			if (verb instanceof PhraseElement) {
+			if(verb instanceof PhraseElement) {
 				phraseElement.setVerbPhrase((PhraseElement) verb);
 			} else {
 				phraseElement.setVerb(verb);
 			}
 		}
 
-		if (subject != null)
+		if(subject != null)
 			phraseElement.setSubject(subject);
 
-		if (directObject != null) {
+		if(directObject != null) {
 			phraseElement.setObject(directObject);
 		}
 
@@ -678,15 +726,15 @@ public class NLGFactory {
 	}
 
 	/*	*//**
-	 * A helper method to set the verb phrase for a clause.
-	 * 
-	 * @param baseForm
-	 *            the base form of the clause.
-	 * @param verbPhrase
-	 *            the verb phrase to be used in the clause.
-	 * @param phraseElement
-	 *            the current representation of the clause.
-	 */
+	      * A helper method to set the verb phrase for a clause.
+	      * 
+	      * @param baseForm
+	      *            the base form of the clause.
+	      * @param verbPhrase
+	      *            the verb phrase to be used in the clause.
+	      * @param phraseElement
+	      *            the current representation of the clause.
+	      */
 	/*
 	 * private void setVerbPhrase(StringBuffer baseForm, NLGElement verbPhrase,
 	 * PhraseElement phraseElement) { if (baseForm.length() > 0) {
@@ -706,17 +754,17 @@ public class NLGFactory {
 	 * verbPhrase.setFeature(Feature.PERSON, phraseElement
 	 * .getFeature(Feature.PERSON)); } }
 	 *//**
-	 * A helper method to add the direct object to the clause.
-	 * 
-	 * @param baseForm
-	 *            the base form for the clause.
-	 * @param directObject
-	 *            the direct object to be added.
-	 * @param phraseElement
-	 *            the current representation of this clause.
-	 * @param function
-	 *            the discourse function for this object.
-	 */
+	   * A helper method to add the direct object to the clause.
+	   * 
+	   * @param baseForm
+	   *            the base form for the clause.
+	   * @param directObject
+	   *            the direct object to be added.
+	   * @param phraseElement
+	   *            the current representation of this clause.
+	   * @param function
+	   *            the discourse function for this object.
+	   */
 	/*
 	 * private void setObject(StringBuffer baseForm, Object object,
 	 * PhraseElement phraseElement, DiscourseFunction function) { if
@@ -736,15 +784,15 @@ public class NLGFactory {
 	 * baseForm.append((String) object); } }
 	 */
 	/*	*//**
-	 * A helper method that sets the subjects on a clause.
-	 * 
-	 * @param phraseElement
-	 *            the element representing the clause.
-	 * @param subjectPhrase
-	 *            the subject phrase for the clause.
-	 * @param baseForm
-	 *            the base form for the clause.
-	 */
+	      * A helper method that sets the subjects on a clause.
+	      * 
+	      * @param phraseElement
+	      *            the element representing the clause.
+	      * @param subjectPhrase
+	      *            the subject phrase for the clause.
+	      * @param baseForm
+	      *            the base form for the clause.
+	      */
 	/*
 	 * private void setPhraseSubjects(PhraseElement phraseElement, NLGElement
 	 * subjectPhrase, StringBuffer baseForm) {
@@ -804,8 +852,7 @@ public class NLGFactory {
 	 *            = second phrase to be coordinated
 	 * @return <code>CoordinatedPhraseElement</code> for the two given elements
 	 */
-	public CoordinatedPhraseElement createCoordinatedPhrase(Object coord1,
-			Object coord2) {
+	public CoordinatedPhraseElement createCoordinatedPhrase(Object coord1, Object coord2) {
 		return new CoordinatedPhraseElement(coord1, coord2);
 	}
 
@@ -844,12 +891,10 @@ public class NLGFactory {
 	 *            components of this element.
 	 * @return a <code>DocumentElement</code>
 	 */
-	public DocumentElement createDocument(String title,
-			List<DocumentElement> components) {
+	public DocumentElement createDocument(String title, List<DocumentElement> components) {
 
-		DocumentElement document = new DocumentElement(
-				DocumentCategory.DOCUMENT, title);
-		if (components != null) {
+		DocumentElement document = new DocumentElement(DocumentCategory.DOCUMENT, title);
+		if(components != null) {
 			document.addComponents(components);
 		}
 		return document;
@@ -867,10 +912,9 @@ public class NLGFactory {
 	 * @return a <code>DocumentElement</code>
 	 */
 	public DocumentElement createDocument(String title, NLGElement component) {
-		DocumentElement element = new DocumentElement(
-				DocumentCategory.DOCUMENT, title);
+		DocumentElement element = new DocumentElement(DocumentCategory.DOCUMENT, title);
 
-		if (component != null) {
+		if(component != null) {
 			element.addComponent(component);
 		}
 		return element;
@@ -916,6 +960,48 @@ public class NLGFactory {
 	}
 
 	/**
+	 * Creates a new enumerated list element with no components.
+	 * 
+	 * @return a <code>DocumentElement</code> representing the list.
+	 * @author Rodrigo de Oliveira - Data2Text Ltd
+	 */
+	public DocumentElement createEnumeratedList() {
+		return new DocumentElement(DocumentCategory.ENUMERATED_LIST, null);
+	}
+
+	/**
+	 * Creates a new enumerated list element and adds all of the given components in the
+	 * list
+	 * 
+	 * @param textComponents
+	 *            a <code>List</code> of <code>NLGElement</code>s that form the
+	 *            components of this element.
+	 * @return a <code>DocumentElement</code> representing the list.
+	 * @author Rodrigo de Oliveira - Data2Text Ltd
+	 */
+	public DocumentElement createEnumeratedList(List<DocumentElement> textComponents) {
+		DocumentElement list = new DocumentElement(DocumentCategory.ENUMERATED_LIST, null);
+		list.addComponents(textComponents);
+		return list;
+	}
+
+	/**
+	 * Creates a new section element with the given title and adds the given
+	 * component.
+	 * 
+	 * @param component
+	 *            an <code>NLGElement</code> that becomes the first component of
+	 *            this document element.
+	 * @return a <code>DocumentElement</code> representing the section.
+	 * @author Rodrigo de Oliveira - Data2Text Ltd
+	 */
+	public DocumentElement createEnumeratedList(NLGElement component) {
+		DocumentElement list = new DocumentElement(DocumentCategory.ENUMERATED_LIST, null);
+		list.addComponent(component);
+		return list;
+	}
+
+	/**
 	 * Creates a list item for adding to a list element.
 	 * 
 	 * @return a <code>DocumentElement</code> representing the list item.
@@ -931,8 +1017,7 @@ public class NLGFactory {
 	 * @return a <code>DocumentElement</code> representing the list item.
 	 */
 	public DocumentElement createListItem(NLGElement component) {
-		DocumentElement listItem = new DocumentElement(
-				DocumentCategory.LIST_ITEM, null);
+		DocumentElement listItem = new DocumentElement(DocumentCategory.LIST_ITEM, null);
 		listItem.addComponent(component);
 		return listItem;
 	}
@@ -956,9 +1041,8 @@ public class NLGFactory {
 	 * @return a <code>DocumentElement</code> representing this paragraph
 	 */
 	public DocumentElement createParagraph(List<DocumentElement> components) {
-		DocumentElement paragraph = new DocumentElement(
-				DocumentCategory.PARAGRAPH, null);
-		if (components != null) {
+		DocumentElement paragraph = new DocumentElement(DocumentCategory.PARAGRAPH, null);
+		if(components != null) {
 			paragraph.addComponents(components);
 		}
 		return paragraph;
@@ -973,9 +1057,8 @@ public class NLGFactory {
 	 * @return a <code>DocumentElement</code> representing this paragraph
 	 */
 	public DocumentElement createParagraph(NLGElement component) {
-		DocumentElement paragraph = new DocumentElement(
-				DocumentCategory.PARAGRAPH, null);
-		if (component != null) {
+		DocumentElement paragraph = new DocumentElement(DocumentCategory.PARAGRAPH, null);
+		if(component != null) {
 			paragraph.addComponent(component);
 		}
 		return paragraph;
@@ -1012,12 +1095,10 @@ public class NLGFactory {
 	 *            components of this element.
 	 * @return a <code>DocumentElement</code> representing the section.
 	 */
-	public DocumentElement createSection(String title,
-			List<DocumentElement> components) {
+	public DocumentElement createSection(String title, List<DocumentElement> components) {
 
-		DocumentElement section = new DocumentElement(DocumentCategory.SECTION,
-				title);
-		if (components != null) {
+		DocumentElement section = new DocumentElement(DocumentCategory.SECTION, title);
+		if(components != null) {
 			section.addComponents(components);
 		}
 		return section;
@@ -1035,9 +1116,8 @@ public class NLGFactory {
 	 * @return a <code>DocumentElement</code> representing the section.
 	 */
 	public DocumentElement createSection(String title, NLGElement component) {
-		DocumentElement section = new DocumentElement(DocumentCategory.SECTION,
-				title);
-		if (component != null) {
+		DocumentElement section = new DocumentElement(DocumentCategory.SECTION, title);
+		if(component != null) {
 			section.addComponent(component);
 		}
 		return section;
@@ -1061,8 +1141,7 @@ public class NLGFactory {
 	 * @return a <code>DocumentElement</code> representing this sentence
 	 */
 	public DocumentElement createSentence(List<NLGElement> components) {
-		DocumentElement sentence = new DocumentElement(
-				DocumentCategory.SENTENCE, null);
+		DocumentElement sentence = new DocumentElement(DocumentCategory.SENTENCE, null);
 		sentence.addComponents(components);
 		return sentence;
 	}
@@ -1076,8 +1155,7 @@ public class NLGFactory {
 	 * @return a <code>DocumentElement</code> representing this sentence
 	 */
 	public DocumentElement createSentence(NLGElement components) {
-		DocumentElement sentence = new DocumentElement(
-				DocumentCategory.SENTENCE, null);
+		DocumentElement sentence = new DocumentElement(DocumentCategory.SENTENCE, null);
 		sentence.addComponent(components);
 		return sentence;
 	}
@@ -1110,11 +1188,9 @@ public class NLGFactory {
 	 *            the object of the sentence.
 	 * @return a <code>DocumentElement</code> representing this sentence
 	 */
-	public DocumentElement createSentence(Object subject, Object verb,
-			Object complement) {
+	public DocumentElement createSentence(Object subject, Object verb, Object complement) {
 
-		DocumentElement sentence = new DocumentElement(
-				DocumentCategory.SENTENCE, null);
+		DocumentElement sentence = new DocumentElement(DocumentCategory.SENTENCE, null);
 		sentence.addComponent(createClause(subject, verb, complement));
 		return sentence;
 	}
@@ -1129,10 +1205,9 @@ public class NLGFactory {
 	 * @return a <code>DocumentElement</code> representing this sentence
 	 */
 	public DocumentElement createSentence(String cannedSentence) {
-		DocumentElement sentence = new DocumentElement(
-				DocumentCategory.SENTENCE, null);
+		DocumentElement sentence = new DocumentElement(DocumentCategory.SENTENCE, null);
 
-		if (cannedSentence != null) {
+		if(cannedSentence != null) {
 			sentence.addComponent(createStringElement(cannedSentence));
 		}
 		return sentence;

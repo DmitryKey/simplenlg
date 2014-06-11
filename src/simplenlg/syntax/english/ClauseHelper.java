@@ -67,12 +67,11 @@ abstract class ClauseHelper {
 		NLGElement splitVerb = null;
 		boolean interrogObj = false;
 
-		if (phrase != null) {
+		if(phrase != null) {
 			realisedElement = new ListElement();
-			NLGElement verbElement = phrase
-					.getFeatureAsElement(InternalFeature.VERB_PHRASE);
+			NLGElement verbElement = phrase.getFeatureAsElement(InternalFeature.VERB_PHRASE);
 
-			if (verbElement == null) {
+			if(verbElement == null) {
 				verbElement = phrase.getHead();
 			}
 
@@ -82,37 +81,33 @@ abstract class ClauseHelper {
 			addComplementiser(phrase, parent, realisedElement);
 			addCuePhrase(phrase, parent, realisedElement);
 
-			if (phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
+			if(phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
 				Object inter = phrase.getFeature(Feature.INTERROGATIVE_TYPE);
 				interrogObj = (InterrogativeType.WHAT_OBJECT.equals(inter)
-						|| InterrogativeType.WHO_OBJECT.equals(inter)
-						|| InterrogativeType.HOW_PREDICATE.equals(inter)
-						|| InterrogativeType.HOW.equals(inter)
-						|| InterrogativeType.WHY.equals(inter) || InterrogativeType.WHERE
-						.equals(inter));
-				splitVerb = realiseInterrogative(phrase, parent,
-						realisedElement, phraseFactory, verbElement);
+				               || InterrogativeType.WHO_OBJECT.equals(inter)
+				               || InterrogativeType.HOW_PREDICATE.equals(inter) || InterrogativeType.HOW.equals(inter)
+				               || InterrogativeType.WHY.equals(inter) || InterrogativeType.WHERE.equals(inter));
+				splitVerb = realiseInterrogative(phrase, parent, realisedElement, phraseFactory, verbElement);
 			} else {
-				PhraseHelper
-						.realiseList(
-								parent,
-								realisedElement,
-								phrase.getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS),
-								DiscourseFunction.FRONT_MODIFIER);
+				PhraseHelper.realiseList(parent,
+				                         realisedElement,
+				                         phrase.getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS),
+				                         DiscourseFunction.FRONT_MODIFIER);
 			}
 
 			addSubjectsToFront(phrase, parent, realisedElement, splitVerb);
 
-			NLGElement passiveSplitVerb = addPassiveComplementsNumberPerson(
-					phrase, parent, realisedElement, verbElement);
+			NLGElement passiveSplitVerb = addPassiveComplementsNumberPerson(phrase,
+			                                                                parent,
+			                                                                realisedElement,
+			                                                                verbElement);
 
-			if (passiveSplitVerb != null) {
+			if(passiveSplitVerb != null) {
 				splitVerb = passiveSplitVerb;
 			}
 
 			// realise verb needs to know if clause is object interrogative
-			realiseVerb(phrase, parent, realisedElement, splitVerb,
-					verbElement, interrogObj);
+			realiseVerb(phrase, parent, realisedElement, splitVerb, verbElement, interrogObj);
 			addPassiveSubjects(phrase, parent, realisedElement, phraseFactory);
 			addInterrogativeFrontModifiers(phrase, parent, realisedElement);
 			addEndingTo(phrase, parent, realisedElement, phraseFactory);
@@ -135,13 +130,12 @@ abstract class ClauseHelper {
 	 *            the phrase factory to be used.
 	 */
 	private static void addEndingTo(PhraseElement phrase,
-			SyntaxProcessor parent, ListElement realisedElement,
-			NLGFactory phraseFactory) {
+	                                SyntaxProcessor parent,
+	                                ListElement realisedElement,
+	                                NLGFactory phraseFactory) {
 
-		if (InterrogativeType.WHO_INDIRECT_OBJECT.equals(phrase
-				.getFeature(Feature.INTERROGATIVE_TYPE))) {
-			NLGElement word = phraseFactory.createWord(
-					"to", LexicalCategory.PREPOSITION); //$NON-NLS-1$
+		if(InterrogativeType.WHO_INDIRECT_OBJECT.equals(phrase.getFeature(Feature.INTERROGATIVE_TYPE))) {
+			NLGElement word = phraseFactory.createWord("to", LexicalCategory.PREPOSITION); //$NON-NLS-1$
 			realisedElement.addComponent(parent.realise(word));
 		}
 	}
@@ -159,16 +153,14 @@ abstract class ClauseHelper {
 	 *            the current realisation of the clause.
 	 */
 	private static void addInterrogativeFrontModifiers(PhraseElement phrase,
-			SyntaxProcessor parent, ListElement realisedElement) {
+	                                                   SyntaxProcessor parent,
+	                                                   ListElement realisedElement) {
 		NLGElement currentElement = null;
-		if (phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
-			for (NLGElement subject : phrase
-					.getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS)) {
+		if(phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
+			for(NLGElement subject : phrase.getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS)) {
 				currentElement = parent.realise(subject);
-				if (currentElement != null) {
-					currentElement.setFeature(
-							InternalFeature.DISCOURSE_FUNCTION,
-							DiscourseFunction.FRONT_MODIFIER);
+				if(currentElement != null) {
+					currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.FRONT_MODIFIER);
 
 					realisedElement.addComponent(currentElement);
 				}
@@ -190,30 +182,25 @@ abstract class ClauseHelper {
 	 *            the phrase factory to be used.
 	 */
 	private static void addPassiveSubjects(PhraseElement phrase,
-			SyntaxProcessor parent, ListElement realisedElement,
-			NLGFactory phraseFactory) {
+	                                       SyntaxProcessor parent,
+	                                       ListElement realisedElement,
+	                                       NLGFactory phraseFactory) {
 		NLGElement currentElement = null;
 
-		if (phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
-			List<NLGElement> allSubjects = phrase
-					.getFeatureAsElementList(InternalFeature.SUBJECTS);
+		if(phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
+			List<NLGElement> allSubjects = phrase.getFeatureAsElementList(InternalFeature.SUBJECTS);
 
-			if (allSubjects.size() > 0
-					|| phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
-				realisedElement.addComponent(parent.realise(phraseFactory
-						.createPrepositionPhrase("by"))); //$NON-NLS-1$
+			if(allSubjects.size() > 0 || phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
+				realisedElement.addComponent(parent.realise(phraseFactory.createPrepositionPhrase("by"))); //$NON-NLS-1$
 			}
 
-			for (NLGElement subject : allSubjects) {
+			for(NLGElement subject : allSubjects) {
 
 				subject.setFeature(Feature.PASSIVE, true);
-				if (subject.isA(PhraseCategory.NOUN_PHRASE)
-						|| subject instanceof CoordinatedPhraseElement) {
+				if(subject.isA(PhraseCategory.NOUN_PHRASE) || subject instanceof CoordinatedPhraseElement) {
 					currentElement = parent.realise(subject);
-					if (currentElement != null) {
-						currentElement.setFeature(
-								InternalFeature.DISCOURSE_FUNCTION,
-								DiscourseFunction.SUBJECT);
+					if(currentElement != null) {
+						currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.SUBJECT);
 						realisedElement.addComponent(currentElement);
 					}
 				}
@@ -241,42 +228,38 @@ abstract class ClauseHelper {
 	 *            whether the VP is part of an object WH-interrogative
 	 */
 	private static void realiseVerb(PhraseElement phrase,
-			SyntaxProcessor parent, ListElement realisedElement,
-			NLGElement splitVerb, NLGElement verbElement, boolean whObj) {
+	                                SyntaxProcessor parent,
+	                                ListElement realisedElement,
+	                                NLGElement splitVerb,
+	                                NLGElement verbElement,
+	                                boolean whObj) {
 
 		setVerbFeatures(phrase, verbElement);
 
 		NLGElement currentElement = parent.realise(verbElement);
-		if (currentElement != null) {
-			if (splitVerb == null) {
-				currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
-						DiscourseFunction.VERB_PHRASE);
+		if(currentElement != null) {
+			if(splitVerb == null) {
+				currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.VERB_PHRASE);
 
 				realisedElement.addComponent(currentElement);
 
 			} else {
-				if (currentElement instanceof ListElement) {
+				if(currentElement instanceof ListElement) {
 					List<NLGElement> children = currentElement.getChildren();
 					currentElement = children.get(0);
-					currentElement.setFeature(
-							InternalFeature.DISCOURSE_FUNCTION,
-							DiscourseFunction.VERB_PHRASE);
+					currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.VERB_PHRASE);
 					realisedElement.addComponent(currentElement);
 					realisedElement.addComponent(splitVerb);
 
-					for (int eachChild = 1; eachChild < children.size(); eachChild++) {
+					for(int eachChild = 1; eachChild < children.size(); eachChild++ ) {
 						currentElement = children.get(eachChild);
-						currentElement.setFeature(
-								InternalFeature.DISCOURSE_FUNCTION,
-								DiscourseFunction.VERB_PHRASE);
+						currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.VERB_PHRASE);
 						realisedElement.addComponent(currentElement);
 					}
 				} else {
-					currentElement.setFeature(
-							InternalFeature.DISCOURSE_FUNCTION,
-							DiscourseFunction.VERB_PHRASE);
+					currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.VERB_PHRASE);
 
-					if (whObj) {
+					if(whObj) {
 						realisedElement.addComponent(currentElement);
 						realisedElement.addComponent(splitVerb);
 					} else {
@@ -297,8 +280,7 @@ abstract class ClauseHelper {
 	 *            the <code>NLGElement</code> representing the verb phrase for
 	 *            this clause.
 	 */
-	private static void setVerbFeatures(PhraseElement phrase,
-			NLGElement verbElement) {
+	private static void setVerbFeatures(PhraseElement phrase, NLGElement verbElement) {
 		// this routine copies features from the clause to the VP.
 		// it is disabled, as this copying is now done automatically
 		// when features are set in SPhraseSpec
@@ -343,43 +325,37 @@ abstract class ClauseHelper {
 	 *            the <code>NLGElement</code> representing the verb phrase for
 	 *            this clause.
 	 */
-	private static NLGElement addPassiveComplementsNumberPerson(
-			PhraseElement phrase, SyntaxProcessor parent,
-			ListElement realisedElement, NLGElement verbElement) {
+	private static NLGElement addPassiveComplementsNumberPerson(PhraseElement phrase,
+	                                                            SyntaxProcessor parent,
+	                                                            ListElement realisedElement,
+	                                                            NLGElement verbElement) {
 		Object passiveNumber = null;
 		Object passivePerson = null;
 		NLGElement currentElement = null;
 		NLGElement splitVerb = null;
-		NLGElement verbPhrase = phrase
-				.getFeatureAsElement(InternalFeature.VERB_PHRASE);
+		NLGElement verbPhrase = phrase.getFeatureAsElement(InternalFeature.VERB_PHRASE);
 
 		// count complements to set plural feature if more than one
 		int numComps = 0;
 		boolean coordSubj = false;
 
-		if (phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()
-				&& verbPhrase != null
-				&& !InterrogativeType.WHAT_OBJECT.equals(phrase
-						.getFeature(Feature.INTERROGATIVE_TYPE))) {
+		if(phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue() && verbPhrase != null
+		   && !InterrogativeType.WHAT_OBJECT.equals(phrase.getFeature(Feature.INTERROGATIVE_TYPE))) {
 
 			// complements of a clause are stored in the VPPhraseSpec
-			for (NLGElement subject : verbPhrase
-					.getFeatureAsElementList(InternalFeature.COMPLEMENTS)) {
+			for(NLGElement subject : verbPhrase.getFeatureAsElementList(InternalFeature.COMPLEMENTS)) {
 
 				// AG: complement needn't be an NP
 				// subject.isA(PhraseCategory.NOUN_PHRASE) &&
-				if (DiscourseFunction.OBJECT.equals(subject
-						.getFeature(InternalFeature.DISCOURSE_FUNCTION))) {
+				if(DiscourseFunction.OBJECT.equals(subject.getFeature(InternalFeature.DISCOURSE_FUNCTION))) {
 					subject.setFeature(Feature.PASSIVE, true);
-					numComps++;
+					numComps++ ;
 					currentElement = parent.realise(subject);
 
-					if (currentElement != null) {
-						currentElement.setFeature(
-								InternalFeature.DISCOURSE_FUNCTION,
-								DiscourseFunction.OBJECT);
+					if(currentElement != null) {
+						currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.OBJECT);
 
-						if (phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
+						if(phrase.hasFeature(Feature.INTERROGATIVE_TYPE)) {
 							splitVerb = currentElement;
 						} else {
 							realisedElement.addComponent(currentElement);
@@ -387,41 +363,36 @@ abstract class ClauseHelper {
 					}
 
 					// flag if passive subject is coordinated with an "and"
-					if (!coordSubj
-							&& subject instanceof CoordinatedPhraseElement) {
-						String conj = ((CoordinatedPhraseElement) subject)
-								.getConjunction();
+					if(!coordSubj && subject instanceof CoordinatedPhraseElement) {
+						String conj = ((CoordinatedPhraseElement) subject).getConjunction();
 						coordSubj = (conj != null && conj.equals("and"));
 					}
 
-					if (passiveNumber == null) {
+					if(passiveNumber == null) {
 						passiveNumber = subject.getFeature(Feature.NUMBER);
 					} else {
 						passiveNumber = NumberAgreement.PLURAL;
 					}
 
-					if (Person.FIRST.equals(subject.getFeature(Feature.PERSON))) {
+					if(Person.FIRST.equals(subject.getFeature(Feature.PERSON))) {
 						passivePerson = Person.FIRST;
-					} else if (Person.SECOND.equals(subject
-							.getFeature(Feature.PERSON))
-							&& !Person.FIRST.equals(passivePerson)) {
+					} else if(Person.SECOND.equals(subject.getFeature(Feature.PERSON))
+					          && !Person.FIRST.equals(passivePerson)) {
 						passivePerson = Person.SECOND;
-					} else if (passivePerson == null) {
+					} else if(passivePerson == null) {
 						passivePerson = Person.THIRD;
 					}
 
-					if (Form.GERUND.equals(phrase.getFeature(Feature.FORM))
-							&& !phrase.getFeatureAsBoolean(
-									Feature.SUPPRESS_GENITIVE_IN_GERUND)
-									.booleanValue()) {
+					if(Form.GERUND.equals(phrase.getFeature(Feature.FORM))
+					   && !phrase.getFeatureAsBoolean(Feature.SUPPRESS_GENITIVE_IN_GERUND).booleanValue()) {
 						subject.setFeature(Feature.POSSESSIVE, true);
 					}
 				}
 			}
 		}
 
-		if (verbElement != null) {
-			if (passivePerson != null) {
+		if(verbElement != null) {
+			if(passivePerson != null) {
 				verbElement.setFeature(Feature.PERSON, passivePerson);
 				// below commented out. for non-passive, number and person set
 				// by checkSubjectNumberPerson
@@ -430,9 +401,9 @@ abstract class ClauseHelper {
 				// .getFeature(Feature.PERSON));
 			}
 
-			if (numComps > 1 || coordSubj) {
+			if(numComps > 1 || coordSubj) {
 				verbElement.setFeature(Feature.NUMBER, NumberAgreement.PLURAL);
-			} else if (passiveNumber != null) {
+			} else if(passiveNumber != null) {
 				verbElement.setFeature(Feature.NUMBER, passiveNumber);
 			}
 		}
@@ -455,14 +426,13 @@ abstract class ClauseHelper {
 	 *            should split the verb
 	 */
 	private static void addSubjectsToFront(PhraseElement phrase,
-			SyntaxProcessor parent, ListElement realisedElement,
-			NLGElement splitVerb) {
-		if (!Form.INFINITIVE.equals(phrase.getFeature(Feature.FORM))
-				&& !Form.IMPERATIVE.equals(phrase.getFeature(Feature.FORM))
-				&& !phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()
-				&& splitVerb == null) {
-			realisedElement.addComponents(realiseSubjects(phrase, parent)
-					.getChildren());
+	                                       SyntaxProcessor parent,
+	                                       ListElement realisedElement,
+	                                       NLGElement splitVerb) {
+		if(!Form.INFINITIVE.equals(phrase.getFeature(Feature.FORM))
+		   && !Form.IMPERATIVE.equals(phrase.getFeature(Feature.FORM))
+		   && !phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue() && splitVerb == null) {
+			realisedElement.addComponents(realiseSubjects(phrase, parent).getChildren());
 		}
 	}
 
@@ -477,24 +447,20 @@ abstract class ClauseHelper {
 	 * @param realisedElement
 	 *            the current realisation of the clause.
 	 */
-	private static ListElement realiseSubjects(PhraseElement phrase,
-			SyntaxProcessor parent) {
+	private static ListElement realiseSubjects(PhraseElement phrase, SyntaxProcessor parent) {
 
 		NLGElement currentElement = null;
 		ListElement realisedElement = new ListElement();
 
-		for (NLGElement subject : phrase
-				.getFeatureAsElementList(InternalFeature.SUBJECTS)) {
+		for(NLGElement subject : phrase.getFeatureAsElementList(InternalFeature.SUBJECTS)) {
 
-			subject.setFeature(InternalFeature.DISCOURSE_FUNCTION,
-					DiscourseFunction.SUBJECT);
-			if (Form.GERUND.equals(phrase.getFeature(Feature.FORM))
-					&& !phrase.getFeatureAsBoolean(
-							Feature.SUPPRESS_GENITIVE_IN_GERUND).booleanValue()) {
+			subject.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.SUBJECT);
+			if(Form.GERUND.equals(phrase.getFeature(Feature.FORM))
+			   && !phrase.getFeatureAsBoolean(Feature.SUPPRESS_GENITIVE_IN_GERUND).booleanValue()) {
 				subject.setFeature(Feature.POSSESSIVE, true);
 			}
 			currentElement = parent.realise(subject);
-			if (currentElement != null) {
+			if(currentElement != null) {
 				realisedElement.addComponent(currentElement);
 			}
 		}
@@ -528,57 +494,59 @@ abstract class ClauseHelper {
 	 *         split the verb
 	 */
 	private static NLGElement realiseInterrogative(PhraseElement phrase,
-			SyntaxProcessor parent, ListElement realisedElement,
-			NLGFactory phraseFactory, NLGElement verbElement) {
+	                                               SyntaxProcessor parent,
+	                                               ListElement realisedElement,
+	                                               NLGFactory phraseFactory,
+	                                               NLGElement verbElement) {
 		NLGElement splitVerb = null;
 
-		if (phrase.getParent() != null) {
+		if(phrase.getParent() != null) {
 			phrase.getParent().setFeature(InternalFeature.INTERROGATIVE, true);
 		}
 
 		Object type = phrase.getFeature(Feature.INTERROGATIVE_TYPE);
 
-		if (type instanceof InterrogativeType) {
-			switch ((InterrogativeType) type) {
-			case YES_NO:
-				splitVerb = realiseYesNo(phrase, parent, verbElement,
-						phraseFactory, realisedElement);
+		if(type instanceof InterrogativeType) {
+			switch((InterrogativeType) type){
+			case YES_NO :
+				splitVerb = realiseYesNo(phrase, parent, verbElement, phraseFactory, realisedElement);
 				break;
 
-			case WHO_SUBJECT:
-			case WHAT_SUBJECT:
-				realiseInterrogativeKeyWord(
-						((InterrogativeType) type).getString(),
-						LexicalCategory.PRONOUN, parent, realisedElement, //$NON-NLS-1$
-						phraseFactory);
+			case WHO_SUBJECT :
+			case WHAT_SUBJECT :
+				realiseInterrogativeKeyWord(((InterrogativeType) type).getString(),
+				                            LexicalCategory.PRONOUN,
+				                            parent,
+				                            realisedElement, //$NON-NLS-1$
+				                            phraseFactory);
 				phrase.removeFeature(InternalFeature.SUBJECTS);
 				break;
-			
-			case HOW_MANY:
-				realiseInterrogativeKeyWord(
-						"how", LexicalCategory.PRONOUN, parent, realisedElement, //$NON-NLS-1$
-						phraseFactory);
-				realiseInterrogativeKeyWord(
-						"many", LexicalCategory.ADVERB, parent, realisedElement, //$NON-NLS-1$
-						phraseFactory);
+
+			case HOW_MANY :
+				realiseInterrogativeKeyWord("how", LexicalCategory.PRONOUN, parent, realisedElement, //$NON-NLS-1$
+				                            phraseFactory);
+				realiseInterrogativeKeyWord("many", LexicalCategory.ADVERB, parent, realisedElement, //$NON-NLS-1$
+				                            phraseFactory);
 				break;
 
-			case HOW:
-			case WHY:
-			case WHERE:
-			case WHO_OBJECT:
-			case WHO_INDIRECT_OBJECT:
-			case WHAT_OBJECT:
-				splitVerb = realiseObjectWHInterrogative(((InterrogativeType) type).getString(), phrase, parent,
-						realisedElement, phraseFactory);
+			case HOW :
+			case WHY :
+			case WHERE :
+			case WHO_OBJECT :
+			case WHO_INDIRECT_OBJECT :
+			case WHAT_OBJECT :
+				splitVerb = realiseObjectWHInterrogative(((InterrogativeType) type).getString(),
+				                                         phrase,
+				                                         parent,
+				                                         realisedElement,
+				                                         phraseFactory);
 				break;
 
-			case HOW_PREDICATE:
-				splitVerb = realiseObjectWHInterrogative("how", phrase, parent,
-						realisedElement, phraseFactory);
+			case HOW_PREDICATE :
+				splitVerb = realiseObjectWHInterrogative("how", phrase, parent, realisedElement, phraseFactory);
 				break;
 
-			default:
+			default :
 				break;
 			}
 		}
@@ -591,11 +559,9 @@ abstract class ClauseHelper {
 	 * correctly)
 	 */
 	private static boolean hasAuxiliary(PhraseElement phrase) {
-		return phrase.hasFeature(Feature.MODAL)
-				|| phrase.getFeatureAsBoolean(Feature.PERFECT).booleanValue()
-				|| phrase.getFeatureAsBoolean(Feature.PROGRESSIVE)
-						.booleanValue()
-				|| Tense.FUTURE.equals(phrase.getFeature(Feature.TENSE));
+		return phrase.hasFeature(Feature.MODAL) || phrase.getFeatureAsBoolean(Feature.PERFECT).booleanValue()
+		       || phrase.getFeatureAsBoolean(Feature.PROGRESSIVE).booleanValue()
+		       || Tense.FUTURE.equals(phrase.getFeature(Feature.TENSE));
 	}
 
 	/**
@@ -618,19 +584,20 @@ abstract class ClauseHelper {
 	 *         split the verb
 	 */
 	private static NLGElement realiseObjectWHInterrogative(String keyword,
-			PhraseElement phrase, SyntaxProcessor parent,
-			ListElement realisedElement, NLGFactory phraseFactory) {
+	                                                       PhraseElement phrase,
+	                                                       SyntaxProcessor parent,
+	                                                       ListElement realisedElement,
+	                                                       NLGFactory phraseFactory) {
 		NLGElement splitVerb = null;
-		realiseInterrogativeKeyWord(keyword, LexicalCategory.PRONOUN, parent,
-				realisedElement, //$NON-NLS-1$
-				phraseFactory);
+		realiseInterrogativeKeyWord(keyword, LexicalCategory.PRONOUN, parent, realisedElement, //$NON-NLS-1$
+		                            phraseFactory);
 
 		// if (!Tense.FUTURE.equals(phrase.getFeature(Feature.TENSE)) &&
 		// !copular) {
-		if (!hasAuxiliary(phrase) && !VerbPhraseHelper.isCopular(phrase)) {
+		if(!hasAuxiliary(phrase) && !VerbPhraseHelper.isCopular(phrase)) {
 			addDoAuxiliary(phrase, parent, phraseFactory, realisedElement);
 
-		} else if (!phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
+		} else if(!phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
 			splitVerb = realiseSubjects(phrase, parent);
 		}
 
@@ -651,8 +618,9 @@ abstract class ClauseHelper {
 	 *            the phrase factory to be used.
 	 */
 	private static void addDoAuxiliary(PhraseElement phrase,
-			SyntaxProcessor parent, NLGFactory phraseFactory,
-			ListElement realisedElement) {
+	                                   SyntaxProcessor parent,
+	                                   NLGFactory phraseFactory,
+	                                   ListElement realisedElement) {
 
 		PhraseElement doPhrase = phraseFactory.createVerbPhrase("do"); //$NON-NLS-1$
 		doPhrase.setFeature(Feature.TENSE, phrase.getFeature(Feature.TENSE));
@@ -679,14 +647,16 @@ abstract class ClauseHelper {
 	 *            the phrase factory to be used.
 	 */
 	private static void realiseInterrogativeKeyWord(String keyWord,
-			LexicalCategory cat, SyntaxProcessor parent,
-			ListElement realisedElement, NLGFactory phraseFactory) {
+	                                                LexicalCategory cat,
+	                                                SyntaxProcessor parent,
+	                                                ListElement realisedElement,
+	                                                NLGFactory phraseFactory) {
 
-		if (keyWord != null) {
+		if(keyWord != null) {
 			NLGElement question = phraseFactory.createWord(keyWord, cat);
 			NLGElement currentElement = parent.realise(question);
 
-			if (currentElement != null) {
+			if(currentElement != null) {
 				realisedElement.addComponent(currentElement);
 			}
 		}
@@ -722,19 +692,18 @@ abstract class ClauseHelper {
 	 *         split the verb
 	 */
 	private static NLGElement realiseYesNo(PhraseElement phrase,
-			SyntaxProcessor parent, NLGElement verbElement,
-			NLGFactory phraseFactory, ListElement realisedElement) {
+	                                       SyntaxProcessor parent,
+	                                       NLGElement verbElement,
+	                                       NLGFactory phraseFactory,
+	                                       ListElement realisedElement) {
 
 		NLGElement splitVerb = null;
 
-		if (!(verbElement instanceof VPPhraseSpec && VerbPhraseHelper
-				.isCopular(((VPPhraseSpec) verbElement).getVerb()))
-				&& !phrase.getFeatureAsBoolean(Feature.PROGRESSIVE)
-						.booleanValue()
-				&& !phrase.hasFeature(Feature.MODAL)
-				&& !Tense.FUTURE.equals(phrase.getFeature(Feature.TENSE))
-				&& !phrase.getFeatureAsBoolean(Feature.NEGATED).booleanValue()
-				&& !phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
+		if(!(verbElement instanceof VPPhraseSpec && VerbPhraseHelper.isCopular(((VPPhraseSpec) verbElement).getVerb()))
+		   && !phrase.getFeatureAsBoolean(Feature.PROGRESSIVE).booleanValue() && !phrase.hasFeature(Feature.MODAL)
+		   && !Tense.FUTURE.equals(phrase.getFeature(Feature.TENSE))
+		   && !phrase.getFeatureAsBoolean(Feature.NEGATED).booleanValue()
+		   && !phrase.getFeatureAsBoolean(Feature.PASSIVE).booleanValue()) {
 			addDoAuxiliary(phrase, parent, phraseFactory, realisedElement);
 		} else {
 			splitVerb = realiseSubjects(phrase, parent);
@@ -753,15 +722,12 @@ abstract class ClauseHelper {
 	 * @param realisedElement
 	 *            the current realisation of the clause.
 	 */
-	private static void addCuePhrase(PhraseElement phrase,
-			SyntaxProcessor parent, ListElement realisedElement) {
+	private static void addCuePhrase(PhraseElement phrase, SyntaxProcessor parent, ListElement realisedElement) {
 
-		NLGElement currentElement = parent.realise(phrase
-				.getFeatureAsElement(Feature.CUE_PHRASE));
+		NLGElement currentElement = parent.realise(phrase.getFeatureAsElement(Feature.CUE_PHRASE));
 
-		if (currentElement != null) {
-			currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION,
-					DiscourseFunction.CUE_PHRASE);
+		if(currentElement != null) {
+			currentElement.setFeature(InternalFeature.DISCOURSE_FUNCTION, DiscourseFunction.CUE_PHRASE);
 			realisedElement.addComponent(currentElement);
 		}
 	}
@@ -779,21 +745,16 @@ abstract class ClauseHelper {
 	 * @param realisedElement
 	 *            the current realisation of the clause.
 	 */
-	private static void addComplementiser(PhraseElement phrase,
-			SyntaxProcessor parent, ListElement realisedElement) {
+	private static void addComplementiser(PhraseElement phrase, SyntaxProcessor parent, ListElement realisedElement) {
 
 		NLGElement currentElement;
 
-		if (ClauseStatus.SUBORDINATE.equals(phrase
-				.getFeature(InternalFeature.CLAUSE_STATUS))
-				&& !phrase
-						.getFeatureAsBoolean(Feature.SUPRESSED_COMPLEMENTISER)
-						.booleanValue()) {
+		if(ClauseStatus.SUBORDINATE.equals(phrase.getFeature(InternalFeature.CLAUSE_STATUS))
+		   && !phrase.getFeatureAsBoolean(Feature.SUPRESSED_COMPLEMENTISER).booleanValue()) {
 
-			currentElement = parent.realise(phrase
-					.getFeatureAsElement(Feature.COMPLEMENTISER));
+			currentElement = parent.realise(phrase.getFeatureAsElement(Feature.COMPLEMENTISER));
 
-			if (currentElement != null) {
+			if(currentElement != null) {
 				realisedElement.addComponent(currentElement);
 			}
 		}
@@ -809,32 +770,27 @@ abstract class ClauseHelper {
 	 *            the <code>NLGElement</code> representing the verb phrase for
 	 *            this clause.
 	 */
-	private static void copyFrontModifiers(PhraseElement phrase,
-			NLGElement verbElement) {
-		List<NLGElement> frontModifiers = phrase
-				.getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS);
+	private static void copyFrontModifiers(PhraseElement phrase, NLGElement verbElement) {
+		List<NLGElement> frontModifiers = phrase.getFeatureAsElementList(InternalFeature.FRONT_MODIFIERS);
 		Object clauseForm = phrase.getFeature(Feature.FORM);
 
 		// bug fix by Chris Howell (Agfa) -- do not overwrite existing post-mods
 		// in the VP
-		if (verbElement != null) {
-			List<NLGElement> phrasePostModifiers = phrase
-					.getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
+		if(verbElement != null) {
+			List<NLGElement> phrasePostModifiers = phrase.getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
 
-			if (verbElement instanceof PhraseElement) {
-				List<NLGElement> verbPostModifiers = verbElement
-						.getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
+			if(verbElement instanceof PhraseElement) {
+				List<NLGElement> verbPostModifiers = verbElement.getFeatureAsElementList(InternalFeature.POSTMODIFIERS);
 
-				for (NLGElement eachModifier : phrasePostModifiers) {
+				for(NLGElement eachModifier : phrasePostModifiers) {
 
 					// need to check that VP doesn't already contain the
 					// post-modifier
 					// this only happens if the phrase has already been realised
 					// and later modified, with realiser called again. In that
 					// case, postmods will be copied over twice
-					if (!verbPostModifiers.contains(eachModifier)) {
-						((PhraseElement) verbElement)
-								.addPostModifier(eachModifier);
+					if(!verbPostModifiers.contains(eachModifier)) {
+						((PhraseElement) verbElement).addPostModifier(eachModifier);
 					}
 				}
 			}
@@ -845,16 +801,16 @@ abstract class ClauseHelper {
 		// .getFeature(InternalFeature.POSTMODIFIERS));
 		// }
 
-		if (Form.INFINITIVE.equals(clauseForm)) {
+		if(Form.INFINITIVE.equals(clauseForm)) {
 			phrase.setFeature(Feature.SUPRESSED_COMPLEMENTISER, true);
 
-			for (NLGElement eachModifier : frontModifiers) {
-				if (verbElement instanceof PhraseElement) {
+			for(NLGElement eachModifier : frontModifiers) {
+				if(verbElement instanceof PhraseElement) {
 					((PhraseElement) verbElement).addPostModifier(eachModifier);
 				}
 			}
 			phrase.removeFeature(InternalFeature.FRONT_MODIFIERS);
-			if (verbElement != null) {
+			if(verbElement != null) {
 				verbElement.setFeature(InternalFeature.NON_MORPH, true);
 			}
 		}
@@ -880,22 +836,19 @@ abstract class ClauseHelper {
 	 *            the <code>PhraseElement</code> representing this clause.
 	 */
 	private static void checkDiscourseFunction(PhraseElement phrase) {
-		List<NLGElement> subjects = phrase
-				.getFeatureAsElementList(InternalFeature.SUBJECTS);
+		List<NLGElement> subjects = phrase.getFeatureAsElementList(InternalFeature.SUBJECTS);
 		Object clauseForm = phrase.getFeature(Feature.FORM);
-		Object discourseValue = phrase
-				.getFeature(InternalFeature.DISCOURSE_FUNCTION);
+		Object discourseValue = phrase.getFeature(InternalFeature.DISCOURSE_FUNCTION);
 
-		if (DiscourseFunction.OBJECT.equals(discourseValue)
-				|| DiscourseFunction.INDIRECT_OBJECT.equals(discourseValue)) {
+		if(DiscourseFunction.OBJECT.equals(discourseValue) || DiscourseFunction.INDIRECT_OBJECT.equals(discourseValue)) {
 
-			if (Form.IMPERATIVE.equals(clauseForm)) {
+			if(Form.IMPERATIVE.equals(clauseForm)) {
 				phrase.setFeature(Feature.SUPRESSED_COMPLEMENTISER, true);
 				phrase.setFeature(Feature.FORM, Form.INFINITIVE);
-			} else if (Form.GERUND.equals(clauseForm) && subjects.size() == 0) {
+			} else if(Form.GERUND.equals(clauseForm) && subjects.size() == 0) {
 				phrase.setFeature(Feature.SUPRESSED_COMPLEMENTISER, true);
 			}
-		} else if (DiscourseFunction.SUBJECT.equals(discourseValue)) {
+		} else if(DiscourseFunction.SUBJECT.equals(discourseValue)) {
 			phrase.setFeature(Feature.FORM, Form.GERUND);
 			phrase.setFeature(Feature.SUPRESSED_COMPLEMENTISER, true);
 		}
@@ -912,48 +865,48 @@ abstract class ClauseHelper {
 	 *            the <code>NLGElement</code> representing the verb phrase for
 	 *            this clause.
 	 */
-	private static void checkSubjectNumberPerson(PhraseElement phrase,
-			NLGElement verbElement) {
+	private static void checkSubjectNumberPerson(PhraseElement phrase, NLGElement verbElement) {
 		NLGElement currentElement = null;
-		List<NLGElement> subjects = phrase
-				.getFeatureAsElementList(InternalFeature.SUBJECTS);
+		List<NLGElement> subjects = phrase.getFeatureAsElementList(InternalFeature.SUBJECTS);
 		boolean pluralSubjects = false;
 		Person person = null;
 
-		if (subjects != null) {
-			switch (subjects.size()) {
-			case 0:
+		if(subjects != null) {
+			switch(subjects.size()){
+			case 0 :
 				break;
 
-			case 1:
+			case 1 :
 				currentElement = subjects.get(0);
 				// coordinated NP with "and" are plural (not coordinated NP with
 				// "or")
-				if (currentElement instanceof CoordinatedPhraseElement
-						&& ((CoordinatedPhraseElement) currentElement)
-								.checkIfPlural())
+				if(currentElement instanceof CoordinatedPhraseElement
+				   && ((CoordinatedPhraseElement) currentElement).checkIfPlural())
 					pluralSubjects = true;
-				else if ((currentElement.getFeature(Feature.NUMBER) == NumberAgreement.PLURAL)
-						&& !(currentElement instanceof SPhraseSpec)) // ER mod-
-																		// clauses
-																		// are
-																		// singular
-																		// as
-																		// NPs,
-																		// even
-																		// if
-																		// they
-																		// are
-																		// plural
-																		// internally
+				else if((currentElement.getFeature(Feature.NUMBER) == NumberAgreement.PLURAL)
+				        && !(currentElement instanceof SPhraseSpec)) // ER mod-
+				                                                     // clauses
+				                                                     // are
+				                                                     // singular
+				                                                     // as
+				                                                     // NPs,
+				                                                     // even
+				                                                     // if
+				                                                     // they
+				                                                     // are
+				                                                     // plural
+				                                                     // internally
 					pluralSubjects = true;
-				else if (currentElement.isA(PhraseCategory.NOUN_PHRASE)) {
-					NLGElement currentHead = currentElement
-							.getFeatureAsElement(InternalFeature.HEAD);
+				else if(currentElement.isA(PhraseCategory.NOUN_PHRASE)) {
+					NLGElement currentHead = currentElement.getFeatureAsElement(InternalFeature.HEAD);
 					person = (Person) currentElement.getFeature(Feature.PERSON);
-					if ((currentHead.getFeature(Feature.NUMBER) == NumberAgreement.PLURAL))
+
+					if(currentHead == null) {
+						// subject is null and therefore is not gonna be plural
+						pluralSubjects = false;
+					} else if((currentHead.getFeature(Feature.NUMBER) == NumberAgreement.PLURAL))
 						pluralSubjects = true;
-					else if (currentHead instanceof ListElement) {
+					else if(currentHead instanceof ListElement) {
 						pluralSubjects = true;
 						/*
 						 * } else if (currentElement instanceof
@@ -966,17 +919,15 @@ abstract class ClauseHelper {
 				}
 				break;
 
-			default:
+			default :
 				pluralSubjects = true;
 				break;
 			}
 		}
-		if (verbElement != null) {
-			verbElement.setFeature(
-					Feature.NUMBER,
-					pluralSubjects ? NumberAgreement.PLURAL : phrase
-							.getFeature(Feature.NUMBER));
-			if (person != null)
+		if(verbElement != null) {
+			verbElement.setFeature(Feature.NUMBER, pluralSubjects ? NumberAgreement.PLURAL
+			        : phrase.getFeature(Feature.NUMBER));
+			if(person != null)
 				verbElement.setFeature(Feature.PERSON, person);
 		}
 	}

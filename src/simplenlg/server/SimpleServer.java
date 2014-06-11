@@ -14,8 +14,8 @@
  * The Initial Developer of the Original Code is Ehud Reiter, Albert Gatt and Dave Westwater.
  * Portions created by Ehud Reiter, Albert Gatt and Dave Westwater are Copyright (C) 2010-11 The University of Aberdeen. All Rights Reserved.
  *
- * Contributor(s): Ehud Reiter, Albert Gatt, Dave Wewstwater,
- * Roman Kutlak, Margaret Mitchell.
+ * Contributor(s): Ehud Reiter, Albert Gatt, Dave Westwater,
+ * Roman Kutlak, Margaret Mitchell, and Saad Mahamood.
  */
 package simplenlg.server;
 
@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
 import java.util.Properties;
 
@@ -35,7 +36,7 @@ import simplenlg.xmlrealiser.XMLRealiser.LexiconType;
 /**
  * SimpleServer is a program that realises xml requests.
  * 
- * @author Roman Kutlak
+ * @author Roman Kutlak.
  *
  * The program listens on a socket for client connections. 
  * When a client connects, the server creates an instance 
@@ -78,8 +79,31 @@ public class SimpleServer implements Runnable {
      * @throws IOException
      */
     public SimpleServer(int port) throws IOException {
-        serverSocket = new ServerSocket(port, 8);
+        startServer(new ServerSocket(port, 8));
+    }
+   
+    /**
+     * Construct a server with a pre-allocated socket.
+     * @param socket
+     * @throws IOException
+     */
+    public SimpleServer(ServerSocket socket) throws IOException {
+    	startServer(socket);
+    }
+    
+
+	/**
+	 * startServer -- Start's the SimpleServer with a created ServerSocket.
+	 * @param socket -- The socket for the server to use.
+	 * @throws IOException
+	 * @throws SocketException
+	 */
+	private void startServer(ServerSocket socket) throws IOException, SocketException {
+		serverSocket = socket;
+        serverSocket.setReuseAddress(true);
         serverSocket.setSoTimeout(0);
+        
+        System.out.println("Port Number used by Server is: " + serverSocket.getLocalPort());
         
         // try to read the lexicon path from lexicon.properties file
         try {
@@ -101,7 +125,7 @@ public class SimpleServer implements Runnable {
                            + lexiconPath);
         
         XMLRealiser.setLexicon(LexiconType.NIHDB, this.lexiconPath);
-    }
+	}
 
     static void print(Object o) {
         System.out.println(o);
