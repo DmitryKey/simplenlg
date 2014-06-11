@@ -126,7 +126,9 @@ public class OrthographyProcessor extends NLGModule {
 				function = firstChild.getFeature(InternalFeature.DISCOURSE_FUNCTION);
 			}
 		} else {
-			function = element.getFeature(InternalFeature.DISCOURSE_FUNCTION);
+			if(element != null) {
+				function = element.getFeature(InternalFeature.DISCOURSE_FUNCTION);
+			}
 		}
 
 		if(element != null) {
@@ -143,10 +145,11 @@ public class OrthographyProcessor extends NLGModule {
 
 				case LIST_ITEM :
 					if(components != null && components.size() > 0) {
-						// recursively realise whatever's in the list item
+						// recursively realise whatever is in the list item
 						// NB: this will realise embedded lists within list
 						// items
 						realisedElement = new ListElement(realise(components));
+                        realisedElement.setParent(element.getParent());
 					}
 					break;
 

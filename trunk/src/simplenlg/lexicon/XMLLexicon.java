@@ -21,6 +21,7 @@ package simplenlg.lexicon;
 import java.io.File;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -106,10 +107,14 @@ public class XMLLexicon extends Lexicon {
 	public XMLLexicon() {
 		try {
 			
-			createLexicon(getClass().getResource(
-					"/simplenlg/lexicon/default-lexicon.xml").toURI());
-			// Saad Mahamood: Maven specific fix:
-			// createLexicon(this.getClass().getClassLoader().getResource("default-lexicon.xml").toURI());
+			URL defaultLexicon = this.getClass().getClassLoader().getResource("default-lexicon.xml");
+			
+			if(null != defaultLexicon) {
+				createLexicon(defaultLexicon.toURI());
+			} else {
+				createLexicon(this.getClass().getResource(
+						"/simplenlg/lexicon/default-lexicon.xml").toURI());
+			}
 			
 		} catch (URISyntaxException ex) {
 			System.out.println(ex.toString());

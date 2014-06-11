@@ -16,9 +16,10 @@
  *
  * Contributor(s): Ehud Reiter, Albert Gatt, Dave Wewstwater, Roman Kutlak, Margaret Mitchell, Saad Mahamood.
  */
- // package simplenlg.format.english;
+// package simplenlg.format.english;
 
 package simplenlg.format.english;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +52,9 @@ import simplenlg.framework.StringElement;
 
 //public class TextFormatter extends NLGModule {
 public class HTMLFormatter extends NLGModule {
+
 	// Modifications by James Christie to convert TextFormatter into a HTML Formatter
-	
+
 	@Override
 	public void initialise() {
 		// Do nothing
@@ -61,135 +63,145 @@ public class HTMLFormatter extends NLGModule {
 	@Override
 	public NLGElement realise(NLGElement element) { // realise a single element
 		NLGElement realisedComponent = null;
-		StringBuffer realisation = new StringBuffer(); 
-		
-		if (element != null) {
+		StringBuffer realisation = new StringBuffer();
+
+		if(element != null) {
 			ElementCategory category = element.getCategory();
 			List<NLGElement> components = element.getChildren();
 
 			//NB: The order of the if-statements below is important!
-						
+
 			// check if this is a canned text first
-			if (element instanceof StringElement) {
+			if(element instanceof StringElement) {
 				realisation.append(element.getRealisation());
 
-			} else if (category instanceof DocumentCategory) {
+			} else if(category instanceof DocumentCategory) {
 				// && element instanceof DocumentElement
-				
-				switch ( ( DocumentCategory ) category ) {
-				
-				case DOCUMENT:
-					String title = element instanceof DocumentElement ? ( ( DocumentElement ) element ).getTitle( ) : null ;
-					realisation.append( "<h1> " + title + " </h1>\n" ) ;
-					
-					for ( NLGElement eachComponent : components ) {
-						realisedComponent = realise( eachComponent );
-						if ( realisedComponent != null ) {
-							realisation.append( realisedComponent.getRealisation( ) ) ;
+
+				switch((DocumentCategory) category){
+
+				case DOCUMENT :
+					String title = element instanceof DocumentElement ? ((DocumentElement) element).getTitle() : null;
+					realisation.append("<h1>" + title + "</h1>");
+
+					for(NLGElement eachComponent : components) {
+						realisedComponent = realise(eachComponent);
+						if(realisedComponent != null) {
+							realisation.append(realisedComponent.getRealisation());
 						}
 					}
 
 					break;
-					
-				case SECTION:
-					title = element instanceof DocumentElement ? ( ( DocumentElement ) element ).getTitle( ) : null ;
-					
-					if ( title != null ) {
-						String sectionTitle = ( ( DocumentElement )  element ).getTitle( ) ;
-						realisation.append( "<h2> " + sectionTitle  + " </h2>\n" ) ;					
+
+				case SECTION :
+					title = element instanceof DocumentElement ? ((DocumentElement) element).getTitle() : null;
+
+					if(title != null) {
+						String sectionTitle = ((DocumentElement) element).getTitle();
+						realisation.append("<h2>" + sectionTitle + "</h2>");
 					}
-					
-					for ( NLGElement eachComponent : components ) {
-						realisedComponent = realise( eachComponent );
-						if ( realisedComponent != null ) {
-							realisation.append( realisedComponent.getRealisation( ) ) ;
+
+					for(NLGElement eachComponent : components) {
+						realisedComponent = realise(eachComponent);
+						if(realisedComponent != null) {
+							realisation.append(realisedComponent.getRealisation());
 						}
 					}
 					break;
-				
-				case LIST:	
-					realisation.append( "<ul>\n" ) ;
-					for ( NLGElement eachComponent : components ) {
-						realisedComponent = realise( eachComponent );
-						if ( realisedComponent != null ) {
-							realisation.append( realisedComponent.getRealisation( ) ) ;
+
+				case LIST :
+					realisation.append("<ul>");
+					for(NLGElement eachComponent : components) {
+						realisedComponent = realise(eachComponent);
+						if(realisedComponent != null) {
+							realisation.append(realisedComponent.getRealisation());
 						}
 					}
-					realisation.append( "</ul>\n" ) ;
+					realisation.append("</ul>");
 					break;
-		
-				case PARAGRAPH:
-					if ( null != components && 0 < components.size( ) ) {
-						realisedComponent = realise(components.get( 0 ) ) ;						
-						if ( realisedComponent != null ) {
-							realisation.append( "<p>\n" ) ;
-							realisation.append( realisedComponent.getRealisation( ) ) ;							
+
+				case ENUMERATED_LIST :
+					realisation.append("<ol>");
+					for(NLGElement eachComponent : components) {
+						realisedComponent = realise(eachComponent);
+						if(realisedComponent != null) {
+							realisation.append(realisedComponent.getRealisation());
 						}
-						for ( int i = 1; i < components.size( ); i++ ) {
-							if ( realisedComponent != null ) {
-								realisation.append( " " ) ; 								
+					}
+					realisation.append("</ol>");
+					break;
+
+				case PARAGRAPH :
+					if(null != components && 0 < components.size()) {
+						realisedComponent = realise(components.get(0));
+						if(realisedComponent != null) {
+							realisation.append("<p>");
+							realisation.append(realisedComponent.getRealisation());
+						}
+						for(int i = 1; i < components.size(); i++ ) {
+							if(realisedComponent != null) {
+								realisation.append(" ");
 							}
-							realisedComponent = realise( components.get( i ) ) ;
-							if (realisedComponent != null) {
-								realisation.append(realisedComponent.getRealisation( ) ) ;
+							realisedComponent = realise(components.get(i));
+							if(realisedComponent != null) {
+								realisation.append(realisedComponent.getRealisation());
 							}
 						}
-						realisation.append( "\n</p>\n" ) ;
+						realisation.append("</p>");
 					}
 
 					break;
 
-				case SENTENCE: 
-					realisation.append( element.getRealisation( ) ) ;
-					break; 
+				case SENTENCE :
+					realisation.append(element.getRealisation());
+					break;
 
-				case LIST_ITEM:		
-					realisation.append( "<li>" ) ; 
+				case LIST_ITEM :
+					realisation.append("<li>");
 
-					for ( NLGElement eachComponent : components ) {
-						realisedComponent = realise( eachComponent );
-						
-						if (realisedComponent != null) {
-							realisation.append(realisedComponent.getRealisation());	
-							
-							if(components.indexOf(eachComponent) < components.size()-1) {
+					for(NLGElement eachComponent : components) {
+						realisedComponent = realise(eachComponent);
+
+						if(realisedComponent != null) {
+							realisation.append(realisedComponent.getRealisation());
+
+							if(components.indexOf(eachComponent) < components.size() - 1) {
 								realisation.append(' ');
 							}
 						}
 					}
-					realisation.append( "</li>\n" ) ;					
-					
+					realisation.append("</li>");
+
 					break;
-					
+
 				}
 
 				// also need to check if element is a listelement (items can
 				// have embedded lists post-orthography) or a coordinate
-			} else if (element instanceof ListElement || element instanceof CoordinatedPhraseElement) {
-				
-				for (NLGElement eachComponent : components) {
+			} else if(element instanceof ListElement || element instanceof CoordinatedPhraseElement) {
+
+				for(NLGElement eachComponent : components) {
 					realisedComponent = realise(eachComponent);
-					if (realisedComponent != null) {
+					if(realisedComponent != null) {
 						realisation.append(realisedComponent.getRealisation()).append(' ');
 					}
 				}
-			} 
+			}
 		}
-				
+
 		return new StringElement(realisation.toString());
 	} // realise ~ single element
-	
+
 	@Override
 	public List<NLGElement> realise(List<NLGElement> elements) { // realise a list of elements
 		List<NLGElement> realisedList = new ArrayList<NLGElement>();
 
-		if (elements != null) {
-			for (NLGElement eachElement : elements) {
+		if(elements != null) {
+			for(NLGElement eachElement : elements) {
 				realisedList.add(realise(eachElement));
 			}
 		}
 		return realisedList;
 	} // realise ~ list of elements
-	
-	
+
 } // class

@@ -38,7 +38,8 @@ import simplenlg.framework.StringElement;
  * <li>Adding the document title to the beginning of the text.</li>
  * <li>Adding section titles in the relevant places.</li>
  * <li>Adding appropriate new line breaks for ease-of-reading.</li>
- * <li>Indenting list items with ' * '.</li>
+ * <li>Adding list items with ' * '.</li>
+ * <li>Adding numbers for enumerated lists (e.g., "1.1 - ", "1.2 - ", etc.)</li>
  * </ul>
  * </p>
  * 
@@ -48,7 +49,9 @@ import simplenlg.framework.StringElement;
  */
 public class TextFormatter extends NLGModule {
 
-	@Override
+    static private NumberedPrefix numberedPrefix = new NumberedPrefix();
+
+    @Override
 	public void initialise() {
 		// Do nothing
 	}
@@ -74,30 +77,55 @@ public class TextFormatter extends NLGModule {
 						.getTitle()
 						: null;
 				// String title = ((DocumentElement) element).getTitle();
-
+						
 				switch ((DocumentCategory) category) {
 
 				case DOCUMENT:
-				case SECTION:
-				case LIST:
-					if (title != null) {
-						realisation.append(title).append('\n');
-					}
-					for (NLGElement eachComponent : components) {
-						realisedComponent = realise(eachComponent);
-						if (realisedComponent != null) {
-							realisation.append(realisedComponent
-									.getRealisation());
-						}
-					}
+					appendTitle(realisation, title, 2);
+					realiseSubComponents(realisation, components);
 					break;
+				case SECTION:
+					appendTitle(realisation, title, 1);
+					realiseSubComponents(realisation, components);
+					break;
+				case LIST:
+					realiseSubComponents(realisation, components);
+					break;
+
+                case ENUMERATED_LIST:
+                    numberedPrefix.upALevel();
+                    if (title != null) {
+                        realisation.append(title).append('\n');
+                    }
+
+                    if (null != components && 0 < components.size()) {
+
+                        realisedComponent = realise(components.get(0));
+                        if (realisedComponent != null) {
+                            realisation.append(realisedComponent.getRealisation());
+                        }
+                        for (int i = 1; i < components.size(); i++) {
+                            if (realisedComponent != null && !realisedComponent.getRealisation().endsWith("\n")) {
+                                realisation.append(' ');
+                            }
+                            if(components.get(i).getParent().getCategory() == DocumentCategory.ENUMERATED_LIST) {
+                                numberedPrefix.increment();
+                            }
+                            realisedComponent = realise(components.get(i));
+                            if (realisedComponent != null) {
+                                realisation.append(realisedComponent.getRealisation());
+                            }
+                        }
+                    }
+
+                    numberedPrefix.downALevel();
+                    break;
 
 				case PARAGRAPH:
 					if (null != components && 0 < components.size()) {
 						realisedComponent = realise(components.get(0));
 						if (realisedComponent != null) {
-							realisation.append(realisedComponent
-									.getRealisation());
+							realisation.append(realisedComponent.getRealisation());
 						}
 						for (int i = 1; i < components.size(); i++) {
 							if (realisedComponent != null) {
@@ -105,8 +133,7 @@ public class TextFormatter extends NLGModule {
 							}
 							realisedComponent = realise(components.get(i));
 							if (realisedComponent != null) {
-								realisation.append(realisedComponent
-										.getRealisation());
+								realisation.append(realisedComponent.getRealisation());
 							}
 						}
 					}
@@ -118,9 +145,13 @@ public class TextFormatter extends NLGModule {
 					break;
 
 				case LIST_ITEM:
-					// cch fix
-					//realisation.append(" * ").append(element.getRealisation()); //$NON-NLS-1$
-					realisation.append(" * "); //$NON-NLS-1$
+                    if(element.getParent() != null) {
+                        if(element.getParent().getCategory() == DocumentCategory.LIST) {
+                            realisation.append(" * ");
+                        } else if(element.getParent().getCategory() == DocumentCategory.ENUMERATED_LIST) {
+                            realisation.append(numberedPrefix.getPrefix() + " - ");
+                        }
+                    }
 
 					for (NLGElement eachComponent : components) {
 						realisedComponent = realise(eachComponent);
@@ -139,7 +170,7 @@ public class TextFormatter extends NLGModule {
 					break;
 				}
 
-				// also need to check if element is a listelement (items can
+				// also need to check if element is a ListElement (items can
 				// have embedded lists post-orthography) or a coordinate
 			} else if (element instanceof ListElement || element instanceof CoordinatedPhraseElement) {
 				for (NLGElement eachComponent : components) {
@@ -153,6 +184,38 @@ public class TextFormatter extends NLGModule {
 		
 		return new StringElement(realisation.toString());
 	}
+
+	/**
+	 * realiseSubComponents -- Realises subcomponents iteratively.
+	 * @param realisation -- The current realisation StringBuffer.
+	 * @param components -- The components to realise.
+	 */
+	private void realiseSubComponents(StringBuffer realisation,
+			List<NLGElement> components) {
+		NLGElement realisedComponent;
+		for (NLGElement eachComponent : components) {
+			realisedComponent = realise(eachComponent);
+			if (realisedComponent != null) {
+				realisation.append(realisedComponent
+						.getRealisation());
+			}
+		}
+	}
+	
+	/**
+	 * appendTitle -- Appends document or section title to the realised document.
+	 * @param realisation -- The current realisation StringBuffer.
+	 * @param title -- The title to append.
+	 * @param numberOfLineBreaksAfterTitle -- Number of line breaks to append.
+	 */
+	private void appendTitle(StringBuffer realisation, String title, int numberOfLineBreaksAfterTitle) {
+        if (title != null && !title.isEmpty()) {
+            realisation.append(title);
+            for(int i = 0; i < numberOfLineBreaksAfterTitle; i++) {
+                realisation.append("\n");
+            }
+        }
+    }
 
 	@Override
 	public List<NLGElement> realise(List<NLGElement> elements) {

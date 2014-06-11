@@ -36,11 +36,11 @@ import simplenlg.syntax.english.SyntaxProcessor;
  */
 public class Realiser extends NLGModule {
 
-	private MorphologyProcessor morphology;
+	private MorphologyProcessor  morphology;
 	private OrthographyProcessor orthography;
-	private SyntaxProcessor syntax;
-	private NLGModule formatter = null;
-	private boolean debug = false;
+	private SyntaxProcessor      syntax;
+	private NLGModule            formatter = null;
+	private boolean              debug     = false;
 
 	/**
 	 * create a realiser (no lexicon)
@@ -88,7 +88,7 @@ public class Realiser extends NLGModule {
 	 *            the commaSepPremodifiers to set
 	 */
 	public void setCommaSepPremodifiers(boolean commaSepPremodifiers) {
-		if (this.orthography != null) {
+		if(this.orthography != null) {
 			this.orthography.setCommaSepPremodifiers(commaSepPremodifiers);
 		}
 	}
@@ -106,7 +106,7 @@ public class Realiser extends NLGModule {
 	public boolean isCommaSepCuephrase() {
 		return this.orthography == null ? false : this.orthography.isCommaSepCuephrase();
 	}
-	
+
 	/**
 	 * Set whether to separate cue phrases from the host phrase using a comma. If <code>true</code>,
 	 * a comma will be inserted, as in <i>however, Bill arrived late</i>.
@@ -118,11 +118,11 @@ public class Realiser extends NLGModule {
 	 * @param commaSepcuephrase
 	 */
 	public void setCommaSepCuephrase(boolean commaSepCuephrase) {
-		if (this.orthography != null) {
+		if(this.orthography != null) {
 			this.orthography.setCommaSepCuephrase(commaSepCuephrase);
 		}
 	}
-	
+
 	@Override
 	public void initialise() {
 		this.morphology = new MorphologyProcessor();
@@ -138,36 +138,56 @@ public class Realiser extends NLGModule {
 
 	@Override
 	public NLGElement realise(NLGElement element) {
-		if (this.debug) {
+
+		StringBuilder debug = new StringBuilder();
+
+		if(this.debug) {
 			System.out.println("INITIAL TREE\n"); //$NON-NLS-1$
 			System.out.println(element.printTree(null));
+			debug.append("INITIAL TREE<br/>");
+			debug.append(element.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
 		}
+
 		NLGElement postSyntax = this.syntax.realise(element);
-		if (this.debug) {
-			System.out.println("\nPOST-SYNTAX TREE\n"); //$NON-NLS-1$
+		if(this.debug) {
+			System.out.println("<br/>POST-SYNTAX TREE<br/>"); //$NON-NLS-1$
 			System.out.println(postSyntax.printTree(null));
+			debug.append("<br/>POST-SYNTAX TREE<br/>");
+			debug.append(postSyntax.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
 		}
+
 		NLGElement postMorphology = this.morphology.realise(postSyntax);
-		if (this.debug) {
+		if(this.debug) {
 			System.out.println("\nPOST-MORPHOLOGY TREE\n"); //$NON-NLS-1$
 			System.out.println(postMorphology.printTree(null));
+			debug.append("<br/>POST-MORPHOLOGY TREE<br/>");
+			debug.append(postMorphology.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
 		}
 
 		NLGElement postOrthography = this.orthography.realise(postMorphology);
-		if (this.debug) {
+		if(this.debug) {
 			System.out.println("\nPOST-ORTHOGRAPHY TREE\n"); //$NON-NLS-1$
 			System.out.println(postOrthography.printTree(null));
+			debug.append("<br/>POST-ORTHOGRAPHY TREE<br/>");
+			debug.append(postOrthography.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
 		}
 
 		NLGElement postFormatter = null;
-		if (this.formatter != null) {
+		if(this.formatter != null) {
 			postFormatter = this.formatter.realise(postOrthography);
-			if (this.debug) {
+			if(this.debug) {
 				System.out.println("\nPOST-FORMATTER TREE\n"); //$NON-NLS-1$
 				System.out.println(postFormatter.printTree(null));
+				debug.append("<br/>POST-FORMATTER TREE<br/>");
+				debug.append(postFormatter.printTree("&nbsp;&nbsp;").replaceAll("\n", "<br/>"));
 			}
+
 		} else {
 			postFormatter = postOrthography;
+		}
+
+		if(this.debug) {
+			postFormatter.setFeature("debug", debug.toString());
 		}
 
 		return postFormatter;
@@ -181,16 +201,15 @@ public class Realiser extends NLGModule {
 	 */
 	public String realiseSentence(NLGElement element) {
 		NLGElement realised = null;
-		if (element instanceof DocumentElement)
+		if(element instanceof DocumentElement)
 			realised = realise(element);
 		else {
-			DocumentElement sentence = new DocumentElement(
-					DocumentCategory.SENTENCE, null);
+			DocumentElement sentence = new DocumentElement(DocumentCategory.SENTENCE, null);
 			sentence.addComponent(element);
 			realised = realise(sentence);
 		}
 
-		if (realised == null)
+		if(realised == null)
 			return null;
 		else
 			return realised.getRealisation();
